@@ -16,6 +16,8 @@ import icai.dtc.isw.message.Message;
 
 public class SocketServer extends Thread {
 	public static final int PORT_NUMBER = 8081;
+	//private entrada Entrada;
+	//introducir entrada
 
 	protected Socket socket;
 
@@ -42,6 +44,7 @@ public class SocketServer extends Thread {
 		    	case "/getCustomer":
 		    		CustomerControler customerControler=new CustomerControler();
 		    		ArrayList<Customer> lista=new ArrayList<Customer>();
+		    		//customerdao.setEntrada(entrada);
 		    		customerControler.getCustomer(lista);
 		    		mensajeOut.setContext("/getCustomerResponse");
 		    		HashMap<String,Object> session=new HashMap<String, Object>();

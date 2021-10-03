@@ -1,5 +1,6 @@
 package icai.dtc.isw.client;
 
+import icai.dtc.isw.domain.Entrada;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.ObjectInputStream;
@@ -20,6 +21,7 @@ public class Client {
 	private String host;
 	private int port;
 	final static Logger logger = Logger.getLogger(Client.class);
+	private Entrada entrada;
 
 	public static void main(String args[]) {
 		//Configure connections
@@ -41,9 +43,10 @@ public class Client {
 		
 		switch (mensajeVuelta.getContext()) {
 			case "/getCustomerResponse":
+				// Aquí tenemos q conseguir devolver un array
 				ArrayList<Customer> customerList=(ArrayList<Customer>)(mensajeVuelta.getSession().get("Customer"));
 				 for (Customer customer : customerList) {			
-						System.out.println("He leído la matricula: "+customer.getId()+"numero de plazas"+customer.getName());
+						System.out.println("He leído la matricula: "+customer.getMatricula()+" origen:"+customer.getOrigen()+" destino:"+customer.getDestino()+"numero de plazas"+customer.getPlazas());
 					} 
 				break;
 				

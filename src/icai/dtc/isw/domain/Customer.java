@@ -6,35 +6,38 @@ public class Customer implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
-	private String id;
-	private String name;
-	
-	public Customer() {
-		this.setId(new String());
-		this.setName(new String());
-	}
-	
-	public Customer(String id, String name) {
-		this.setName(name);
-		this.setId(id);
+	private String origen;
+	private String destino;
+	private int plazas;
+	private String matricula;
+	//private String fecha;
+	//private String hora;
+
+	public Customer(String matricula, String origen, String destino, int plazas)
+	{
+		this.matricula= matricula
+		this.origen= origen;
+		this.destino = destino;
+		this.plazas = plazas;
 	}
 
-	public String getId() {
-		return id;
+	public String getOrigen()
+	{
+		return origen;
 	}
 
-	public void setId(String id) {
-		this.id = id;
+	public String getDestino()
+	{
+		return destino;
 	}
 
-	public String getName() {
-		return name;
+	public int getPlazas()
+	{
+		return plazas;
 	}
-
-	public void setName(String name) {
-		this.name = name;
+	public String getMatricula()
+	{
+		return matricula;
 	}
-	
 	
 }

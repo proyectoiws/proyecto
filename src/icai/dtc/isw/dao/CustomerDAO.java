@@ -7,18 +7,22 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import icai.dtc.isw.domain.Customer;
+import icai.dtc.isw.domain.Entrada;
 
 public class CustomerDAO {
+
+	private Entrada entrada;
 	
-	
-	
+	public static void setEntrada(Entrada entrada){
+		this.entrada = entrada;
+	}
 	public static void getClientes(ArrayList<Customer> lista) {
 		Connection con=ConnectionDAO.getInstance().getConnection();
-		try (PreparedStatement pst = con.prepareStatement("SELECT * FROM coches");
+		try (PreparedStatement pst = con.prepareStatement("SELECT * FROM coches WHERE origen ="+entrada.getOrigen()+"AND destino ="+entrada.getDestino());
                 ResultSet rs = pst.executeQuery()) {
 
             while (rs.next()) {
-            	lista.add(new Customer(rs.getString(1),rs.getString(2)));
+            	lista.add(new Customer(rs.getString(6),rs.getString(2),rs.getString(3),rs.getString(1)));
             }
 
         } catch (SQLException ex) {
@@ -31,11 +35,12 @@ public class CustomerDAO {
 		
 		
 		ArrayList<Customer> lista=new ArrayList<Customer>();
+
 		CustomerDAO.getClientes(lista);
 		
 		
 		 for (Customer customer : lista) {			
-			System.out.println("He leído el id: "+customer.getId()+" con nombre: "+customer.getName());
+			System.out.println("He leído la matricula: "+customer.getMatricula());
 		}
 		
 	
