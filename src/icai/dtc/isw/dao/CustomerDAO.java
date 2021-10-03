@@ -14,7 +14,7 @@ public class CustomerDAO {
 	
 	public static void getClientes(ArrayList<Customer> lista) {
 		Connection con=ConnectionDAO.getInstance().getConnection();
-		try (PreparedStatement pst = con.prepareStatement("SELECT * FROM usuarios");
+		try (PreparedStatement pst = con.prepareStatement("SELECT * FROM coches");
                 ResultSet rs = pst.executeQuery()) {
 
             while (rs.next()) {

@@ -43,7 +43,7 @@ public class Client {
 			case "/getCustomerResponse":
 				ArrayList<Customer> customerList=(ArrayList<Customer>)(mensajeVuelta.getSession().get("Customer"));
 				 for (Customer customer : customerList) {			
-						System.out.println("He leído el id: "+customer.getId()+" con nombre: "+customer.getName());
+						System.out.println("He leído la matricula: "+customer.getId()+"numero de plazas"+customer.getName());
 					} 
 				break;
 				
