@@ -1,8 +1,11 @@
 package icai.dtc.isw.ui;
 
-import icai.dtc.isw.domain.Entrada;
+import icai.dtc.isw.domain.*;
+import icai.dtc.isw.client.Client;
+
 import javax.swing.JButton;
-import javax.swing.JTextField;
+
+import java.util.*;
 import javax.swing.JLabel;
 
 import javax.swing.JFrame;
@@ -82,10 +85,14 @@ public class JVentana1 extends JFrame
                 String plazas=  (String) cbPlazas.getItemAt(cbPlazas.getSelectedIndex());
                 String destino = (String) cbDestino.getItemAt(cbDestino.getSelectedIndex());
                 Entrada entrada = new Entrada (origen, destino,plazas);
-                // llamar a socket y a client
-                // lo q devuleve client (array) es el argumento de JVentana2
+                Client c = new Client();
+                HashMap<String, Object> peticion = new HashMap<String,Object>();
+                peticion.put("Peticion",entrada);
+                c.envioPeticion("/getCustomer",peticion);
+                System.out.println("ok final");
+                ArrayList<Customer> salidas = c.getSalida();
 
-                ventana2 = new JVentana2(entrada,JVentana1.this);
+                ventana2 = new JVentana2(salidas,JVentana1.this);
                 ventana2.setVisible(true);
                 JVentana1.this.setVisible(false);
 

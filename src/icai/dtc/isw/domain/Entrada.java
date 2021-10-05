@@ -1,6 +1,8 @@
 package icai.dtc.isw.domain;
 
-public class Entrada {
+import java.io.Serializable;
+
+public class Entrada implements Serializable {
     private String origen;
     private String destino;
     private String plazas;

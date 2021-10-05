@@ -1,6 +1,5 @@
 package icai.dtc.isw.client;
 
-import icai.dtc.isw.domain.Entrada;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.ObjectInputStream;
@@ -20,31 +19,41 @@ import icai.dtc.isw.message.Message;
 public class Client {
 	private String host;
 	private int port;
+	private ArrayList<Customer> salidas;
 	final static Logger logger = Logger.getLogger(Client.class);
-	private Entrada entrada;
 
-	public static void main(String args[]) {
+
+	public void envioPeticion(String contexto, HashMap <String,Object> session) {
 		//Configure connections
+
 		String host = PropertiesISW.getInstance().getProperty("host");
+		System.out.println("ok1");
 		int port = Integer.parseInt(PropertiesISW.getInstance().getProperty("port"));
+		System.out.println("ok2");
 		Logger.getRootLogger().info("Host: "+host+" port"+port);
+		System.out.println("ok3");
 		//Create a cliente class
-		Client cliente=new Client(host, port);
-		
-		HashMap<String,Object> session=new HashMap<String, Object>();
+		this.setC( host,  port);
+		System.out.println("ok4");
+
+
+		//HashMap<String,Object> session=new HashMap<String, Object>();
 		//session.put("/getCustomer","");
 		
 		Message mensajeEnvio=new Message();
 		Message mensajeVuelta=new Message();
-		mensajeEnvio.setContext("/getCustomer");
+		mensajeEnvio.setContext(contexto);
 		mensajeEnvio.setSession(session);
-		cliente.sent(mensajeEnvio,mensajeVuelta);
+		System.out.println("pre ");
+		this.sent(mensajeEnvio,mensajeVuelta);
+		System.out.println("post ");
 		
 		
 		switch (mensajeVuelta.getContext()) {
 			case "/getCustomerResponse":
 				// Aquí tenemos q conseguir devolver un array
 				ArrayList<Customer> customerList=(ArrayList<Customer>)(mensajeVuelta.getSession().get("Customer"));
+				this.salidas= customerList;
 				 for (Customer customer : customerList) {			
 						System.out.println("He leído la matricula: "+customer.getMatricula()+" origen:"+customer.getOrigen()+" destino:"+customer.getDestino()+"numero de plazas"+customer.getPlazas());
 					} 
@@ -59,11 +68,15 @@ public class Client {
 		//System.out.println("3.- En Main.- El valor devuelto es: "+((String)mensajeVuelta.getSession().get("Nombre")));
 	}
 	
-	public Client(String host, int port) {
+	public void setC(String host, int port) {
 		this.host=host;
 		this.port=port;
 	}
-	
+
+	public ArrayList<Customer> getSalida(){
+		return salidas;
+	}
+
 
 	public void sent(Message messageOut, Message messageIn) {
 		try {

@@ -12,6 +12,7 @@ import java.util.HashMap;
 
 import icai.dtc.isw.controler.CustomerControler;
 import icai.dtc.isw.domain.Customer;
+import icai.dtc.isw.domain.Entrada;
 import icai.dtc.isw.message.Message;
 
 public class SocketServer extends Thread {
@@ -40,12 +41,20 @@ public class SocketServer extends Thread {
 		    //Object to return informations 
 		    ObjectOutputStream objectOutputStream = new ObjectOutputStream(out);
 		    Message mensajeOut=new Message();
+			//System.out.println("sockect");
 		    switch (mensajeIn.getContext()) {
+
 		    	case "/getCustomer":
+					System.out.println("ok contexto");
 		    		CustomerControler customerControler=new CustomerControler();
-		    		ArrayList<Customer> lista=new ArrayList<Customer>();
-		    		//customerdao.setEntrada(entrada);
-		    		customerControler.getCustomer(lista);
+					System.out.println("ok controller");
+					ArrayList<Customer> lista=new ArrayList<Customer>();
+					HashMap<String,Object> mapa = mensajeIn.getSession();
+					System.out.println(mapa);
+					//Entrada en = (Entrada) objeto.values();
+					//System.out.println(en.getOrigen());
+					System.out.println("pregetcustomer");
+		    		customerControler.getCustomer(lista,mapa);
 		    		mensajeOut.setContext("/getCustomerResponse");
 		    		HashMap<String,Object> session=new HashMap<String, Object>();
 		    		session.put("Customer",lista);
@@ -87,6 +96,7 @@ public class SocketServer extends Thread {
 
 		} catch (IOException ex) {
 			System.out.println("Unable to get streams from client");
+			ex.printStackTrace();
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
