@@ -15,7 +15,7 @@ public class Customer implements Serializable{
 
 	public Customer(String matricula, String origen, String destino, int plazas)
 	{
-		this.matricula= matricula
+		this.matricula= matricula;
 		this.origen= origen;
 		this.destino = destino;
 		this.plazas = plazas;
