@@ -16,13 +16,13 @@ import java.awt.BorderLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class JVentana2 extends JFrame
+public class JVentanaResultadosBuscar extends JFrame
 {
-    private JVentana1 ventana;
+    private JVentanaBuscar ventana;
     private ArrayList<Customer> salidas;
 
 
-    public JVentana2(ArrayList<Customer> salidas,JVentana1 ventana)
+    public JVentanaResultadosBuscar(ArrayList<Customer> salidas,JVentanaBuscar ventana)
     {
         super("Personalizar fichero");
         this.ventana = ventana;
@@ -47,7 +47,7 @@ public class JVentana2 extends JFrame
             {
 
                 ventana.setVisible(true);
-                JVentana2.this.setVisible(false);
+                JVentanaResultadosBuscar.this.setVisible(false);
 
 
             }
