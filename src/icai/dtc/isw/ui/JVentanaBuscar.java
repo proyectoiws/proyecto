@@ -21,7 +21,8 @@ public class JVentanaBuscar extends JFrame
 
     private JVentanaResultadosBuscar ventana2;
     private JButton btnBuscar;
-    private JComboBox cbOrigen, cbDestino, cbPlazas;
+    private JComboBox<String> cbOrigen, cbDestino, cbPlazas;
+    private JLabel labelOrigen, labelDestino, labelPlazas;
 
 
     public static void main(String args[])
@@ -34,24 +35,27 @@ public class JVentanaBuscar extends JFrame
     {
         this.setTitle("B\u00FAsqueda de coches");
         this.setLayout(null);
-        this.getContentPane().setBackground(new Color(207, 185, 151,255)); //color de fondo
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setResizable(true); //para que no se pueda mover la jventana
+        this.setResizable(false); //para que no se pueda mover la jventana
         this.setSize(1000,600);
         this.setLocationRelativeTo(null); //para que aparezca en medio de la pantalla
         this.setVisible(true);
 
-//        initTitulo();
+        initTitulo();
+        initJLabels();
         initBotonBuscar();
-        initActionBotones();
         initBoxes();
+        initActionBotones();
+
+        this.getContentPane().setBackground(new Color(207, 185, 151,255)); //color de fondo (lo pongo al final porque sino no se ven las boxes)
     }
 
     public void initTitulo() {
-        JLabel titulo = new JLabel( "Busca tu coche" );
-        titulo.setBounds(0, 0, 800, 100);
+        JLabel titulo = new JLabel( "Elige los par\u00E1metros de b\u00FAsqueda:" );
+        titulo.setBounds(125, 50, 500, 50);
         titulo.setHorizontalAlignment(SwingConstants.CENTER);
-        titulo.setForeground(new Color(215,207,204,255));
+        titulo.setForeground(new Color(234, 223, 223,255));
+        titulo.setForeground(new Color(0, 47, 152,255));
         titulo.setOpaque(false); //false para quitar el fondo
         titulo.setFont(new Font("Harlow Solid Italic"   , Font.BOLD, 25));
         this.add(titulo);
@@ -59,7 +63,6 @@ public class JVentanaBuscar extends JFrame
 
     public void initBotonBuscar() {
         btnBuscar = new JButton("Buscar");
-        this.add(btnBuscar);
         btnBuscar.setBounds(375,450,250,50);
         btnBuscar.setForeground(Color.BLACK);
         btnBuscar.setBackground(new Color(215,207,204,255));
@@ -68,22 +71,53 @@ public class JVentanaBuscar extends JFrame
         Border compound = new CompoundBorder(line, margin); //para que tenga el borde de negro
         btnBuscar.setBorder(compound); // añadimos el borde de negro
         btnBuscar.setFont(new Font("Gill Sans Nova", Font.BOLD, 15));
+        this.add(btnBuscar);
     }
 
     public void initBoxes() {
-
         String origen[]={"Pozuelo","Majadahonda","Boadilla","Somosaguas","ICAI","ICADE","CIHS","Madrid"};
-        String destinos[]={"Pozuelo","Majadahonda","Boadilla","Somosaguas","ICAI","ICADE","CIHS","Madrid"};
-        String plazas[]={"1","2","3","4","5","6","7"};
-
         cbOrigen = new JComboBox<String>(origen);
-        cbOrigen.setBounds(10,10,100,50);
-        cbDestino = new JComboBox<String>(destinos);
-        cbPlazas = new JComboBox<String>(plazas);
-
+        cbOrigen.setBounds(600,160,200,30);
+//        cbOrigen.setFont(new Font("Bauhaus 93", 0, 20));
         this.add(cbOrigen);
+
+        String destinos[]={"Pozuelo","Majadahonda","Boadilla","Somosaguas","ICAI","ICADE","CIHS","Madrid"};
+        cbDestino = new JComboBox<String>(destinos);
+        cbDestino.setBounds(600,240,200,30);
+//        cbDestino.setFont(new Font("Bauhaus 93", 0, 20));
         this.add(cbDestino);
+
+        String plazas[]={"1","2","3","4","5","6","7"};
+        cbPlazas = new JComboBox<String>(plazas);
+        cbPlazas.setBounds(600,320,200,30);
+//        cbPlazas.setFont(new Font("Bauhaus 93", 0, 20));
         this.add(cbPlazas);
+    }
+
+    public void initJLabels(){
+        labelOrigen = new JLabel("Origen:");
+        labelOrigen.setBounds(250,150,125,50);
+        labelOrigen.setHorizontalAlignment(SwingConstants.LEFT);
+        labelOrigen.setForeground(Color.black);
+        labelOrigen.setOpaque(false); //false para quitar el fondo
+        labelOrigen.setFont(new Font( Font.DIALOG, Font.BOLD, 20));
+        this.add(labelOrigen);
+
+        labelDestino = new JLabel("Destino:");
+        labelDestino.setBounds(250,230,125,50);
+        labelDestino.setHorizontalAlignment(SwingConstants.LEFT);
+        labelDestino.setForeground(Color.black);
+        labelDestino.setOpaque(false); //false para quitar el fondo
+        labelDestino.setFont(new Font( Font.DIALOG, Font.BOLD, 20));
+        this.add(labelDestino);
+
+        labelPlazas = new JLabel("Numero de plazas:");
+        labelPlazas.setBounds(250,310,250,50);
+        labelPlazas.setHorizontalAlignment(SwingConstants.LEFT);
+        labelPlazas.setForeground(Color.black);
+        labelPlazas.setOpaque(false); //false para quitar el fondo
+        labelPlazas.setFont(new Font( Font.DIALOG, Font.BOLD, 20));
+        this.add(labelPlazas);
     }
 
     public void initActionBotones() {
