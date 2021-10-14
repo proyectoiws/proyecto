@@ -134,12 +134,18 @@ public class JVentanaBuscar extends JFrame
                 HashMap<String, Object> peticion = new HashMap<String,Object>();
                 peticion.put("Peticion",entrada);
                 c.envioPeticion("/getCustomer",peticion);
-                System.out.println("ok final");
+                //System.out.println("ok final");
                 ArrayList<Customer> salidas = c.getSalida();
+                if(salidas.size()==0){
+                    JOptionPane.showMessageDialog(null, "No se encuentra resultado par sus requisitos, vuelva a intentarlo");
+                }
+                else {
+                    ventana2 = new JVentanaResultadosBuscar(salidas,JVentanaBuscar.this);
+                    ventana2.setVisible(true);
+                    JVentanaBuscar.this.setVisible(false);
 
-                ventana2 = new JVentanaResultadosBuscar(salidas,JVentanaBuscar.this);
-                ventana2.setVisible(true);
-                JVentanaBuscar.this.setVisible(false);
+                }
+
 
             }
         });

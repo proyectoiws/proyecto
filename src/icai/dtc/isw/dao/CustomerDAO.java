@@ -18,7 +18,7 @@ public class CustomerDAO {
 		ENTRADA = entrada;
 		System.out.println(ENTRADA.getOrigen());
 		Connection con=ConnectionDAO.getInstance().getConnection();
-		try (PreparedStatement pst = con.prepareStatement("SELECT * FROM coches WHERE origen = '"+ENTRADA.getOrigen()+"';");
+		try (PreparedStatement pst = con.prepareStatement("SELECT * FROM coches WHERE origen = '"+ENTRADA.getOrigen()+"' AND destino ='"+ENTRADA.getDestino()+"' AND plazas ='"+ENTRADA.getPlazas()+"';");
                 ResultSet rs = pst.executeQuery()) {
 
             while (rs.next()) {

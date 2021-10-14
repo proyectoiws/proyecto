@@ -45,9 +45,9 @@ public class SocketServer extends Thread {
 		    switch (mensajeIn.getContext()) {
 
 		    	case "/getCustomer":
-					System.out.println("ok contexto");
+					//System.out.println("ok contexto");
 		    		CustomerControler customerControler=new CustomerControler();
-					System.out.println("ok controller");
+					//System.out.println("ok controller");
 					ArrayList<Customer> lista=new ArrayList<Customer>();
 					HashMap<String,Object> mapa = mensajeIn.getSession();
 					System.out.println(mapa);

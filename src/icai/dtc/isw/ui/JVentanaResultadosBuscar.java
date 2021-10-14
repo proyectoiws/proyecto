@@ -93,7 +93,7 @@ public class JVentanaResultadosBuscar extends JFrame
             labelDestino.setFont(new Font(Font.DIALOG, Font.BOLD, 20));
             this.add(labelDestino);
 
-            labelPlazas = new JLabel("Numero de plazas: " + customer.getDestino());
+            labelPlazas = new JLabel("Numero de plazas: " + customer.getPlazas());
             labelPlazas.setBounds(250, 365, 400, 50);
             labelPlazas.setHorizontalAlignment(SwingConstants.LEFT);
             labelPlazas.setForeground(Color.black);

@@ -27,14 +27,11 @@ public class Client {
 		//Configure connections
 
 		String host = PropertiesISW.getInstance().getProperty("host");
-		System.out.println("ok1");
 		int port = Integer.parseInt(PropertiesISW.getInstance().getProperty("port"));
-		System.out.println("ok2");
 		Logger.getRootLogger().info("Host: "+host+" port"+port);
-		System.out.println("ok3");
 		//Create a cliente class
 		this.setC( host,  port);
-		System.out.println("ok4");
+
 
 
 		//HashMap<String,Object> session=new HashMap<String, Object>();
@@ -44,9 +41,9 @@ public class Client {
 		Message mensajeVuelta=new Message();
 		mensajeEnvio.setContext(contexto);
 		mensajeEnvio.setSession(session);
-		System.out.println("pre ");
+		//System.out.println("pre ");
 		this.sent(mensajeEnvio,mensajeVuelta);
-		System.out.println("post ");
+		//System.out.println("post ");
 		
 		
 		switch (mensajeVuelta.getContext()) {

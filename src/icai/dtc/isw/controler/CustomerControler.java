@@ -10,9 +10,9 @@ public class CustomerControler {
 
 	public void getCustomer(ArrayList<Customer> lista,HashMap<String, Object> mapa) {
 		//Aquí los distintos metodos según el String por ahora cogemos el value y hacemos downcasting
-		System.out.println(" ok controler");
+		//System.out.println(" ok controler");
 		Entrada entrada = (Entrada) mapa.get("Peticion");
-		System.out.println(entrada+" ok");
+		//System.out.println(entrada+" ok");
 		CustomerDAO.getClientes(lista, entrada);
 	}	
 }
