@@ -1,19 +1,15 @@
 package icai.dtc.isw.server;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.OutputStream;
+import icai.dtc.isw.controler.CustomerControler;
+import icai.dtc.isw.domain.Customer;
+import icai.dtc.isw.message.Message;
+import icai.dtc.isw.ui.JVentanaBuscar;
+
+import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.HashMap;
-
-import icai.dtc.isw.controler.CustomerControler;
-import icai.dtc.isw.domain.Customer;
-import icai.dtc.isw.domain.Entrada;
-import icai.dtc.isw.message.Message;
 
 public class SocketServer extends Thread {
 	public static final int PORT_NUMBER = 8081;
@@ -26,6 +22,7 @@ public class SocketServer extends Thread {
 		this.socket = socket;
 		System.out.println("New client connected from " + socket.getInetAddress().getHostAddress());
 		start();
+
 	}
 
 	public void run() {
@@ -113,6 +110,7 @@ public class SocketServer extends Thread {
 
 	public static void main(String[] args) {
 		System.out.println("SocketServer Example");
+		new JVentanaBuscar();
 		ServerSocket server = null;
 		try {
 			server = new ServerSocket(PORT_NUMBER);
