@@ -5,8 +5,16 @@ import java.util.*;
 import icai.dtc.isw.dao.CustomerDAO;
 import icai.dtc.isw.domain.Customer;
 import icai.dtc.isw.domain.Entrada;
+import icai.dtc.isw.domain.Usuario;
 
 public class CustomerControler {
+
+	public void getUsuario(ArrayList<Usuario> lista, HashMap<String, Object> mapa) {
+		Usuario entrada = (Usuario) mapa.get("Peticion");
+		System.out.println(entrada.getId()+"  bien hasta DAO   "+entrada.getPassword());
+		//System.out.println(entrada+" ok");
+		CustomerDAO.getUsuarios(lista, entrada);
+	}
 
 	public void getCustomer(ArrayList<Customer> lista,HashMap<String, Object> mapa) {
 		//Aquí los distintos metodos según el String por ahora cogemos el value y hacemos downcasting

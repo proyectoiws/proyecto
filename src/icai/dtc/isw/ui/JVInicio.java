@@ -1,9 +1,16 @@
 package icai.dtc.isw.ui;
 
+import icai.dtc.isw.client.Client;
+import icai.dtc.isw.domain.Customer;
+import icai.dtc.isw.domain.Entrada;
+import icai.dtc.isw.domain.Usuario;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 
 public class JVInicio extends JFrame
@@ -61,11 +68,19 @@ public class JVInicio extends JFrame
             {
                 char [] arrayC = txtcontra.getPassword();
                 String contra= new String(arrayC);
-                System.out.println(contra);
-                String p = "abc";
-                //txtuser.getText()==name &&
-                if(contra.equals(p))
-                {
+                String name = txtuser.getText();
+                Usuario u = new Usuario (name, contra);
+                System.out.println(u.getId()+" "+u.getPassword());
+                Client c = new Client();
+                HashMap<String, Object> peticion = new HashMap<String,Object>();
+                peticion.put("Peticion",u);
+                c.envioPeticion("/getUsuario",peticion);
+                //System.out.println("ok final");
+                int entrar = c.getSalidaU();
+                if(entrar==0){
+                    JOptionPane.showMessageDialog(null, "No se encuentra su usuario, vuelva a intentarlo");
+                }
+                else {
                     ventana1 = new JVentanaBuscar();
                     ventana1.setVisible(true);
                     JVInicio.this.setVisible(false);
@@ -78,12 +93,12 @@ public class JVInicio extends JFrame
         this.add(pnlNorte, BorderLayout.NORTH);
         this.add(pnlSur, BorderLayout.SOUTH);
 
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
         this.setResizable(false); //para que no se pueda mover la jventana
         this.setSize(1000,600);
         this.setLocationRelativeTo(null); //para que aparezca en medio de la pantalla
         this.setVisible(true);
-
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
     }
 }

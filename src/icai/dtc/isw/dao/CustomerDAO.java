@@ -8,10 +8,14 @@ import java.util.ArrayList;
 
 import icai.dtc.isw.domain.Customer;
 import icai.dtc.isw.domain.Entrada;
+import icai.dtc.isw.domain.Usuario;
 
 public class CustomerDAO {
 
 	private static Entrada ENTRADA;
+	private static Usuario USUARIO;
+
+
 
 
 	public static void getClientes(ArrayList<Customer> lista, Entrada entrada) {
@@ -30,8 +34,25 @@ public class CustomerDAO {
             System.out.println(ex.getMessage());
         }
 	}
-	
-	public static void main(String[] args) {
+
+	public static void getUsuarios(ArrayList<Usuario> lista, Usuario entrada) {
+
+		USUARIO = entrada;
+		System.out.println(USUARIO.getId());
+		Connection con = ConnectionDAO.getInstance().getConnection();
+		try (PreparedStatement pst = con.prepareStatement("SELECT * FROM users WHERE name = '" + USUARIO.getId() + "' AND password='" + USUARIO.getPassword() + "';");
+			 ResultSet rs = pst.executeQuery()) {
+
+			while (rs.next()) {
+				lista.add(new Usuario(rs.getString(1), rs.getString(2)));
+			}
+
+		} catch (SQLException ex) {
+
+			System.out.println(ex.getMessage());
+		}
+	}
+	/*public static void main(String[] args) {
 		
 		
 		ArrayList<Customer> lista=new ArrayList<Customer>();
@@ -44,6 +65,6 @@ public class CustomerDAO {
 		}
 		
 	
-	}
+	}*/
 
 }

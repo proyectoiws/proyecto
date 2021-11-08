@@ -2,6 +2,7 @@ package icai.dtc.isw.server;
 
 import icai.dtc.isw.controler.CustomerControler;
 import icai.dtc.isw.domain.Customer;
+import icai.dtc.isw.domain.Usuario;
 import icai.dtc.isw.message.Message;
 import icai.dtc.isw.ui.JVentanaBuscar;
 
@@ -56,8 +57,25 @@ public class SocketServer extends Thread {
 		    		HashMap<String,Object> session=new HashMap<String, Object>();
 		    		session.put("Customer",lista);
 		    		mensajeOut.setSession(session);
-		    		objectOutputStream.writeObject(mensajeOut);		    		
-		    	break;
+		    		objectOutputStream.writeObject(mensajeOut);
+
+				case "/getUsuario":
+					//System.out.println("ok contexto");
+					CustomerControler customerControler2=new CustomerControler();
+					//System.out.println("ok controller");
+					ArrayList<Usuario> lista2=new ArrayList<Usuario>();
+					HashMap<String,Object> mapa2 = mensajeIn.getSession();
+					System.out.println(mapa2);
+					//Entrada en = (Entrada) objeto.values();
+					//System.out.println(en.getOrigen());
+					System.out.println("pregetusuario");
+					customerControler2.getUsuario(lista2,mapa2);
+					mensajeOut.setContext("/getUsuarioResponse");
+					HashMap<String,Object> session2=new HashMap<String, Object>();
+					session2.put("Usuario",lista2);
+					mensajeOut.setSession(session2);
+					objectOutputStream.writeObject(mensajeOut);
+					break;
 		    	
 		    	
 		    	default:
@@ -110,7 +128,7 @@ public class SocketServer extends Thread {
 
 	public static void main(String[] args) {
 		System.out.println("SocketServer Example");
-		new JVentanaBuscar();
+		//new JVentanaBuscar();
 		ServerSocket server = null;
 		try {
 			server = new ServerSocket(PORT_NUMBER);

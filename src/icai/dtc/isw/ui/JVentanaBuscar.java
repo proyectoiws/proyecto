@@ -135,7 +135,7 @@ public class JVentanaBuscar extends JFrame
                 peticion.put("Peticion",entrada);
                 c.envioPeticion("/getCustomer",peticion);
                 //System.out.println("ok final");
-                ArrayList<Customer> salidas = c.getSalida();
+                ArrayList<Customer> salidas = c.getSalidaC();
                 if(salidas.size()==0){
                     JOptionPane.showMessageDialog(null, "No se encuentra resultado par sus requisitos, vuelva a intentarlo");
                 }

@@ -10,6 +10,7 @@ import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import icai.dtc.isw.domain.Usuario;
 import org.apache.log4j.Logger;
 
 import icai.dtc.isw.configuration.PropertiesISW;
@@ -21,6 +22,7 @@ public class Client {
 	private int port;
 	private ArrayList<Customer> salidas;
 	final static Logger logger = Logger.getLogger(Client.class);
+	private int entrar;
 
 
 	public void envioPeticion(String contexto, HashMap <String,Object> session) {
@@ -55,11 +57,25 @@ public class Client {
 						System.out.println("He leído la matricula: "+customer.getMatricula()+" origen:"+customer.getOrigen()+" destino:"+customer.getDestino()+"numero de plazas"+customer.getPlazas());
 					} 
 				break;
-				
+
+			case "/getUsuarioResponse":
+				ArrayList<Usuario> userList=(ArrayList<Usuario>)(mensajeVuelta.getSession().get("Usuario"));
+				if (userList.size()==1)
+					this.entrar= 1;
+				else
+					this.entrar = 0;
+				for (Usuario user : userList) {
+					System.out.println("He leído el id "+user.getId());
+				}
+
+				break;
+
 			default:
 				Logger.getRootLogger().info("Option not found");
 				System.out.println("\nError a la vuelta");
 				break;
+
+
 		
 		}
 		//System.out.println("3.- En Main.- El valor devuelto es: "+((String)mensajeVuelta.getSession().get("Nombre")));
@@ -70,8 +86,12 @@ public class Client {
 		this.port=port;
 	}
 
-	public ArrayList<Customer> getSalida(){
+	public ArrayList<Customer> getSalidaC(){
 		return salidas;
+	}
+
+	public int getSalidaU(){
+		return entrar;
 	}
 
 
