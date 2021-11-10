@@ -22,5 +22,10 @@ public class CustomerControler {
 		Entrada entrada = (Entrada) mapa.get("Peticion");
 		//System.out.println(entrada+" ok");
 		CustomerDAO.getClientes(lista, entrada);
-	}	
+	}
+
+	public void setUsuario(ArrayList<Usuario> lista, HashMap<String, Object> mapa) {
+		Usuario entrada = (Usuario) mapa.get("Peticion");
+		CustomerDAO.setUsuarios(lista, entrada);
+	}
 }

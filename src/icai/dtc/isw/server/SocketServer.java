@@ -5,6 +5,7 @@ import icai.dtc.isw.domain.Customer;
 import icai.dtc.isw.domain.Usuario;
 import icai.dtc.isw.message.Message;
 import icai.dtc.isw.ui.JVentanaBuscar;
+import icai.dtc.isw.ui.JVentanaRegistro;
 
 import java.io.*;
 import java.net.ServerSocket;
@@ -76,7 +77,18 @@ public class SocketServer extends Thread {
 					mensajeOut.setSession(session2);
 					objectOutputStream.writeObject(mensajeOut);
 					break;
-		    	
+
+				case "/setUsuario":
+					CustomerControler customerControler3=new CustomerControler();
+					ArrayList<Usuario> lista3=new ArrayList<Usuario>();
+					HashMap<String,Object> mapa3 = mensajeIn.getSession();
+					customerControler3.setUsuario(lista3,mapa3);
+					mensajeOut.setContext("/setUsuarioResponse");
+					HashMap<String,Object> session3=new HashMap<String, Object>();
+					session3.put("Usuario",lista3);
+					mensajeOut.setSession(session3);
+					objectOutputStream.writeObject(mensajeOut);
+					break;
 		    	
 		    	default:
 		    		System.out.println("\nParámetro no encontrado");
@@ -129,6 +141,7 @@ public class SocketServer extends Thread {
 	public static void main(String[] args) {
 		System.out.println("SocketServer Example");
 		//new JVentanaBuscar();
+//		new JVentanaRegistro();
 		ServerSocket server = null;
 		try {
 			server = new ServerSocket(PORT_NUMBER);

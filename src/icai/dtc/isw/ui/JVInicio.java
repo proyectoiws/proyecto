@@ -16,14 +16,16 @@ import java.util.HashMap;
 public class JVInicio extends JFrame
 
 {
-    private JVentanaBuscar ventana1;
+    private JVentanaBuscar ventanaBuscar;
+    private JVentanaRegistro ventanaResistro;
+
     public static void main(String args[]){
         new JVInicio();
     }
 
     public JVInicio()
     {
-        super("Bienvenido al programa");
+        this.setTitle("Bienvenido al programa");
         this.setLayout(new BorderLayout());
 
         JPanel pnlCentral = new JPanel(new FlowLayout());
@@ -44,17 +46,22 @@ public class JVInicio extends JFrame
 
 
         JTextField txtuser = new JTextField(20);
+        txtuser.setToolTipText("Ingrese usuario");
         //txtuser.setBounds(100,100,160,25);
 
 
         JPasswordField txtcontra = new JPasswordField(20);
+        txtcontra.setEchoChar('*');
+        txtcontra.setToolTipText("Ingrese contraseña");
         //txtcontra.setBounds(100,300,160,25);
 
+        JCheckBox checkContrasena = new JCheckBox("Ver contraseña");
 
         pnlCentral.add(lblname);
         pnlCentral.add(txtuser);
         pnlCentral.add(lblcontra);
         pnlCentral.add(txtcontra);
+        pnlCentral.add(checkContrasena);
 
         JButton btnRegis = new JButton("Registrarse");
         JButton btnIn= new JButton("Iniciar sesion");
@@ -78,16 +85,58 @@ public class JVInicio extends JFrame
                 //System.out.println("ok final");
                 int entrar = c.getSalidaU();
                 if(entrar==0){
-                    JOptionPane.showMessageDialog(null, "No se encuentra su usuario, vuelva a intentarlo");
+                    JOptionPane.showMessageDialog(null, "No se encuentra su usuario, regístrese para crear una cuenta");
                 }
                 else {
-                    ventana1 = new JVentanaBuscar();
-                    ventana1.setVisible(true);
+                    ventanaBuscar = new JVentanaBuscar();
+                    ventanaBuscar.setVisible(true);
                     JVInicio.this.setVisible(false);
                 }
-
             }
         });
+
+        btnRegis.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ventanaResistro = new JVentanaRegistro();
+                ventanaResistro.setVisible(true);
+                JVInicio.this.setVisible(false);
+            }
+        });
+
+        checkContrasena.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (checkContrasena.isSelected()) txtcontra.setEchoChar((char)0);
+                else txtcontra.setEchoChar('*');
+            }
+        });
+
+//        btnRegis.addActionListener(new ActionListener()
+//        {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                char [] arrayC = txtcontra.getPassword();
+//                String contra= new String(arrayC);
+//                String name = txtuser.getText();
+//                Usuario u = new Usuario (name, contra);
+//                System.out.println(u.getId()+" "+u.getPassword());
+//                Client c = new Client();
+//                HashMap<String, Object> peticion = new HashMap<String,Object>();
+//                peticion.put("Peticion",u);
+//                c.envioPeticion("/getRegistrar",peticion);
+//                //System.out.println("ok final");
+//                int entrar = c.getSalidaU();
+//                if(entrar==0){
+//                    JOptionPane.showMessageDialog(null, "Su usuario se ha añadido, por favor inicie sesion con la ");
+//                }
+//                else {
+//                    JOptionPane.showMessageDialog(null, "Este usuario ya ha sido registrado, por favor, inicie sesión con este");
+//                }
+//            }
+//        });
 
         this.add(pnlCentral, BorderLayout.CENTER);
         this.add(pnlNorte, BorderLayout.NORTH);
@@ -99,6 +148,5 @@ public class JVInicio extends JFrame
         this.setLocationRelativeTo(null); //para que aparezca en medio de la pantalla
         this.setVisible(true);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
     }
 }

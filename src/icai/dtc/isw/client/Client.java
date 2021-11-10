@@ -70,6 +70,15 @@ public class Client {
 
 				break;
 
+			case "/setUsuarioResponse":
+				ArrayList<Usuario> userList2=(ArrayList<Usuario>)(mensajeVuelta.getSession().get("Usuario"));
+//				Usuario user2 = (Usuario) userList2.get(0);
+//				System.out.println("Se ha añadido el usuario con id "+user2.getId() +" y contraseña "+user2.getPassword());
+				for (Usuario user : userList2) {
+					System.out.println("Se ha añadido el usuario con id "+user.getId() +" y contraseña "+user.getPassword());
+				}
+				break;
+
 			default:
 				Logger.getRootLogger().info("Option not found");
 				System.out.println("\nError a la vuelta");

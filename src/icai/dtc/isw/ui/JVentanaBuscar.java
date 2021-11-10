@@ -19,7 +19,7 @@ import java.util.HashMap;
 public class JVentanaBuscar extends JFrame
 {
 
-    private JVentanaResultadosBuscar ventana2;
+    private JVentanaResultados ventanaResultados;
     private JButton btnBuscar;
     private JComboBox<String> cbOrigen, cbDestino, cbPlazas;
     private JLabel labelOrigen, labelDestino, labelPlazas;
@@ -140,8 +140,8 @@ public class JVentanaBuscar extends JFrame
                     JOptionPane.showMessageDialog(null, "No se encuentra resultado par sus requisitos, vuelva a intentarlo");
                 }
                 else {
-                    ventana2 = new JVentanaResultadosBuscar(salidas,JVentanaBuscar.this);
-                    ventana2.setVisible(true);
+                    ventanaResultados = new JVentanaResultados(salidas,JVentanaBuscar.this);
+                    ventanaResultados.setVisible(true);
                     JVentanaBuscar.this.setVisible(false);
 
                 }

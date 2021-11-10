@@ -26,7 +26,7 @@ public class CustomerDAO {
                 ResultSet rs = pst.executeQuery()) {
 
             while (rs.next()) {
-            	lista.add(new Customer(rs.getString(6),rs.getString(2),rs.getString(3),(String) rs.getString(1)));
+            	lista.add(new Customer(rs.getString(1),rs.getString(3),rs.getString(4),(String) rs.getString(2)));
             }
 
         } catch (SQLException ex) {
@@ -49,6 +49,22 @@ public class CustomerDAO {
 
 		} catch (SQLException ex) {
 
+			System.out.println(ex.getMessage());
+		}
+	}
+
+	public static void setUsuarios(ArrayList<Usuario> lista, Usuario entrada) {
+		USUARIO = entrada;
+		System.out.println("El usuario que se va a meter antes de la query es "+USUARIO.getId()+" con contraseña "+USUARIO.getPassword());
+		Connection con = ConnectionDAO.getInstance().getConnection();
+		try (PreparedStatement pst = con.prepareStatement("INSERT INTO users (name, password) VALUES ('" + USUARIO.getId() + "', '" + USUARIO.getPassword() + "');");
+			 ResultSet rs = pst.executeQuery()) {
+			while (rs.next()) {
+				lista.add(new Usuario(rs.getString(1), rs.getString(2)));
+			}
+			for (Usuario user : lista) System.out.println("Los usuarios despues de la query son "+user);
+
+		} catch (SQLException ex) {
 			System.out.println(ex.getMessage());
 		}
 	}
