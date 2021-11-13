@@ -27,5 +27,6 @@ public class CustomerControler {
 	public void setUsuario(ArrayList<Usuario> lista, HashMap<String, Object> mapa) {
 		Usuario entrada = (Usuario) mapa.get("Peticion");
 		CustomerDAO.setUsuarios(lista, entrada);
+
 	}
 }

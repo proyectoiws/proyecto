@@ -88,7 +88,12 @@ public class JVentanaRegistro extends JFrame {
                     HashMap<String, Object> peticion = new HashMap<String,Object>();
                     peticion.put("Peticion",u);
                     c.envioPeticion("/setUsuario",peticion);
-                    JOptionPane.showMessageDialog(null, "El usuario se ha registrado, inicie sesión");
+                    if (c.getComprobarU()==1) {
+                        JOptionPane.showMessageDialog(null, "Ese nombre de usuario ya existe");
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(null, "El usuario se ha registrado, inicie sesión");
+                         }
                     ventanaInicio = new JVInicio();
                     ventanaInicio.setVisible(true);
                     JVentanaRegistro.this.setVisible(false);
@@ -129,6 +134,7 @@ public class JVentanaRegistro extends JFrame {
         this.setSize(1000, 600);
         this.setLocationRelativeTo(null); //para que aparezca en medio de la pantalla
         this.setVisible(true);
+        this.setBackground(new Color(207, 185, 151,255));
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 }

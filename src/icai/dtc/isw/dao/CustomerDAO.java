@@ -53,20 +53,33 @@ public class CustomerDAO {
 		}
 	}
 
-	public static void setUsuarios(ArrayList<Usuario> lista, Usuario entrada) {
+	public static void setUsuarios(ArrayList<Usuario> lista2, Usuario entrada) {
 		USUARIO = entrada;
 		System.out.println("El usuario que se va a meter antes de la query es "+USUARIO.getId()+" con contraseña "+USUARIO.getPassword());
 		Connection con = ConnectionDAO.getInstance().getConnection();
-		try (PreparedStatement pst = con.prepareStatement("INSERT INTO users (name, password) VALUES ('" + USUARIO.getId() + "', '" + USUARIO.getPassword() + "');");
+		try (PreparedStatement pst = con.prepareStatement("SELECT * FROM users WHERE name = '" + USUARIO.getId() + "';");
 			 ResultSet rs = pst.executeQuery()) {
+
 			while (rs.next()) {
-				lista.add(new Usuario(rs.getString(1), rs.getString(2)));
+				lista2.add(new Usuario(rs.getString(1), rs.getString(2)));
 			}
-			for (Usuario user : lista) System.out.println("Los usuarios despues de la query son "+user);
 
 		} catch (SQLException ex) {
+
 			System.out.println(ex.getMessage());
 		}
+
+		try (PreparedStatement pst = con.prepareStatement("INSERT INTO users (name, password) VALUES ('" + USUARIO.getId() + "', '" + USUARIO.getPassword() + "');");
+				 ResultSet rs = pst.executeQuery()) {
+
+
+			}
+
+
+		catch (SQLException ex) {
+				System.out.println(ex.getMessage());
+			}
+
 	}
 	/*public static void main(String[] args) {
 		

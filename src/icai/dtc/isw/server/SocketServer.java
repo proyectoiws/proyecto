@@ -86,6 +86,7 @@ public class SocketServer extends Thread {
 					mensajeOut.setContext("/setUsuarioResponse");
 					HashMap<String,Object> session3=new HashMap<String, Object>();
 					session3.put("Usuario",lista3);
+					//System.out.println(lista3.size());
 					mensajeOut.setSession(session3);
 					objectOutputStream.writeObject(mensajeOut);
 					break;

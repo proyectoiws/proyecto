@@ -23,6 +23,7 @@ public class Client {
 	private ArrayList<Customer> salidas;
 	final static Logger logger = Logger.getLogger(Client.class);
 	private int entrar;
+	private int comprobar;
 
 
 	public void envioPeticion(String contexto, HashMap <String,Object> session) {
@@ -72,6 +73,8 @@ public class Client {
 
 			case "/setUsuarioResponse":
 				ArrayList<Usuario> userList2=(ArrayList<Usuario>)(mensajeVuelta.getSession().get("Usuario"));
+				this.comprobar= userList2.size();
+				System.out.println(this.getComprobarU());
 //				Usuario user2 = (Usuario) userList2.get(0);
 //				System.out.println("Se ha añadido el usuario con id "+user2.getId() +" y contraseña "+user2.getPassword());
 				for (Usuario user : userList2) {
@@ -101,6 +104,9 @@ public class Client {
 
 	public int getSalidaU(){
 		return entrar;
+	}
+	public int getComprobarU(){
+		return comprobar;
 	}
 
 

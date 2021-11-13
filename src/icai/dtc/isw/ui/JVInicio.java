@@ -33,29 +33,34 @@ public class JVInicio extends JFrame
         JPanel pnlSur = new JPanel(new FlowLayout());
 
         JLabel titulo = new JLabel("Conectate Comillas");
-        titulo.setFont(new Font(Font.SERIF , Font. BOLD , 50));
+        titulo.setFont(new Font("Harlow Solid Italic"   , Font.BOLD, 30));;
         titulo.setHorizontalAlignment(JLabel.CENTER);
         pnlNorte.add(titulo);
 
         JLabel lblname = new JLabel("Usuario:");
+        lblname.setFont(new Font("Gill Sans Nova", Font.BOLD, 15));
         //lblname.setBounds(10,100,80,25);
 
 
         JLabel lblcontra = new JLabel("Contraseña:");
+        lblcontra.setFont(new Font("Gill Sans Nova", Font.BOLD, 15));
         //lblcontra.setBounds(10,300,80,25);
 
 
         JTextField txtuser = new JTextField(20);
         txtuser.setToolTipText("Ingrese usuario");
+        txtuser.setFont(new Font("Gill Sans Nova", Font.BOLD, 15));
         //txtuser.setBounds(100,100,160,25);
 
 
         JPasswordField txtcontra = new JPasswordField(20);
         txtcontra.setEchoChar('*');
         txtcontra.setToolTipText("Ingrese contraseña");
+        txtcontra.setFont(new Font("Gill Sans Nova", Font.BOLD, 15));
         //txtcontra.setBounds(100,300,160,25);
 
         JCheckBox checkContrasena = new JCheckBox("Ver contraseña");
+        checkContrasena.setFont(new Font("Gill Sans Nova", Font.BOLD, 15));
 
         pnlCentral.add(lblname);
         pnlCentral.add(txtuser);
@@ -147,6 +152,7 @@ public class JVInicio extends JFrame
         this.setSize(1000,600);
         this.setLocationRelativeTo(null); //para que aparezca en medio de la pantalla
         this.setVisible(true);
+        pnlCentral.setBackground(new Color(207, 185, 151,255));
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 }
