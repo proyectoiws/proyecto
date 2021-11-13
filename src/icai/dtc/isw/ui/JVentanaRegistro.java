@@ -28,31 +28,39 @@ public class JVentanaRegistro extends JFrame {
         JLabel titulo = new JLabel("Registro de usuario");
         titulo.setFont(new Font(Font.SERIF, Font.BOLD, 50));
         titulo.setHorizontalAlignment(JLabel.CENTER);
+        titulo.setFont(new Font("Harlow Solid Italic"   , Font.BOLD, 30));;
         pnlNorte.add(titulo);
 
         JLabel lblname = new JLabel("Usuario:");
+        lblname.setFont(new Font("Gill Sans Nova", Font.BOLD, 15));
         //lblname.setBounds(10,100,80,25);
 
         JLabel lblcontra = new JLabel("Contraseña:");
+        lblcontra.setFont(new Font("Gill Sans Nova", Font.BOLD, 15));
         //lblcontra.setBounds(10,300,80,25);
 
         JLabel lblcontra2 = new JLabel("Repita su contraseña:");
+        lblcontra2.setFont(new Font("Gill Sans Nova", Font.BOLD, 15));
 
         JTextField txtuser = new JTextField(10  );
+        txtuser.setFont(new Font("Gill Sans Nova", Font.BOLD, 15));
         txtuser.setToolTipText("Ingrese usuario");
         //txtuser.setBounds(100,100,160,25);
 
         JPasswordField txtcontra = new JPasswordField(10);
         txtcontra.setToolTipText("Ingrese contraseña");
         txtcontra.setEchoChar('*');
+        txtcontra.setFont(new Font("Gill Sans Nova", Font.BOLD, 15));
         //txtcontra.setBounds(100,300,160,25);
 
         JCheckBox checkContrasena = new JCheckBox("Ver contraseña");
+        checkContrasena.setFont(new Font("Gill Sans Nova", Font.BOLD, 15));
 
 
         JPasswordField txtcontra2 = new JPasswordField(10);
         txtcontra2.setToolTipText("Ingrese contraseña");
         txtcontra2.setEchoChar('*');
+        txtcontra2.setFont(new Font("Gill Sans Nova", Font.BOLD, 15));
 
         JCheckBox checkContrasena2 = new JCheckBox("Ver contraseña");
 
@@ -134,7 +142,7 @@ public class JVentanaRegistro extends JFrame {
         this.setSize(1000, 600);
         this.setLocationRelativeTo(null); //para que aparezca en medio de la pantalla
         this.setVisible(true);
-        this.setBackground(new Color(207, 185, 151,255));
+        pnlCentral.setBackground(new Color(207, 185, 151,255));
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 }
