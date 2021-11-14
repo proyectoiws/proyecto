@@ -3,6 +3,7 @@ package icai.dtc.isw.domain;
 import java.io.Serializable;
 
 public class Customer implements Serializable{
+
 	/**
 	 * 
 	 */

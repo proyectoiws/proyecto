@@ -2,7 +2,8 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>projectISW19</groupId>
   <artifactId>projectISW19</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <version>0.0.1-SNAPSHOT</version>
   <build>
     <sourceDirectory>src</sourceDirectory>
     <plugins>
@@ -23,7 +24,10 @@
         </plugin>
     </plugins>
   </build>
-   <name>ISW2019</name>
+    <modules>
+        <module>test</module>
+    </modules>
+    <name>ISW2019</name>
     <dependencies>
         <dependency>
             <groupId>org.postgresql</groupId>

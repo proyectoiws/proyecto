@@ -143,7 +143,7 @@ public class JVentanaRegistro extends JFrame {
             public void actionPerformed(ActionEvent e)
 
             {
-                int confirmado = JOptionPane.showConfirmDialog(null, "\u00BFDesea volver al menú de inicio de sesón?", "Confirmación para volver a iniciar sesión",JOptionPane.INFORMATION_MESSAGE);
+                int confirmado = JOptionPane.showConfirmDialog(null, "\u00BFDesea volver al menú de inicio de sesón?", "Confirmación para volver a iniciar sesión",JOptionPane.YES_NO_OPTION,JOptionPane.INFORMATION_MESSAGE);
                 if (JOptionPane.OK_OPTION == confirmado) {
                     ventanaInicio = new JVInicio();
                     ventanaInicio.setVisible(true);
