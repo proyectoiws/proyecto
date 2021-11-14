@@ -73,6 +73,7 @@ public class JVInicio extends JFrame
         pnlCentral.add(txtcontra);
         pnlCentral.add(checkContrasena);
 
+
         JButton btnRegis = new JButton("Registrarse");
         btnRegis.setForeground(Color.BLACK);
         btnRegis.setBackground(new Color(215,207,204,255));

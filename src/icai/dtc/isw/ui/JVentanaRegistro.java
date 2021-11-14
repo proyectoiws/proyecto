@@ -46,12 +46,12 @@ public class JVentanaRegistro extends JFrame {
         JLabel lblcontra2 = new JLabel("Repita su contraseña:");
         lblcontra2.setFont(new Font("Gill Sans Nova", Font.BOLD, 15));
 
-        JTextField txtuser = new JTextField(10  );
+        JTextField txtuser = new JTextField(15  );
         txtuser.setFont(new Font("Gill Sans Nova", Font.BOLD, 15));
         txtuser.setToolTipText("Ingrese usuario");
         //txtuser.setBounds(100,100,160,25);
 
-        JPasswordField txtcontra = new JPasswordField(10);
+        JPasswordField txtcontra = new JPasswordField(15);
         txtcontra.setToolTipText("Ingrese contraseña");
         txtcontra.setEchoChar('*');
         txtcontra.setFont(new Font("Gill Sans Nova", Font.BOLD, 15));
@@ -62,7 +62,7 @@ public class JVentanaRegistro extends JFrame {
         checkContrasena.setOpaque(false); //false para quitar el fondo
 
 
-        JPasswordField txtcontra2 = new JPasswordField(10);
+        JPasswordField txtcontra2 = new JPasswordField(15);
         txtcontra2.setToolTipText("Ingrese contraseña");
         txtcontra2.setEchoChar('*');
         txtcontra2.setFont(new Font("Gill Sans Nova", Font.BOLD, 15));
