@@ -55,6 +55,7 @@ public class JVentanaRegistro extends JFrame {
 
         JCheckBox checkContrasena = new JCheckBox("Ver contraseña");
         checkContrasena.setFont(new Font("Gill Sans Nova", Font.BOLD, 15));
+        checkContrasena.setOpaque(false); //false para quitar el fondo
 
 
         JPasswordField txtcontra2 = new JPasswordField(10);
@@ -63,6 +64,8 @@ public class JVentanaRegistro extends JFrame {
         txtcontra2.setFont(new Font("Gill Sans Nova", Font.BOLD, 15));
 
         JCheckBox checkContrasena2 = new JCheckBox("Ver contraseña");
+        checkContrasena2.setOpaque(false); //false para quitar el fondo
+
 
 
         pnlCentral.add(lblname);
@@ -77,6 +80,9 @@ public class JVentanaRegistro extends JFrame {
         JButton btnRegis = new JButton("Registrarse");
         pnlSur.add(btnRegis);
 
+        JButton btnVolverInicioSesion = new JButton("Volver a iniciar sesión");
+        pnlSur.add(btnVolverInicioSesion);
+
         btnRegis.addActionListener(new ActionListener()
         {
             @Override
@@ -90,6 +96,7 @@ public class JVentanaRegistro extends JFrame {
 
                 if (contra.equals(contra2)) {
                     String name = txtuser.getText();
+
                     Usuario u = new Usuario (name, contra);
                     System.out.println(u.getId()+" "+u.getPassword());
                     Client c = new Client();
@@ -97,19 +104,37 @@ public class JVentanaRegistro extends JFrame {
                     peticion.put("Peticion",u);
                     c.envioPeticion("/setUsuario",peticion);
                     if (c.getComprobarU()==1) {
-                        JOptionPane.showMessageDialog(null, "Ese nombre de usuario ya existe");
+                        JOptionPane.showMessageDialog(null, "Este usuario ya existe, por favor,cambie el id del usuario o inicie sesi\u00F3n");
                     }
                     else{
                         JOptionPane.showMessageDialog(null, "El usuario se ha registrado, inicie sesión");
-                         }
-                    ventanaInicio = new JVInicio();
-                    ventanaInicio.setVisible(true);
-                    JVentanaRegistro.this.setVisible(false);
+                        ventanaInicio = new JVInicio();
+                        ventanaInicio.setVisible(true);
+                        JVentanaRegistro.this.setVisible(false);
+                    }
                 }
 
                 else {
                     JOptionPane.showMessageDialog(null, "Las contraseñas no coinciden");
                 }
+            }
+
+
+        });
+
+        btnVolverInicioSesion.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e)
+
+            {
+                int confirmado = JOptionPane.showConfirmDialog(null, "\u00BFDesea volver al menú de inicio de sesón?", "Confirmación para volver a iniciar sesión",JOptionPane.INFORMATION_MESSAGE);
+                if (JOptionPane.OK_OPTION == confirmado) {
+                    ventanaInicio = new JVInicio();
+                    ventanaInicio.setVisible(true);
+                    JVentanaRegistro.this.setVisible(false);
+                }
+                else; //nada
             }
 
 

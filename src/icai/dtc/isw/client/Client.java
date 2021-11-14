@@ -74,7 +74,7 @@ public class Client {
 			case "/setUsuarioResponse":
 				ArrayList<Usuario> userList2=(ArrayList<Usuario>)(mensajeVuelta.getSession().get("Usuario"));
 				this.comprobar= userList2.size();
-				System.out.println(this.getComprobarU());
+//				System.out.println(this.getComprobarU());
 //				Usuario user2 = (Usuario) userList2.get(0);
 //				System.out.println("Se ha añadido el usuario con id "+user2.getId() +" y contraseña "+user2.getPassword());
 				for (Usuario user : userList2) {

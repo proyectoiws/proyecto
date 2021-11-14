@@ -61,6 +61,7 @@ public class JVInicio extends JFrame
 
         JCheckBox checkContrasena = new JCheckBox("Ver contraseña");
         checkContrasena.setFont(new Font("Gill Sans Nova", Font.BOLD, 15));
+        checkContrasena.setOpaque(false); //false para quitar el fondo
 
         pnlCentral.add(lblname);
         pnlCentral.add(txtuser);
@@ -153,6 +154,8 @@ public class JVInicio extends JFrame
         this.setLocationRelativeTo(null); //para que aparezca en medio de la pantalla
         this.setVisible(true);
         pnlCentral.setBackground(new Color(207, 185, 151,255));
+        pnlNorte.setBackground(new Color(207, 185, 151,255));
+        pnlSur.setBackground(new Color(207, 185, 151,255));
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 }
