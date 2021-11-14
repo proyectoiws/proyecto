@@ -6,6 +6,10 @@ import icai.dtc.isw.domain.Entrada;
 import icai.dtc.isw.domain.Usuario;
 
 import javax.swing.*;
+import javax.swing.border.Border;
+import javax.swing.border.CompoundBorder;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -70,7 +74,22 @@ public class JVInicio extends JFrame
         pnlCentral.add(checkContrasena);
 
         JButton btnRegis = new JButton("Registrarse");
+        btnRegis.setForeground(Color.BLACK);
+        btnRegis.setBackground(new Color(215,207,204,255));
+        Border line = new LineBorder(Color.BLACK);
+        Border margin = new EmptyBorder(5, 15, 5, 15); //distancia de separacion de dentro
+        Border compound = new CompoundBorder(line, margin); //para que tenga el borde de negro
+        btnRegis.setBorder(compound); // añadimos el borde de negro
+        btnRegis.setFont(new Font("Gill Sans Nova", Font.BOLD, 15));
+
         JButton btnIn= new JButton("Iniciar sesion");
+        btnIn = new JButton("Buscar");
+        btnIn.setBounds(375,450,250,50);
+        btnIn.setForeground(Color.BLACK);
+        btnIn.setBackground(new Color(215,207,204,255));
+        btnIn.setBorder(compound); // añadimos el borde de negro
+        btnIn.setFont(new Font("Gill Sans Nova", Font.BOLD, 15));
+
         pnlSur.add(btnIn);
         pnlSur.add(btnRegis);
 

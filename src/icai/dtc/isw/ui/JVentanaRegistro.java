@@ -4,6 +4,10 @@ import icai.dtc.isw.client.Client;
 import icai.dtc.isw.domain.Usuario;
 
 import javax.swing.*;
+import javax.swing.border.Border;
+import javax.swing.border.CompoundBorder;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -78,9 +82,20 @@ public class JVentanaRegistro extends JFrame {
         pnlCentral.add(checkContrasena2);
 
         JButton btnRegis = new JButton("Registrarse");
+        btnRegis.setForeground(Color.BLACK);
+        btnRegis.setBackground(new Color(215,207,204,255));
+        Border line = new LineBorder(Color.BLACK);
+        Border margin = new EmptyBorder(5, 15, 5, 15); //distancia de separacion de dentro
+        Border compound = new CompoundBorder(line, margin); //para que tenga el borde de negro
+        btnRegis.setBorder(compound); // añadimos el borde de negro
+        btnRegis.setFont(new Font("Gill Sans Nova", Font.BOLD, 15));
         pnlSur.add(btnRegis);
 
         JButton btnVolverInicioSesion = new JButton("Volver a iniciar sesión");
+        btnVolverInicioSesion.setForeground(Color.BLACK);
+        btnVolverInicioSesion.setBackground(new Color(215,207,204,255));
+        btnVolverInicioSesion.setBorder(compound); // añadimos el borde de negro
+        btnVolverInicioSesion.setFont(new Font("Gill Sans Nova", Font.BOLD, 15));
         pnlSur.add(btnVolverInicioSesion);
 
         btnRegis.addActionListener(new ActionListener()
@@ -168,6 +183,8 @@ public class JVentanaRegistro extends JFrame {
         this.setLocationRelativeTo(null); //para que aparezca en medio de la pantalla
         this.setVisible(true);
         pnlCentral.setBackground(new Color(207, 185, 151,255));
+        pnlNorte.setBackground(new Color(207, 185, 151,255));
+        pnlSur.setBackground(new Color(207, 185, 151,255));
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 }
