@@ -17,7 +17,7 @@ import java.util.HashMap;
 
 public class JVentanaInsertarCoche extends JFrame{
 
-    private JButton btnBuscar;
+    private JButton btnBuscar, btnVolver;
     private JComboBox<String> cbOrigen, cbDestino, cbPlazas;
     private JLabel labelOrigen, labelDestino, labelPlazas, matricula;
     private JTextField txtmatricula;
@@ -63,7 +63,7 @@ public class JVentanaInsertarCoche extends JFrame{
 
     public void initBotonBuscar() {
         btnBuscar = new JButton("Insertar");
-        btnBuscar.setBounds(375,450,250,50);
+        btnBuscar.setBounds(200,450,250,50);
         btnBuscar.setForeground(Color.BLACK);
         btnBuscar.setBackground(new Color(215,207,204,255));
         Border line = new LineBorder(Color.BLACK);
@@ -72,6 +72,16 @@ public class JVentanaInsertarCoche extends JFrame{
         btnBuscar.setBorder(compound); // añadimos el borde de negro
         btnBuscar.setFont(new Font("Gill Sans Nova", Font.BOLD, 15));
         this.add(btnBuscar);
+
+        btnVolver = new JButton("Volver a trayectos");
+        btnVolver.setBounds(500,450,250,50);
+        btnVolver.setForeground(Color.BLACK);
+        btnVolver.setBackground(new Color(215,207,204,255));
+        btnVolver.setBorder(compound); // añadimos el borde de negro
+        btnVolver.setFont(new Font("Gill Sans Nova", Font.BOLD, 15));
+        this.add(btnVolver);
+
+
     }
 
     public void initBoxes() {
@@ -152,14 +162,29 @@ public class JVentanaInsertarCoche extends JFrame{
             }
             else{
                 JOptionPane.showMessageDialog(null, "El trayecto se ha registrado");
-                ventanaChoose = new JVentanaChoose();
-                ventanaChoose.setVisible(true);
-                JVentanaInsertarCoche.this.setVisible(false);
+
             }
 
 
 
         });
+
+        btnVolver.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+
+                ventanaChoose = new JVentanaChoose();
+                ventanaChoose.setVisible(true);
+                JVentanaInsertarCoche.this.setVisible(false);
+
+
+
+
+            }
+        });
+
     }
 
 }
