@@ -122,6 +122,9 @@ public class Client {
 		return cocheOk;
 	}
 
+	public void setSalidas(ArrayList<Customer> salidas) {this.salidas=salidas;
+	}
+
 
 	public void sent(Message messageOut, Message messageIn) {
 		try {
@@ -166,4 +169,5 @@ public class Client {
 			e.printStackTrace();
 		}
 	}
+
 }
