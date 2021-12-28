@@ -24,6 +24,7 @@ public class Client {
 	final static Logger logger = Logger.getLogger(Client.class);
 	private int entrar;
 	private int comprobar;
+	private int cocheOk;
 
 
 	public void envioPeticion(String contexto, HashMap <String,Object> session) {
@@ -74,13 +75,22 @@ public class Client {
 			case "/setUsuarioResponse":
 				ArrayList<Usuario> userList2=(ArrayList<Usuario>)(mensajeVuelta.getSession().get("Usuario"));
 				this.comprobar= userList2.size();
-//				System.out.println(this.getComprobarU());
-//				Usuario user2 = (Usuario) userList2.get(0);
-//				System.out.println("Se ha añadido el usuario con id "+user2.getId() +" y contraseña "+user2.getPassword());
 				for (Usuario user : userList2) {
 					System.out.println("Se ha añadido el usuario con id "+user.getId() +" y contraseña "+user.getPassword());
 				}
 				break;
+
+			case "/setCocheResponse":
+				ArrayList<Customer> userList3=(ArrayList<Customer>)(mensajeVuelta.getSession().get("Customer"));
+				if (userList3.size()==1)
+					this.cocheOk= 1;
+				else
+					this.cocheOk = 0;
+				for (Customer cos: userList3) {
+					System.out.println("He leído el id "+cos.getMatricula());
+				}
+				break;
+
 
 			default:
 				Logger.getRootLogger().info("Option not found");
@@ -107,6 +117,9 @@ public class Client {
 	}
 	public int getComprobarU(){
 		return comprobar;
+	}
+	public int getCocheOk(){
+		return cocheOk;
 	}
 
 

@@ -21,6 +21,11 @@ public class Customer implements Serializable{
 		this.destino = destino;
 		this.plazas = plazas;
 	}
+	public Customer(String matricula){
+		this.matricula=matricula;
+	}
+
+
 
 	public String getOrigen()
 	{

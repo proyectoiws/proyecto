@@ -29,4 +29,10 @@ public class CustomerControler {
 		CustomerDAO.setUsuarios(lista, entrada);
 
 	}
+
+	public void setCustomer(ArrayList<Customer> lista, HashMap<String, Object> mapa) {
+		Customer entrada = (Customer) mapa.get("Peticion");
+		CustomerDAO.setCustomer(lista, entrada);
+
+	}
 }

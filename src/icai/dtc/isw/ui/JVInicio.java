@@ -20,7 +20,7 @@ import java.util.HashMap;
 public class JVInicio extends JFrame
 
 {
-    private JVentanaBuscar ventanaBuscar;
+    private JVentanaChoose ventanaBuscar;
     private JVentanaRegistro ventanaResistro;
 
     public static void main(String args[]){
@@ -37,7 +37,7 @@ public class JVInicio extends JFrame
         JPanel pnlSur = new JPanel(new FlowLayout());
 
         JLabel titulo = new JLabel("Conectate Comillas");
-        titulo.setFont(new Font("Harlow Solid Italic"   , Font.BOLD, 30));;
+        titulo.setFont(new Font("Harlow Solid Italic"   , Font.BOLD, 30));
         titulo.setHorizontalAlignment(JLabel.CENTER);
         pnlNorte.add(titulo);
 
@@ -83,8 +83,8 @@ public class JVInicio extends JFrame
         btnRegis.setBorder(compound); // añadimos el borde de negro
         btnRegis.setFont(new Font("Gill Sans Nova", Font.BOLD, 15));
 
-        JButton btnIn= new JButton("Iniciar sesion");
-        btnIn = new JButton("Buscar");
+        JButton btnIn;
+        btnIn = new JButton("Entrar");
         btnIn.setBounds(375,450,250,50);
         btnIn.setForeground(Color.BLACK);
         btnIn.setBackground(new Color(215,207,204,255));
@@ -94,30 +94,25 @@ public class JVInicio extends JFrame
         pnlSur.add(btnIn);
         pnlSur.add(btnRegis);
 
-        btnIn.addActionListener(new ActionListener()
-        {
-            @Override
-            public void actionPerformed(ActionEvent e)
-            {
-                char [] arrayC = txtcontra.getPassword();
-                String contra= new String(arrayC);
-                String name = txtuser.getText();
-                Usuario u = new Usuario (name, contra);
-                System.out.println(u.getId()+" "+u.getPassword());
-                Client c = new Client();
-                HashMap<String, Object> peticion = new HashMap<String,Object>();
-                peticion.put("Peticion",u);
-                c.envioPeticion("/getUsuario",peticion);
-                //System.out.println("ok final");
-                int entrar = c.getSalidaU();
-                if(entrar==0){
-                    JOptionPane.showMessageDialog(null, "No se encuentra su usuario, regístrese para crear una cuenta");
-                }
-                else {
-                    ventanaBuscar = new JVentanaBuscar();
-                    ventanaBuscar.setVisible(true);
-                    JVInicio.this.setVisible(false);
-                }
+        btnIn.addActionListener(e -> {
+            char [] arrayC = txtcontra.getPassword();
+            String contra= new String(arrayC);
+            String name = txtuser.getText();
+            Usuario u = new Usuario (name, contra);
+            System.out.println(u.getId()+" "+u.getPassword());
+            Client c = new Client();
+            HashMap<String, Object> peticion = new HashMap<>();
+            peticion.put("Peticion",u);
+            c.envioPeticion("/getUsuario",peticion);
+            //System.out.println("ok final");
+            int entrar = c.getSalidaU();
+            if(entrar==0){
+                JOptionPane.showMessageDialog(null, "No se encuentra su usuario, regístrese para crear una cuenta");
+            }
+            else {
+                ventanaBuscar = new JVentanaChoose();
+                ventanaBuscar.setVisible(true);
+                JVInicio.this.setVisible(false);
             }
         });
 

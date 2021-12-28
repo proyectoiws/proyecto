@@ -47,7 +47,7 @@ public class SocketServer extends Thread {
 					//System.out.println("ok contexto");
 		    		CustomerControler customerControler=new CustomerControler();
 					//System.out.println("ok controller");
-					ArrayList<Customer> lista=new ArrayList<Customer>();
+					ArrayList<Customer> lista= new ArrayList<>();
 					HashMap<String,Object> mapa = mensajeIn.getSession();
 					System.out.println(mapa);
 					//Entrada en = (Entrada) objeto.values();
@@ -55,7 +55,7 @@ public class SocketServer extends Thread {
 					System.out.println("pregetcustomer");
 		    		customerControler.getCustomer(lista,mapa);
 		    		mensajeOut.setContext("/getCustomerResponse");
-		    		HashMap<String,Object> session=new HashMap<String, Object>();
+		    		HashMap<String,Object> session= new HashMap<>();
 		    		session.put("Customer",lista);
 		    		mensajeOut.setSession(session);
 		    		objectOutputStream.writeObject(mensajeOut);
@@ -64,7 +64,7 @@ public class SocketServer extends Thread {
 					//System.out.println("ok contexto");
 					CustomerControler customerControler2=new CustomerControler();
 					//System.out.println("ok controller");
-					ArrayList<Usuario> lista2=new ArrayList<Usuario>();
+					ArrayList<Usuario> lista2= new ArrayList<>();
 					HashMap<String,Object> mapa2 = mensajeIn.getSession();
 					System.out.println(mapa2);
 					//Entrada en = (Entrada) objeto.values();
@@ -72,7 +72,7 @@ public class SocketServer extends Thread {
 					System.out.println("pregetusuario");
 					customerControler2.getUsuario(lista2,mapa2);
 					mensajeOut.setContext("/getUsuarioResponse");
-					HashMap<String,Object> session2=new HashMap<String, Object>();
+					HashMap<String,Object> session2=new HashMap<>();
 					session2.put("Usuario",lista2);
 					mensajeOut.setSession(session2);
 					objectOutputStream.writeObject(mensajeOut);
@@ -84,10 +84,23 @@ public class SocketServer extends Thread {
 					HashMap<String,Object> mapa3 = mensajeIn.getSession();
 					customerControler3.setUsuario(lista3,mapa3);
 					mensajeOut.setContext("/setUsuarioResponse");
-					HashMap<String,Object> session3=new HashMap<String, Object>();
+					HashMap<String,Object> session3=new HashMap<>();
 					session3.put("Usuario",lista3);
 					//System.out.println(lista3.size());
 					mensajeOut.setSession(session3);
+					objectOutputStream.writeObject(mensajeOut);
+					break;
+
+				case "/setCoche":
+					CustomerControler customerControler4=new CustomerControler();
+					ArrayList<Customer> lista4=new ArrayList<Customer>();
+					HashMap<String,Object> mapa4 = mensajeIn.getSession();
+					customerControler4.setCustomer(lista4,mapa4);
+					mensajeOut.setContext("/setCocheResponse");
+					HashMap<String,Object> session4=new HashMap<>();
+					session4.put("Customer",lista4);
+					//System.out.println(lista3.size());
+					mensajeOut.setSession(session4);
 					objectOutputStream.writeObject(mensajeOut);
 					break;
 		    	

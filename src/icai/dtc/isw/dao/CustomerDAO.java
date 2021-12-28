@@ -12,17 +12,12 @@ import icai.dtc.isw.domain.Usuario;
 
 public class CustomerDAO {
 
-	private static Entrada ENTRADA;
-	private static Usuario USUARIO;
-
-
-
 
 	public static void getClientes(ArrayList<Customer> lista, Entrada entrada) {
-		ENTRADA = entrada;
-		System.out.println(ENTRADA.getOrigen());
+
+		System.out.println(entrada.getOrigen());
 		Connection con=ConnectionDAO.getInstance().getConnection();
-		try (PreparedStatement pst = con.prepareStatement("SELECT * FROM coches WHERE origen = '"+ENTRADA.getOrigen()+"' AND destino ='"+ENTRADA.getDestino()+"' AND plazas ='"+ENTRADA.getPlazas()+"';");
+		try (PreparedStatement pst = con.prepareStatement("SELECT * FROM coches WHERE origen = '"+entrada.getOrigen()+"' AND destino ='"+entrada.getDestino()+"' AND plazas ='"+entrada.getPlazas()+"';");
                 ResultSet rs = pst.executeQuery()) {
 
             while (rs.next()) {
@@ -37,10 +32,10 @@ public class CustomerDAO {
 
 	public static void getUsuarios(ArrayList<Usuario> lista, Usuario entrada) {
 
-		USUARIO = entrada;
-		System.out.println(USUARIO.getId());
+
+		System.out.println(entrada.getId());
 		Connection con = ConnectionDAO.getInstance().getConnection();
-		try (PreparedStatement pst = con.prepareStatement("SELECT * FROM users WHERE name = '" + USUARIO.getId() + "' AND password='" + USUARIO.getPassword() + "';");
+		try (PreparedStatement pst = con.prepareStatement("SELECT * FROM users WHERE name = '" + entrada.getId() + "' AND password='" + entrada.getPassword() + "';");
 			 ResultSet rs = pst.executeQuery()) {
 
 			while (rs.next()) {
@@ -54,10 +49,10 @@ public class CustomerDAO {
 	}
 
 	public static void setUsuarios(ArrayList<Usuario> lista2, Usuario entrada) {
-		USUARIO = entrada;
-		System.out.println("El usuario que se va a meter antes de la query es "+USUARIO.getId()+" con contraseña "+USUARIO.getPassword());
+
+		System.out.println("El usuario que se va a meter antes de la query es "+entrada.getId()+" con contraseña "+entrada.getPassword());
 		Connection con = ConnectionDAO.getInstance().getConnection();
-		try (PreparedStatement pst = con.prepareStatement("SELECT * FROM users WHERE name = '" + USUARIO.getId() + "';");
+		try (PreparedStatement pst = con.prepareStatement("SELECT * FROM users WHERE name = '" + entrada.getId() + "';");
 			 ResultSet rs = pst.executeQuery()) {
 
 			while (rs.next()) {
@@ -69,8 +64,9 @@ public class CustomerDAO {
 			System.out.println(ex.getMessage());
 		}
 
-		try (PreparedStatement pst = con.prepareStatement("INSERT INTO users (name, password) VALUES ('" + USUARIO.getId() + "', '" + USUARIO.getPassword() + "');");
+		try (PreparedStatement pst = con.prepareStatement("INSERT INTO users (name, password) VALUES ('" + entrada.getId() + "', '" + entrada.getPassword() + "');");
 				 ResultSet rs = pst.executeQuery()) {
+					System.out.println("se ha insertardo bien"+rs);
 
 
 			}
@@ -81,19 +77,36 @@ public class CustomerDAO {
 			}
 
 	}
-	/*public static void main(String[] args) {
-		
-		
-		ArrayList<Customer> lista=new ArrayList<Customer>();
 
-		CustomerDAO.getClientes(lista,ENTRADA);
-		
-		
-		 for (Customer customer : lista) {			
-			System.out.println("He leído la matricula: "+customer.getMatricula());
+	public static void setCustomer(ArrayList<Customer> lista4, Customer COCHE) {
+
+		System.out.println("El coche que se va a meter antes de la query es "+COCHE.getMatricula());
+		Connection con = ConnectionDAO.getInstance().getConnection();
+		try (PreparedStatement pst = con.prepareStatement("SELECT * FROM COCHES WHERE matricula = '" + COCHE.getMatricula()+"';");
+			 ResultSet rs = pst.executeQuery()) {
+
+			while (rs.next()) {
+				lista4.add(new Customer(rs.getString(1)));
+			}
+
+		} catch (SQLException ex) {
+
+			System.out.println(ex.getMessage());
 		}
-		
-	
-	}*/
+
+		try (PreparedStatement pst = con.prepareStatement("INSERT INTO COCHES (matricula,plazas,origen,destino) VALUES ('" + COCHE.getMatricula() + "', " +COCHE.getPlazas() + ", '" +COCHE.getOrigen() +"', '" +COCHE.getDestino() +"');");
+			 ResultSet rs = pst.executeQuery()) {
+			 System.out.println("se ha insertardo bien"+rs);
+
+		}
+
+
+		catch (SQLException ex) {
+			System.out.println(ex.getMessage());
+		}
+
+	}
+	//public static void main(String[] args) {
+
 
 }
