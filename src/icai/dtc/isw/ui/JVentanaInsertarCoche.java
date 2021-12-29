@@ -16,8 +16,10 @@ import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 
 
@@ -171,6 +173,10 @@ public class JVentanaInsertarCoche extends JFrame{
 
     public void initActionBotones() {
         btnBuscar.addActionListener(e -> {
+            Calendar f = (Calendar) datePickerFecha.getModel().getValue();
+            SimpleDateFormat sdfFecha= new SimpleDateFormat("yyyy-MM-dd");
+            String fechaStr = sdfFecha.format(new Date(f.getTimeInMillis()));
+            System.out.println(fechaStr);
             String origen = cbOrigen.getItemAt(cbOrigen.getSelectedIndex());
             String plazas=  cbPlazas.getItemAt(cbPlazas.getSelectedIndex());
             String destino = cbDestino.getItemAt(cbDestino.getSelectedIndex());
