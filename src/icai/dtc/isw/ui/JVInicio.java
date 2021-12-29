@@ -86,16 +86,16 @@ public class JVInicio extends JFrame
 
     public void initJLabels(){
         lblname = new JLabel("Usuario:");
-        lblname.setBounds(275,180,125,50);
-        lblname.setHorizontalAlignment(SwingConstants.LEFT);
+        lblname.setBounds(265,180,125,50);
+        lblname.setHorizontalAlignment(SwingConstants.RIGHT);
         lblname.setForeground(Color.black);
         lblname.setOpaque(false); //false para quitar el fondo
         lblname.setFont(new Font( "Harlow Solid Italic" , Font.BOLD, 20));
         this.add(lblname);
 
         lblcontra = new JLabel("Contrase\u00F1a:");
-        lblcontra.setBounds(250,280,150,50);
-        lblcontra.setHorizontalAlignment(SwingConstants.LEFT);
+        lblcontra.setBounds(250,280,140,50);
+        lblcontra.setHorizontalAlignment(SwingConstants.RIGHT);
         lblcontra.setForeground(Color.black);
         lblcontra.setOpaque(false); //false para quitar el fondo
         lblcontra.setFont(new Font( "Harlow Solid Italic" , Font.BOLD, 20));

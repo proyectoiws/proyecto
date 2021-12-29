@@ -11,7 +11,7 @@ public class CustomerTest {
     @BeforeClass
     public static void testInitialization(){
 
-        trayecto = new Customer("1A","Pozuelo","ICAI","4");
+        trayecto = new Customer("1A","Pozuelo","ICAI","4", null, null);
 
     }
     @Test

@@ -17,11 +17,11 @@ public class CustomerDAO {
 
 		System.out.println(entrada.getOrigen());
 		Connection con=ConnectionDAO.getInstance().getConnection();
-		try (PreparedStatement pst = con.prepareStatement("SELECT * FROM coches WHERE origen = '"+entrada.getOrigen()+"' AND destino ='"+entrada.getDestino()+"' AND plazas ='"+entrada.getPlazas()+"';");
+		try (PreparedStatement pst = con.prepareStatement("SELECT * FROM coches WHERE origen = '"+entrada.getOrigen()+"' AND destino ='"+entrada.getDestino()+"' AND fecha ='"+entrada.getFecha()+"' AND hora= '"+ entrada.getHora() +"';");
                 ResultSet rs = pst.executeQuery()) {
 
             while (rs.next()) {
-            	lista.add(new Customer(rs.getString(1),rs.getString(3),rs.getString(4),(String) rs.getString(2)));
+            	lista.add(new Customer(rs.getString(1),rs.getString(3),rs.getString(4),(String) rs.getString(2), null, null));
             }
 
         } catch (SQLException ex) {

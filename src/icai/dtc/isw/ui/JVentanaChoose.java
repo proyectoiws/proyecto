@@ -72,7 +72,7 @@ public class JVentanaChoose extends JFrame{
         btnInsertar.setBounds(225,150, 250,50);
         this.add(btnInsertar);
 
-        btnVolver = new JButton("Volver a inicio de sesi\u00F3n");
+        btnVolver = new JButton("Cerrar sesi\u00F3n");
         btnVolver.setForeground(Color.BLACK);
         btnVolver.setBackground(new Color(215, 207, 204, 255));
         btnVolver.setBorder(compound); // añadimos el borde de negro

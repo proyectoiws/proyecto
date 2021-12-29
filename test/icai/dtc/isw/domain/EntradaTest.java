@@ -11,7 +11,7 @@ public class EntradaTest extends TestCase {
     @BeforeClass
     public static void testInitialization(){
 
-        trayecto = new Entrada("Pozuelo","ICAI","4");
+        trayecto = new Entrada("Pozuelo","ICAI",null, null);
 
     }
 

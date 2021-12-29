@@ -3,6 +3,9 @@ package icai.dtc.isw.ui;
 import icai.dtc.isw.client.Client;
 import icai.dtc.isw.domain.Customer;
 import icai.dtc.isw.domain.Entrada;
+import net.sourceforge.jdatepicker.impl.JDatePanelImpl;
+import net.sourceforge.jdatepicker.impl.JDatePickerImpl;
+import net.sourceforge.jdatepicker.impl.UtilCalendarModel;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -13,24 +16,24 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 
 
 public class JVentanaBuscar extends JFrame
 {
-
     private JVentanaResultados ventanaResultados;
     private JButton btnBuscar, btnVolver;
-    private JComboBox<String> cbOrigen, cbDestino, cbPlazas;
-    private JLabel labelOrigen, labelDestino, labelPlazas;
+    private JComboBox<String> cbOrigen, cbDestino, cbHora, cbMinuto;
+    private JLabel labelOrigen, labelDestino, labelPlazas, lblFecha, lblHora;
+    private Calendar c;
     private JVentanaChoose volver;
-
+    private JDatePickerImpl datePickerFecha;
 
     public static void main(String args[])
     {
         new JVentanaBuscar();
     }
-
 
     public JVentanaBuscar()
     {
@@ -47,8 +50,25 @@ public class JVentanaBuscar extends JFrame
         initBotones();
         initBoxes();
         initActionBotones();
+        initCalendar();
 
         this.getContentPane().setBackground(new Color(207, 185, 151,255)); //color de fondo (lo pongo al final porque sino no se ven las boxes)
+    }
+
+    private void initCalendar() {
+        UtilCalendarModel modelFecha = new UtilCalendarModel();
+        c= Calendar.getInstance();
+        int currentYear = c.get(Calendar.YEAR);
+        int currentMonth = c.get(Calendar.MONTH);
+        int currentDay = c.get(Calendar.DAY_OF_MONTH);
+
+        modelFecha.setDate(currentYear, currentMonth, currentDay);
+
+        JDatePanelImpl datePanelFecha = new JDatePanelImpl(modelFecha);
+        datePanelFecha.setBackground(new Color(207, 185, 151,255));
+        datePickerFecha = new JDatePickerImpl(datePanelFecha);
+        datePickerFecha.setBounds(500,290,250,25);
+        this.add(datePickerFecha);
     }
 
     public void initTitulo() {
@@ -86,26 +106,38 @@ public class JVentanaBuscar extends JFrame
     public void initBoxes() {
         String origen[]={"Pozuelo","Majadahonda","Boadilla","Somosaguas","ICAI","ICADE","CIHS","Madrid"};
         cbOrigen = new JComboBox<String>(origen);
-        cbOrigen.setBounds(500,160,250,30);
+        cbOrigen.setBounds(500,130,250,30);
 //        cbOrigen.setFont(new Font("Bauhaus 93", 0, 20));
         this.add(cbOrigen);
 
         String destinos[]={"Pozuelo","Majadahonda","Boadilla","Somosaguas","ICAI","ICADE","CIHS","Madrid"};
         cbDestino = new JComboBox<String>(destinos);
-        cbDestino.setBounds(500,240,250,30);
+        cbDestino.setBounds(500,210,250,30);
 //        cbDestino.setFont(new Font("Bauhaus 93", 0, 20));
         this.add(cbDestino);
 
-        String plazas[]={"1","2","3","4","5","6","7"};
-        cbPlazas = new JComboBox<String>(plazas);
-        cbPlazas.setBounds(500,320,250,30);
-//        cbPlazas.setFont(new Font("Bauhaus 93", 0, 20));
-        this.add(cbPlazas);
+//        String plazas[]={"1","2","3","4","5","6","7"};
+//        cbPlazas = new JComboBox<String>(plazas);
+//        cbPlazas.setBounds(500,320,250,30);
+////        cbPlazas.setFont(new Font("Bauhaus 93", 0, 20));
+//        this.add(cbPlazas);
+
+        String horas[]={"08","09","10","11","12","13","14","15","16","17","18","19","20","21"};
+        cbHora = new JComboBox<String>(horas);
+        cbHora.setToolTipText("Hora");
+        cbHora.setBounds(500,370,100,30);
+        this.add(cbHora);
+
+        String minutos[]={"00","05","10","15","20","25","30","35","40","45","50","55"};
+        cbMinuto = new JComboBox<String>(minutos);
+        cbMinuto.setBounds(650,370,100,30);
+        cbMinuto.setToolTipText("Minutos");
+        this.add(cbMinuto);
     }
 
     public void initJLabels(){
         labelOrigen = new JLabel("Origen:");
-        labelOrigen.setBounds(375,150,120,50);
+        labelOrigen.setBounds(375,120,120,50);
         labelOrigen.setHorizontalAlignment(SwingConstants.LEFT);
         labelOrigen.setForeground(Color.black);
         labelOrigen.setOpaque(false); //false para quitar el fondo
@@ -113,20 +145,36 @@ public class JVentanaBuscar extends JFrame
         this.add(labelOrigen);
 
         labelDestino = new JLabel("Destino:");
-        labelDestino.setBounds(370,230,120,50);
+        labelDestino.setBounds(370,200,120,50);
         labelDestino.setHorizontalAlignment(SwingConstants.LEFT);
         labelDestino.setForeground(Color.black);
         labelDestino.setOpaque(false); //false para quitar el fondo
         labelDestino.setFont(new Font( Font.DIALOG, Font.BOLD, 20));
         this.add(labelDestino);
 
-        labelPlazas = new JLabel("Numero de plazas:");
-        labelPlazas.setBounds(250,310,250,50);
-        labelPlazas.setHorizontalAlignment(SwingConstants.LEFT);
-        labelPlazas.setForeground(Color.black);
-        labelPlazas.setOpaque(false); //false para quitar el fondo
-        labelPlazas.setFont(new Font( Font.DIALOG, Font.BOLD, 20));
-        this.add(labelPlazas);
+//        labelPlazas = new JLabel("Numero de plazas:");
+//        labelPlazas.setBounds(250,310,250,50);
+//        labelPlazas.setHorizontalAlignment(SwingConstants.LEFT);
+//        labelPlazas.setForeground(Color.black);
+//        labelPlazas.setOpaque(false); //false para quitar el fondo
+//        labelPlazas.setFont(new Font( Font.DIALOG, Font.BOLD, 20));
+//        this.add(labelPlazas);
+
+        lblFecha = new JLabel("Fecha:");
+        lblFecha.setBounds(345,280,120,50);
+        lblFecha.setHorizontalAlignment(SwingConstants.RIGHT);
+        lblFecha.setForeground(Color.black);
+        lblFecha.setOpaque(false); //false para quitar el fondo
+        lblFecha.setFont(new Font( Font.DIALOG, Font.BOLD, 20));
+        this.add(lblFecha);
+
+        lblHora = new JLabel("Hora:");
+        lblHora.setBounds(345,360,120,50);
+        lblHora.setHorizontalAlignment(SwingConstants.RIGHT);
+        lblHora.setForeground(Color.black);
+        lblHora.setOpaque(false); //false para quitar el fondo
+        lblHora.setFont(new Font( Font.DIALOG, Font.BOLD, 20));
+        this.add(lblHora);
     }
 
     public void initActionBotones() {
@@ -136,9 +184,17 @@ public class JVentanaBuscar extends JFrame
             public void actionPerformed(ActionEvent e)
             {
                 String origen = (String) cbOrigen.getItemAt(cbOrigen.getSelectedIndex());
-                String plazas=  (String) cbPlazas.getItemAt(cbPlazas.getSelectedIndex());
+//                String plazas=  (String) cbPlazas.getItemAt(cbPlazas.getSelectedIndex());
+
                 String destino = (String) cbDestino.getItemAt(cbDestino.getSelectedIndex());
-                Entrada entrada = new Entrada (origen, destino,plazas);
+
+                String hora = cbHora.getItemAt(cbHora.getSelectedIndex());
+                String horaPuntos = hora.concat(":");
+                String minutos = cbMinuto.getItemAt(cbMinuto.getSelectedIndex());
+                String horaSinSegundos = horaPuntos.concat(minutos);
+                String horaFinal = horaSinSegundos.concat(":00");
+
+                Entrada entrada = new Entrada (origen, destino, datePickerFecha, horaFinal);
                 Client c = new Client();
                 HashMap<String, Object> peticion = new HashMap<String,Object>();
                 peticion.put("Peticion",entrada);

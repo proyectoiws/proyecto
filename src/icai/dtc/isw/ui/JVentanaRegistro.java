@@ -56,7 +56,7 @@ public class JVentanaRegistro extends JFrame {
     public void initJLabels() {
         lblname = new JLabel("Usuario:");
         lblname.setBounds(275,125,125,50);
-        lblname.setHorizontalAlignment(SwingConstants.LEFT);
+        lblname.setHorizontalAlignment(SwingConstants.RIGHT);
         lblname.setForeground(Color.black);
         lblname.setOpaque(false); //false para quitar el fondo
         lblname.setFont(new Font( "Harlow Solid Italic" , Font.BOLD, 20));
@@ -64,7 +64,7 @@ public class JVentanaRegistro extends JFrame {
 
         lblcontra = new JLabel("Contrase\u00F1a:");
         lblcontra.setBounds(250,225,150,50);
-        lblcontra.setHorizontalAlignment(SwingConstants.LEFT);
+        lblcontra.setHorizontalAlignment(SwingConstants.RIGHT);
         lblcontra.setForeground(Color.black);
         lblcontra.setOpaque(false); //false para quitar el fondo
         lblcontra.setFont(new Font( "Harlow Solid Italic" , Font.BOLD, 20));
@@ -72,7 +72,7 @@ public class JVentanaRegistro extends JFrame {
 
         lblcontra2 = new JLabel("Repita su contrase\u00F1a:");
         lblcontra2.setBounds(150,325,250,50);
-        lblcontra2.setHorizontalAlignment(SwingConstants.LEFT);
+        lblcontra2.setHorizontalAlignment(SwingConstants.RIGHT);
         lblcontra2.setForeground(Color.black);
         lblcontra2.setOpaque(false); //false para quitar el fondo
         lblcontra2.setFont(new Font( "Harlow Solid Italic" , Font.BOLD, 20));

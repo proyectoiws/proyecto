@@ -16,10 +16,10 @@ public class ClientTest {
 
         cliente= new Client();
         salidas = new ArrayList<>();
-        Customer trayecto1 = new Customer("1A","Pozuelo","ICAI","4");
-        Customer trayecto2 = new Customer("1B","Somosaguas","ICAI","4");
-        Customer trayecto3 = new Customer("1C","Pozuelo","ICADE","4");
-        Customer trayecto4 = new Customer("1E","Castellana","ICAI","4");
+        Customer trayecto1 = new Customer("1A","Pozuelo","ICAI","4", null, null);
+        Customer trayecto2 = new Customer("1B","Somosaguas","ICAI","4", null, null);
+        Customer trayecto3 = new Customer("1C","Pozuelo","ICADE","4", null, null);
+        Customer trayecto4 = new Customer("1E","Castellana","ICAI","4", null, null);
         salidas.add(trayecto1);
         salidas.add(trayecto2);
         salidas.add(trayecto3);
