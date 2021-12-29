@@ -17,9 +17,10 @@ import java.util.HashMap;
 public class JVentanaChoose extends JFrame{
 
     private JVentanaInsertarCoche opcion1;
+    private JVInicio ventanaInicio;
     private JVentanaBuscar opcion2;
     private JLabel titulo;
-    private JButton btnBuscar, btnInsertar;
+    private JButton btnBuscar, btnInsertar, btnVolver;
 
     public static void main(String args[]) {
         new JVentanaChoose();
@@ -37,26 +38,7 @@ public class JVentanaChoose extends JFrame{
 
         initTitulo();
         initBotones();
-
-        btnBuscar.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                        opcion2 = new JVentanaBuscar();
-                        opcion2.setVisible(true);
-                        JVentanaChoose.this.setVisible(false);
-                    }
-
-
-        });
-
-        btnInsertar.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                opcion1 = new JVentanaInsertarCoche();
-                opcion1.setVisible(true);
-                JVentanaChoose.this.setVisible(false);
-            }
-        });
+        initActionBotones();
 
         this.getContentPane().setBackground(new Color(207, 185, 151,255)); //color de fondo (lo pongo al final porque sino no se ven las boxes)
     }
@@ -89,6 +71,52 @@ public class JVentanaChoose extends JFrame{
         btnInsertar.setFont(new Font("Gill Sans Nova", Font.BOLD, 15));
         btnInsertar.setBounds(225,150, 250,50);
         this.add(btnInsertar);
+
+        btnVolver = new JButton("Volver a inicio de sesi\u00F3n");
+        btnVolver.setForeground(Color.BLACK);
+        btnVolver.setBackground(new Color(215, 207, 204, 255));
+        btnVolver.setBorder(compound); // añadimos el borde de negro
+        btnVolver.setFont(new Font("Gill Sans Nova", Font.BOLD, 15));
+        btnVolver.setBounds(375,250, 250,50);
+        this.add(btnVolver);
+    }
+
+    public void initActionBotones() {
+        btnBuscar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                opcion2 = new JVentanaBuscar();
+                opcion2.setVisible(true);
+                JVentanaChoose.this.setVisible(false);
+            }
+
+
+        });
+
+        btnInsertar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                opcion1 = new JVentanaInsertarCoche();
+                opcion1.setVisible(true);
+                JVentanaChoose.this.setVisible(false);
+            }
+        });
+
+        btnVolver.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                int confirmado = JOptionPane.showConfirmDialog(null, "\u00BFDesea volver al menú de inicio de sesón?", "Confirmación para volver a iniciar sesión",JOptionPane.YES_NO_OPTION,JOptionPane.INFORMATION_MESSAGE);
+                if (JOptionPane.OK_OPTION == confirmado) {
+                    ventanaInicio = new JVInicio();
+                    ventanaInicio.setVisible(true);
+                    JVentanaChoose.this.setVisible(false);
+                }
+                else; //nada
+            }
+        });
+
     }
 
 }
