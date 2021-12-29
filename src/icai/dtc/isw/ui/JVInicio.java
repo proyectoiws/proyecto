@@ -22,7 +22,7 @@ public class JVInicio extends JFrame
 {
     private JVentanaChoose ventanaBuscar;
     private JVentanaRegistro ventanaResistro;
-    private JLabel lblname, lblcontra;
+    private JLabel lblname, lblcontra, titulo;
     private JButton btnRegis, btnIn;
     private JTextField txtuser;
     private JPasswordField txtcontra;
@@ -44,9 +44,10 @@ public class JVInicio extends JFrame
 
         initTitulo();
         initJLabels();
+        initTxt();
         initBotones();
         initActionBotones();
-        initTxt();
+
 
 //        btnRegis.addActionListener(new ActionListener()
 //        {
@@ -75,7 +76,7 @@ public class JVInicio extends JFrame
     }
 
     public void initTitulo() {
-        JLabel titulo = new JLabel( "Con\u00E9ctate Comillas");
+        titulo = new JLabel( "Con\u00E9ctate Comillas");
         titulo.setBounds(325, 50, 350, 50);
         titulo.setHorizontalAlignment(SwingConstants.CENTER);
         titulo.setOpaque(false); //false para quitar el fondo
@@ -85,14 +86,14 @@ public class JVInicio extends JFrame
 
     public void initJLabels(){
         lblname = new JLabel("Usuario:");
-        lblname.setBounds(250,180,125,50);
+        lblname.setBounds(275,180,125,50);
         lblname.setHorizontalAlignment(SwingConstants.LEFT);
         lblname.setForeground(Color.black);
         lblname.setOpaque(false); //false para quitar el fondo
         lblname.setFont(new Font( "Harlow Solid Italic" , Font.BOLD, 20));
         this.add(lblname);
 
-        lblcontra = new JLabel("Contraseña:");
+        lblcontra = new JLabel("Contrase\u00F1a:");
         lblcontra.setBounds(250,280,150,50);
         lblcontra.setHorizontalAlignment(SwingConstants.LEFT);
         lblcontra.setForeground(Color.black);
@@ -120,54 +121,25 @@ public class JVInicio extends JFrame
         btnIn.setBorder(compound); // añadimos el borde de negro
         btnIn.setFont(new Font("Gill Sans Nova", Font.BOLD, 15));
         this.add(btnIn);
-
-        JButton btnRegis = new JButton("Registrarse");
-        btnRegis.setForeground(Color.BLACK);
-        btnRegis.setBackground(new Color(215,207,204,255));
-        Border line = new LineBorder(Color.BLACK);
-        Border margin = new EmptyBorder(5, 15, 5, 15); //distancia de separacion de dentro
-        Border compound = new CompoundBorder(line, margin); //para que tenga el borde de negro
-        btnRegis.setBorder(compound); // añadimos el borde de negro
-        btnRegis.setFont(new Font("Gill Sans Nova", Font.BOLD, 15));
-
-        JButton btnIn;
-        btnIn = new JButton("Iniciar sesi\u00F3n");
-        btnIn.setBounds(375,450,250,50);
-        btnIn.setForeground(Color.BLACK);
-        btnIn.setBackground(new Color(215,207,204,255));
-        btnIn.setBorder(compound); // añadimos el borde de negro
-        btnIn.setFont(new Font("Gill Sans Nova", Font.BOLD, 15));
     }
 
     public void initTxt() {
-
-        String destinos[]={"Pozuelo","Majadahonda","Boadilla","Somosaguas","ICAI","ICADE","CIHS","Madrid"};
-        cbDestino = new JComboBox<String>(destinos);
-        cbDestino.setBounds(600,240,200,30);
-//        cbDestino.setFont(new Font("Bauhaus 93", 0, 20));
-        this.add(cbDestino);
-
-        String plazas[]={"1","2","3","4","5","6","7"};
-        cbPlazas = new JComboBox<String>(plazas);
-        cbPlazas.setBounds(600,320,200,30);
-//        cbPlazas.setFont(new Font("Bauhaus 93", 0, 20));
-        this.add(cbPlazas);
-
         txtuser = new JTextField(20);
         txtuser.setToolTipText("Ingrese usuario");
-        txtuser.setBounds(600,160,200,30);
+        txtuser.setBounds(425,190,250,30);
         txtuser.setFont(new Font("Gill Sans Nova", Font.BOLD, 15));
         this.add(txtuser);
 
-
-        JPasswordField txtcontra = new JPasswordField(20);
+        txtcontra = new JPasswordField(20);
         txtcontra.setEchoChar('*');
+        txtcontra.setBounds(425,290,250,30);
         txtcontra.setToolTipText("Ingrese contraseña");
         txtcontra.setFont(new Font("Gill Sans Nova", Font.BOLD, 15));
         this.add(txtcontra);
 
         checkContrasena = new JCheckBox("Ver contraseña");
         checkContrasena.setFont(new Font("Gill Sans Nova", Font.BOLD, 15));
+        checkContrasena.setBounds(700,290,200,30);
         checkContrasena.setOpaque(false); //false para quitar el fondo
         this.add(checkContrasena);
     }

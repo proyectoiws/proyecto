@@ -86,26 +86,26 @@ public class JVentanaBuscar extends JFrame
     public void initBoxes() {
         String origen[]={"Pozuelo","Majadahonda","Boadilla","Somosaguas","ICAI","ICADE","CIHS","Madrid"};
         cbOrigen = new JComboBox<String>(origen);
-        cbOrigen.setBounds(600,160,200,30);
+        cbOrigen.setBounds(500,160,250,30);
 //        cbOrigen.setFont(new Font("Bauhaus 93", 0, 20));
         this.add(cbOrigen);
 
         String destinos[]={"Pozuelo","Majadahonda","Boadilla","Somosaguas","ICAI","ICADE","CIHS","Madrid"};
         cbDestino = new JComboBox<String>(destinos);
-        cbDestino.setBounds(600,240,200,30);
+        cbDestino.setBounds(500,240,250,30);
 //        cbDestino.setFont(new Font("Bauhaus 93", 0, 20));
         this.add(cbDestino);
 
         String plazas[]={"1","2","3","4","5","6","7"};
         cbPlazas = new JComboBox<String>(plazas);
-        cbPlazas.setBounds(600,320,200,30);
+        cbPlazas.setBounds(500,320,250,30);
 //        cbPlazas.setFont(new Font("Bauhaus 93", 0, 20));
         this.add(cbPlazas);
     }
 
     public void initJLabels(){
         labelOrigen = new JLabel("Origen:");
-        labelOrigen.setBounds(250,150,125,50);
+        labelOrigen.setBounds(375,150,120,50);
         labelOrigen.setHorizontalAlignment(SwingConstants.LEFT);
         labelOrigen.setForeground(Color.black);
         labelOrigen.setOpaque(false); //false para quitar el fondo
@@ -113,7 +113,7 @@ public class JVentanaBuscar extends JFrame
         this.add(labelOrigen);
 
         labelDestino = new JLabel("Destino:");
-        labelDestino.setBounds(250,230,125,50);
+        labelDestino.setBounds(370,230,120,50);
         labelDestino.setHorizontalAlignment(SwingConstants.LEFT);
         labelDestino.setForeground(Color.black);
         labelDestino.setOpaque(false); //false para quitar el fondo
@@ -146,16 +146,13 @@ public class JVentanaBuscar extends JFrame
                 //System.out.println("ok final");
                 ArrayList<Customer> salidas = c.getSalidaC();
                 if(salidas.size()==0){
-                    JOptionPane.showMessageDialog(null, "No se encuentra resultado par sus requisitos, vuelva a intentarlo");
+                    JOptionPane.showMessageDialog(null, "No se encuentra resultado para sus requisitos, vuelva a intentarlo");
                 }
                 else {
                     ventanaResultados = new JVentanaResultados(salidas,JVentanaBuscar.this);
                     ventanaResultados.setVisible(true);
                     JVentanaBuscar.this.setVisible(false);
-
                 }
-
-
             }
         });
 
@@ -164,14 +161,9 @@ public class JVentanaBuscar extends JFrame
             @Override
             public void actionPerformed(ActionEvent e)
             {
-
                     volver= new JVentanaChoose();
                     volver.setVisible(true);
                     JVentanaBuscar.this.setVisible(false);
-
-
-
-
             }
         });
 

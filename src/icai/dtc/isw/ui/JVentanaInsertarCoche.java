@@ -27,7 +27,7 @@ public class JVentanaInsertarCoche extends JFrame{
 
     private JButton btnBuscar, btnVolver;
     private JComboBox<String> cbOrigen, cbDestino, cbPlazas;
-    private JLabel labelOrigen, labelDestino, labelPlazas, matricula;
+    private JLabel labelOrigen, labelDestino, labelPlazas, matricula,lblFecha;
     private JTextField txtmatricula;
     private JVentanaChoose ventanaChoose;
     private Calendar c;
@@ -37,7 +37,6 @@ public class JVentanaInsertarCoche extends JFrame{
     {
         new JVentanaInsertarCoche();
     }
-
 
     public JVentanaInsertarCoche()
     {
@@ -71,14 +70,14 @@ public class JVentanaInsertarCoche extends JFrame{
         JDatePanelImpl datePanelFecha = new JDatePanelImpl(modelFecha);
         datePanelFecha.setBackground(new Color(207, 185, 151,255));
         datePickerFecha = new JDatePickerImpl(datePanelFecha);
-        datePickerFecha.setBounds(600,110,200,25);
+        datePickerFecha.setBounds(500,390,250,25);
         this.add(datePickerFecha);
     }
 
 
     public void initTitulo() {
         JLabel titulo = new JLabel( "Par\u00E1metros de coche:" );
-        titulo.setBounds(125, 50, 500, 50);
+        titulo.setBounds(125, 20, 500, 50);
         titulo.setHorizontalAlignment(SwingConstants.CENTER);
         titulo.setForeground(new Color(234, 223, 223,255));
         titulo.setForeground(new Color(0, 47, 152,255));
@@ -112,34 +111,32 @@ public class JVentanaInsertarCoche extends JFrame{
 
     public void initBoxes() {
 
-
         txtmatricula = new JTextField(15  );
-        txtmatricula.setBounds(600,130,200,30);
+        txtmatricula.setBounds(500,80,250,30);
         this.add(txtmatricula);
-
 
         String origen[]={"Pozuelo","Majadahonda","Boadilla","Somosaguas","ICAI","ICADE","CIHS","Madrid"};
         cbOrigen = new JComboBox<>(origen);
-        cbOrigen.setBounds(600,180,200,30);
+        cbOrigen.setBounds(500,160,250,30);
 //        cbOrigen.setFont(new Font("Bauhaus 93", 0, 20));
         this.add(cbOrigen);
 
         String destinos[]={"Pozuelo","Majadahonda","Boadilla","Somosaguas","ICAI","ICADE","CIHS","Madrid"};
         cbDestino = new JComboBox<>(destinos);
-        cbDestino.setBounds(600,260,200,30);
+        cbDestino.setBounds(500,240,250,30);
 //        cbDestino.setFont(new Font("Bauhaus 93", 0, 20));
         this.add(cbDestino);
 
         String plazas[]={"1","2","3","4","5","6","7"};
         cbPlazas = new JComboBox<String>(plazas);
-        cbPlazas.setBounds(600,340,200,30);
+        cbPlazas.setBounds(500,310,250,30);
 //        cbPlazas.setFont(new Font("Bauhaus 93", 0, 20));
         this.add(cbPlazas);
     }
 
     public void initJLabels(){
         matricula = new JLabel( "Matricula:" );
-        matricula.setBounds(250, 120, 120, 50);
+        matricula.setBounds(345, 70, 120, 50);
         matricula.setHorizontalAlignment(SwingConstants.LEFT);
         matricula.setForeground(Color.black);
         matricula.setOpaque(false); //false para quitar el fondo
@@ -147,7 +144,7 @@ public class JVentanaInsertarCoche extends JFrame{
         this.add(matricula);
 
         labelOrigen = new JLabel("Origen:");
-        labelOrigen.setBounds(250,170,125,50);
+        labelOrigen.setBounds(375,150,120,50);
         labelOrigen.setHorizontalAlignment(SwingConstants.LEFT);
         labelOrigen.setForeground(Color.black);
         labelOrigen.setOpaque(false); //false para quitar el fondo
@@ -155,7 +152,7 @@ public class JVentanaInsertarCoche extends JFrame{
         this.add(labelOrigen);
 
         labelDestino = new JLabel("Destino:");
-        labelDestino.setBounds(250,250,125,50);
+        labelDestino.setBounds(365,230,120,50);
         labelDestino.setHorizontalAlignment(SwingConstants.LEFT);
         labelDestino.setForeground(Color.black);
         labelDestino.setOpaque(false); //false para quitar el fondo
@@ -163,12 +160,20 @@ public class JVentanaInsertarCoche extends JFrame{
         this.add(labelDestino);
 
         labelPlazas = new JLabel("Numero de plazas:");
-        labelPlazas.setBounds(250,330,250,50);
+        labelPlazas.setBounds(250,300,250,50);
         labelPlazas.setHorizontalAlignment(SwingConstants.LEFT);
         labelPlazas.setForeground(Color.black);
         labelPlazas.setOpaque(false); //false para quitar el fondo
         labelPlazas.setFont(new Font( Font.DIALOG, Font.BOLD, 20));
         this.add(labelPlazas);
+
+        lblFecha = new JLabel("Numero de plazas:");
+        lblFecha.setBounds(250,380,250,50);
+        lblFecha.setHorizontalAlignment(SwingConstants.LEFT);
+        lblFecha.setForeground(Color.black);
+        lblFecha.setOpaque(false); //false para quitar el fondo
+        lblFecha.setFont(new Font( Font.DIALOG, Font.BOLD, 20));
+        this.add(lblFecha);
     }
 
     public void initActionBotones() {
