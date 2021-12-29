@@ -22,6 +22,11 @@ public class JVInicio extends JFrame
 {
     private JVentanaChoose ventanaBuscar;
     private JVentanaRegistro ventanaResistro;
+    private JLabel lblname, lblcontra;
+    private JButton btnRegis, btnIn;
+    private JTextField txtuser;
+    private JPasswordField txtcontra;
+    private JCheckBox checkContrasena;
 
     public static void main(String args[]){
         new JVInicio();
@@ -30,110 +35,18 @@ public class JVInicio extends JFrame
     public JVInicio()
     {
         this.setTitle("Bienvenido al programa");
-        this.setLayout(new BorderLayout());
+        this.setLayout(null);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setResizable(false); //para que no se pueda mover la jventana
+        this.setSize(1000,600);
+        this.setLocationRelativeTo(null); //para que aparezca en medio de la pantalla
+        this.setVisible(true);
 
-        JPanel pnlCentral = new JPanel(new FlowLayout());
-        JPanel pnlNorte = new JPanel( new FlowLayout());
-        JPanel pnlSur = new JPanel(new FlowLayout());
-
-        JLabel titulo = new JLabel("Conectate Comillas");
-        titulo.setFont(new Font("Harlow Solid Italic"   , Font.BOLD, 30));
-        titulo.setHorizontalAlignment(JLabel.CENTER);
-        pnlNorte.add(titulo);
-
-        JLabel lblname = new JLabel("Usuario:");
-        lblname.setFont(new Font("Gill Sans Nova", Font.BOLD, 15));
-        //lblname.setBounds(10,100,80,25);
-
-
-        JLabel lblcontra = new JLabel("Contraseña:");
-        lblcontra.setFont(new Font("Gill Sans Nova", Font.BOLD, 15));
-        //lblcontra.setBounds(10,300,80,25);
-
-
-        JTextField txtuser = new JTextField(20);
-        txtuser.setToolTipText("Ingrese usuario");
-        txtuser.setFont(new Font("Gill Sans Nova", Font.BOLD, 15));
-        //txtuser.setBounds(100,100,160,25);
-
-
-        JPasswordField txtcontra = new JPasswordField(20);
-        txtcontra.setEchoChar('*');
-        txtcontra.setToolTipText("Ingrese contraseña");
-        txtcontra.setFont(new Font("Gill Sans Nova", Font.BOLD, 15));
-        //txtcontra.setBounds(100,300,160,25);
-
-        JCheckBox checkContrasena = new JCheckBox("Ver contraseña");
-        checkContrasena.setFont(new Font("Gill Sans Nova", Font.BOLD, 15));
-        checkContrasena.setOpaque(false); //false para quitar el fondo
-
-        pnlCentral.add(lblname);
-        pnlCentral.add(txtuser);
-        pnlCentral.add(lblcontra);
-        pnlCentral.add(txtcontra);
-        pnlCentral.add(checkContrasena);
-
-
-        JButton btnRegis = new JButton("Registrarse");
-        btnRegis.setForeground(Color.BLACK);
-        btnRegis.setBackground(new Color(215,207,204,255));
-        Border line = new LineBorder(Color.BLACK);
-        Border margin = new EmptyBorder(5, 15, 5, 15); //distancia de separacion de dentro
-        Border compound = new CompoundBorder(line, margin); //para que tenga el borde de negro
-        btnRegis.setBorder(compound); // añadimos el borde de negro
-        btnRegis.setFont(new Font("Gill Sans Nova", Font.BOLD, 15));
-
-        JButton btnIn;
-        btnIn = new JButton("Entrar");
-        btnIn.setBounds(375,450,250,50);
-        btnIn.setForeground(Color.BLACK);
-        btnIn.setBackground(new Color(215,207,204,255));
-        btnIn.setBorder(compound); // añadimos el borde de negro
-        btnIn.setFont(new Font("Gill Sans Nova", Font.BOLD, 15));
-
-        pnlSur.add(btnIn);
-        pnlSur.add(btnRegis);
-
-        btnIn.addActionListener(e -> {
-            char [] arrayC = txtcontra.getPassword();
-            String contra= new String(arrayC);
-            String name = txtuser.getText();
-            Usuario u = new Usuario (name, contra);
-            System.out.println(u.getId()+" "+u.getPassword());
-            Client c = new Client();
-            HashMap<String, Object> peticion = new HashMap<>();
-            peticion.put("Peticion",u);
-            c.envioPeticion("/getUsuario",peticion);
-            //System.out.println("ok final");
-            int entrar = c.getSalidaU();
-            if(entrar==0){
-                JOptionPane.showMessageDialog(null, "No se encuentra su usuario, regístrese para crear una cuenta");
-            }
-            else {
-                ventanaBuscar = new JVentanaChoose();
-                ventanaBuscar.setVisible(true);
-                JVInicio.this.setVisible(false);
-            }
-        });
-
-        btnRegis.addActionListener(new ActionListener()
-        {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                ventanaResistro = new JVentanaRegistro();
-                ventanaResistro.setVisible(true);
-                JVInicio.this.setVisible(false);
-            }
-        });
-
-        checkContrasena.addActionListener(new ActionListener()
-        {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (checkContrasena.isSelected()) txtcontra.setEchoChar((char)0);
-                else txtcontra.setEchoChar('*');
-            }
-        });
+        initTitulo();
+        initJLabels();
+        initBotones();
+        initActionBotones();
+        initTxt();
 
 //        btnRegis.addActionListener(new ActionListener()
 //        {
@@ -158,19 +71,153 @@ public class JVInicio extends JFrame
 //                }
 //            }
 //        });
+        this.getContentPane().setBackground(new Color(207, 185, 151,255)); //color de fondo (lo pongo al final porque sino no se ven las boxes)
+    }
 
-        this.add(pnlCentral, BorderLayout.CENTER);
-        this.add(pnlNorte, BorderLayout.NORTH);
-        this.add(pnlSur, BorderLayout.SOUTH);
+    public void initTitulo() {
+        JLabel titulo = new JLabel( "Con\u00E9ctate Comillas");
+        titulo.setBounds(325, 50, 350, 50);
+        titulo.setHorizontalAlignment(SwingConstants.CENTER);
+        titulo.setOpaque(false); //false para quitar el fondo
+        titulo.setFont(new Font("Harlow Solid Italic"   , Font.BOLD, 30));
+        this.add(titulo);
+    }
+
+    public void initJLabels(){
+        lblname = new JLabel("Usuario:");
+        lblname.setBounds(250,180,125,50);
+        lblname.setHorizontalAlignment(SwingConstants.LEFT);
+        lblname.setForeground(Color.black);
+        lblname.setOpaque(false); //false para quitar el fondo
+        lblname.setFont(new Font( "Harlow Solid Italic" , Font.BOLD, 20));
+        this.add(lblname);
+
+        lblcontra = new JLabel("Contraseña:");
+        lblcontra.setBounds(250,280,150,50);
+        lblcontra.setHorizontalAlignment(SwingConstants.LEFT);
+        lblcontra.setForeground(Color.black);
+        lblcontra.setOpaque(false); //false para quitar el fondo
+        lblcontra.setFont(new Font( "Harlow Solid Italic" , Font.BOLD, 20));
+        this.add(lblcontra);
+    }
+
+    public void initBotones() {
+        btnRegis = new JButton("Registrarse");
+        btnRegis.setBounds(200,450,250,50);
+        btnRegis.setForeground(Color.BLACK);
+        btnRegis.setBackground(new Color(215,207,204,255));
+        Border line = new LineBorder(Color.BLACK);
+        Border margin = new EmptyBorder(5, 15, 5, 15); //distancia de separacion de dentro
+        Border compound = new CompoundBorder(line, margin); //para que tenga el borde de negro
+        btnRegis.setBorder(compound); // añadimos el borde de negro
+        btnRegis.setFont(new Font("Gill Sans Nova", Font.BOLD, 15));
+        this.add(btnRegis);
+
+        btnIn = new JButton("Iniciar sesi\u00F3n");
+        btnIn.setBounds(500,450,250,50);
+        btnIn.setForeground(Color.BLACK);
+        btnIn.setBackground(new Color(215,207,204,255));
+        btnIn.setBorder(compound); // añadimos el borde de negro
+        btnIn.setFont(new Font("Gill Sans Nova", Font.BOLD, 15));
+        this.add(btnIn);
+
+        JButton btnRegis = new JButton("Registrarse");
+        btnRegis.setForeground(Color.BLACK);
+        btnRegis.setBackground(new Color(215,207,204,255));
+        Border line = new LineBorder(Color.BLACK);
+        Border margin = new EmptyBorder(5, 15, 5, 15); //distancia de separacion de dentro
+        Border compound = new CompoundBorder(line, margin); //para que tenga el borde de negro
+        btnRegis.setBorder(compound); // añadimos el borde de negro
+        btnRegis.setFont(new Font("Gill Sans Nova", Font.BOLD, 15));
+
+        JButton btnIn;
+        btnIn = new JButton("Iniciar sesi\u00F3n");
+        btnIn.setBounds(375,450,250,50);
+        btnIn.setForeground(Color.BLACK);
+        btnIn.setBackground(new Color(215,207,204,255));
+        btnIn.setBorder(compound); // añadimos el borde de negro
+        btnIn.setFont(new Font("Gill Sans Nova", Font.BOLD, 15));
+    }
+
+    public void initTxt() {
+
+        String destinos[]={"Pozuelo","Majadahonda","Boadilla","Somosaguas","ICAI","ICADE","CIHS","Madrid"};
+        cbDestino = new JComboBox<String>(destinos);
+        cbDestino.setBounds(600,240,200,30);
+//        cbDestino.setFont(new Font("Bauhaus 93", 0, 20));
+        this.add(cbDestino);
+
+        String plazas[]={"1","2","3","4","5","6","7"};
+        cbPlazas = new JComboBox<String>(plazas);
+        cbPlazas.setBounds(600,320,200,30);
+//        cbPlazas.setFont(new Font("Bauhaus 93", 0, 20));
+        this.add(cbPlazas);
+
+        txtuser = new JTextField(20);
+        txtuser.setToolTipText("Ingrese usuario");
+        txtuser.setBounds(600,160,200,30);
+        txtuser.setFont(new Font("Gill Sans Nova", Font.BOLD, 15));
+        this.add(txtuser);
 
 
-        this.setResizable(false); //para que no se pueda mover la jventana
-        this.setSize(1000,600);
-        this.setLocationRelativeTo(null); //para que aparezca en medio de la pantalla
-        this.setVisible(true);
-        pnlCentral.setBackground(new Color(207, 185, 151,255));
-        pnlNorte.setBackground(new Color(207, 185, 151,255));
-        pnlSur.setBackground(new Color(207, 185, 151,255));
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        JPasswordField txtcontra = new JPasswordField(20);
+        txtcontra.setEchoChar('*');
+        txtcontra.setToolTipText("Ingrese contraseña");
+        txtcontra.setFont(new Font("Gill Sans Nova", Font.BOLD, 15));
+        this.add(txtcontra);
+
+        checkContrasena = new JCheckBox("Ver contraseña");
+        checkContrasena.setFont(new Font("Gill Sans Nova", Font.BOLD, 15));
+        checkContrasena.setOpaque(false); //false para quitar el fondo
+        this.add(checkContrasena);
+    }
+
+    public void initActionBotones() {
+        btnIn.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                char [] arrayC = txtcontra.getPassword();
+                String contra= new String(arrayC);
+                String name = txtuser.getText();
+                Usuario u = new Usuario (name, contra);
+                System.out.println(u.getId()+" "+u.getPassword());
+                Client c = new Client();
+                HashMap<String, Object> peticion = new HashMap<>();
+                peticion.put("Peticion",u);
+                c.envioPeticion("/getUsuario",peticion);
+                //System.out.println("ok final");
+                int entrar = c.getSalidaU();
+                if(entrar==0){
+                    JOptionPane.showMessageDialog(null, "No se encuentra su usuario, regístrese para crear una cuenta");
+                }
+                else {
+                    ventanaBuscar = new JVentanaChoose();
+                    ventanaBuscar.setVisible(true);
+                    JVInicio.this.setVisible(false);
+                }
+            }
+        });
+
+        btnRegis.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                ventanaResistro = new JVentanaRegistro();
+                ventanaResistro.setVisible(true);
+                JVInicio.this.setVisible(false);
+            }
+        });
+
+        checkContrasena.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (checkContrasena.isSelected()) txtcontra.setEchoChar((char)0);
+                else txtcontra.setEchoChar('*');
+            }
+        });
     }
 }
