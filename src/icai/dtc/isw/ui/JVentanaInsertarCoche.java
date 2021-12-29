@@ -3,6 +3,10 @@ package icai.dtc.isw.ui;
 import icai.dtc.isw.client.Client;
 import icai.dtc.isw.domain.Customer;
 import icai.dtc.isw.domain.Entrada;
+import net.sourceforge.jdatepicker.JDatePicker;
+import net.sourceforge.jdatepicker.impl.JDatePanelImpl;
+import net.sourceforge.jdatepicker.impl.JDatePickerImpl;
+import net.sourceforge.jdatepicker.impl.UtilCalendarModel;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -13,7 +17,9 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
+
 
 public class JVentanaInsertarCoche extends JFrame{
 
@@ -22,6 +28,8 @@ public class JVentanaInsertarCoche extends JFrame{
     private JLabel labelOrigen, labelDestino, labelPlazas, matricula;
     private JTextField txtmatricula;
     private JVentanaChoose ventanaChoose;
+    private Calendar c;
+    private JDatePickerImpl datePickerFecha;
 
     public static void main(String args[])
     {
@@ -44,10 +52,26 @@ public class JVentanaInsertarCoche extends JFrame{
         initBotonBuscar();
         initBoxes();
         initActionBotones();
+        initCalendar();
 
         this.getContentPane().setBackground(new Color(207, 185, 151,255)); //color de fondo (lo pongo al final porque sino no se ven las boxes)
     }
 
+    private void initCalendar() {
+        UtilCalendarModel modelFecha = new UtilCalendarModel();
+        c= Calendar.getInstance();
+        int currentYear = c.get(Calendar.YEAR);
+        int currentMonth = c.get(Calendar.MONTH);
+        int currentDay = c.get(Calendar.DAY_OF_MONTH);
+
+        modelFecha.setDate(currentYear, currentMonth, currentDay);
+
+        JDatePanelImpl datePanelFecha = new JDatePanelImpl(modelFecha);
+        datePanelFecha.setBackground(new Color(207, 185, 151,255));
+        datePickerFecha = new JDatePickerImpl(datePanelFecha);
+        datePickerFecha.setBounds(600,110,200,25);
+        this.add(datePickerFecha);
+    }
 
 
     public void initTitulo() {
