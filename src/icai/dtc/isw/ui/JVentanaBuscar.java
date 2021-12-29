@@ -191,8 +191,7 @@ public class JVentanaBuscar extends JFrame
                 String hora = cbHora.getItemAt(cbHora.getSelectedIndex());
                 String horaPuntos = hora.concat(":");
                 String minutos = cbMinuto.getItemAt(cbMinuto.getSelectedIndex());
-                String horaSinSegundos = horaPuntos.concat(minutos);
-                String horaFinal = horaSinSegundos.concat(":00");
+                String horaFinal = horaPuntos.concat(minutos);
 
                 Entrada entrada = new Entrada (origen, destino, datePickerFecha, horaFinal);
                 Client c = new Client();

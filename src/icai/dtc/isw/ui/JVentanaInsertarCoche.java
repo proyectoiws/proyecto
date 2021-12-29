@@ -207,8 +207,8 @@ public class JVentanaInsertarCoche extends JFrame{
             String hora = cbHora.getItemAt(cbHora.getSelectedIndex());
             String horaPuntos = hora.concat(":");
             String minutos = cbMinuto.getItemAt(cbMinuto.getSelectedIndex());
-            String horaSinSegundos = horaPuntos.concat(minutos);
-            String horaFinal = horaSinSegundos.concat(":00");
+            String horaFinal = horaPuntos.concat(minutos);
+
             System.out.println(horaFinal);
             Customer entrada = new Customer (matricula,origen, destino,plazas,datePickerFecha, horaFinal);
             Client c = new Client();
