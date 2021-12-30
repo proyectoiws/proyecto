@@ -159,12 +159,12 @@ public class JPanelResultados extends JPanel
                         }
                         else{
 
-                            /*Client c1 = new Client();
+                            Client c1 = new Client();
                             HashMap<String, Object> peticion1 = new HashMap<>();
                             peticion1.put("Peticion",customer);
-                            c1.envioPeticion("/preUpdateCoche",peticion1);*/
-
-                            JOptionPane.showMessageDialog(null, "se ha unido correctamente");
+                            c1.envioPeticion("/Update",peticion1);
+                            if (c.getInC()==1)
+                                JOptionPane.showMessageDialog(null, "se ha unido correctamente");
                         }
                     }
                     else {

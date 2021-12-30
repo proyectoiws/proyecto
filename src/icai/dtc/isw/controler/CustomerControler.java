@@ -45,4 +45,9 @@ public class CustomerControler {
 		Customer entrada = (Customer) mapa.get("Peticion");
 		CustomerDAO.preUpdate(lista, entrada);
 	}
+
+	public void update(ArrayList<Customer> lista, HashMap<String, Object> mapa){
+		Customer entrada = (Customer) mapa.get("Peticion");
+		CustomerDAO.update(lista, entrada);
+	}
 }

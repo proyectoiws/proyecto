@@ -128,7 +128,7 @@ public class CustomerDAO {
 		System.out.println(entrada.getName());
 		Connection con=ConnectionDAO.getInstance().getConnection();
 
-		try (PreparedStatement pst = con.prepareStatement("SELECT * FROM coches WHERE (userp = '"+entrada.getName()+"' or user1 = '"+entrada.getName()+"' or user2 = '"+entrada.getName()+"' or user3 = '"+entrada.getName()+"' or user4 = '"+entrada.getName()+"' or user5 = '"+entrada.getName()+"' or user6= '"+entrada.getName()+"' ) and matricula = '"+entrada.getMatricula()+"';");
+		try (PreparedStatement pst = con.prepareStatement("SELECT * FROM coches WHERE (userp = '"+entrada.getName()+"' or user1 = '"+entrada.getName()+"' or user2 = '"+entrada.getName()+"' or user3 = '"+entrada.getName()+"' or user4 = '"+entrada.getName()+"' or user5 = '"+entrada.getName()+"' or user6= '"+entrada.getName()+"' ) and matricula = '"+entrada.getMatricula()+"' and fecha= '"+entrada.getFecha()+"' and hora= '"+entrada.getHora()+"';");
 			 ResultSet rs = pst.executeQuery()) {
 
 			while (rs.next()) {
@@ -140,6 +140,103 @@ public class CustomerDAO {
 
 			System.out.println(ex.getMessage());
 		}
+
+
+	}
+
+	public static void update(ArrayList<Customer> lista, Customer entrada) {
+
+		Connection con=ConnectionDAO.getInstance().getConnection();
+		switch (entrada.getOcupadas()){
+			case "0":
+				try (PreparedStatement pst = con.prepareStatement("UPDATE coches SET user1 = '"+entrada.getName()+", ocupadas = ocupadas + 1 WHERE matricula = '"+entrada.getMatricula()+"' and fecha= '"+entrada.getFecha()+"' and hora= '"+entrada.getHora()+";");
+					 ResultSet rs = pst.executeQuery()) {
+					System.out.println("se ha actualizado bien"+rs);
+
+				}
+
+
+				catch (SQLException ex) {
+					System.out.println(ex.getMessage());
+				}
+
+			case "1":
+				try (PreparedStatement pst = con.prepareStatement("UPDATE coches SET user2 = '"+entrada.getName()+", ocupadas = ocupadas + 1 WHERE matricula = '"+entrada.getMatricula()+"' and fecha= '"+entrada.getFecha()+"' and hora= '"+entrada.getHora()+";");
+					 ResultSet rs = pst.executeQuery()) {
+					System.out.println("se ha actualizado bien"+rs);
+
+				}
+
+
+				catch (SQLException ex) {
+					System.out.println(ex.getMessage());
+				}
+
+			case "2":
+				try (PreparedStatement pst = con.prepareStatement("UPDATE coches SET user3 = '"+entrada.getName()+", ocupadas = ocupadas + 1 WHERE matricula = '"+entrada.getMatricula()+"' and fecha= '"+entrada.getFecha()+"' and hora= '"+entrada.getHora()+";");
+					 ResultSet rs = pst.executeQuery()) {
+					System.out.println("se ha actualizado bien"+rs);
+
+				}
+
+
+				catch (SQLException ex) {
+					System.out.println(ex.getMessage());
+				}
+
+			case "3":
+				try (PreparedStatement pst = con.prepareStatement("UPDATE coches SET user4 = '"+entrada.getName()+", ocupadas = ocupadas + 1 WHERE matricula = '"+entrada.getMatricula()+"' and fecha= '"+entrada.getFecha()+"' and hora= '"+entrada.getHora()+";");
+					 ResultSet rs = pst.executeQuery()) {
+					System.out.println("se ha actualizado bien"+rs);
+
+				}
+
+
+				catch (SQLException ex) {
+					System.out.println(ex.getMessage());
+				}
+
+			case "4":
+				try (PreparedStatement pst = con.prepareStatement("UPDATE coches SET user5 = '"+entrada.getName()+", ocupadas = ocupadas + 1 WHERE matricula = '"+entrada.getMatricula()+"' and fecha= '"+entrada.getFecha()+"' and hora= '"+entrada.getHora()+";");
+					 ResultSet rs = pst.executeQuery()) {
+					System.out.println("se ha actualizado bien"+rs);
+
+				}
+
+
+				catch (SQLException ex) {
+					System.out.println(ex.getMessage());
+				}
+
+			case "5":
+				try (PreparedStatement pst = con.prepareStatement("UPDATE coches SET user6 = '"+entrada.getName()+", ocupadas = ocupadas + 1 WHERE matricula = '"+entrada.getMatricula()+"' and fecha= '"+entrada.getFecha()+"' and hora= '"+entrada.getHora()+";");
+					 ResultSet rs = pst.executeQuery()) {
+					System.out.println("se ha actualizado bien"+rs);
+
+				}
+
+
+				catch (SQLException ex) {
+					System.out.println(ex.getMessage());
+				}
+		}
+
+
+		try (PreparedStatement pst = con.prepareStatement("SELECT * FROM coches WHERE (userp = '"+entrada.getName()+"' or user1 = '"+entrada.getName()+"' or user2 = '"+entrada.getName()+"' or user3 = '"+entrada.getName()+"' or user4 = '"+entrada.getName()+"' or user5 = '"+entrada.getName()+"' or user6= '"+entrada.getName()+"' ) and matricula = '"+entrada.getMatricula()+"' and fecha= '"+entrada.getFecha()+"' and hora= '"+entrada.getHora()+"';");
+			 ResultSet rs = pst.executeQuery()) {
+
+			while (rs.next()) {
+				lista.add(new Customer(rs.getString(1),rs.getString(3),rs.getString(4),(String) rs.getString(2), rs.getString(5), rs.getString(13),rs.getString(6),rs.getString(14)));
+				System.out.println(lista.size());
+			}
+
+		} catch (SQLException ex) {
+
+			System.out.println(ex.getMessage());
+		}
+
+
+
 	}
 
 	//public static void main(String[] args) {

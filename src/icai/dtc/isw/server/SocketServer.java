@@ -140,6 +140,23 @@ public class SocketServer extends Thread {
 					mensajeOut.setSession(session6);
 					objectOutputStream.writeObject(mensajeOut);
 
+				case "/Update":
+					//System.out.println("ok contexto");
+					CustomerControler customerControler7=new CustomerControler();
+					//System.out.println("ok controller");
+					ArrayList<Customer> lista7= new ArrayList<>();
+					HashMap<String,Object> mapa7 = mensajeIn.getSession();
+					System.out.println(mapa7);
+					//Entrada en = (Entrada) objeto.values();
+					//System.out.println(en.getOrigen());
+					//System.out.println("pregetcustomer");
+					customerControler7.update(lista7,mapa7);
+					mensajeOut.setContext("/UpdateResponse");
+					HashMap<String,Object> session7= new HashMap<>();
+					session7.put("Customer",lista7);
+					mensajeOut.setSession(session7);
+					objectOutputStream.writeObject(mensajeOut);
+
 		    	default:
 		    		System.out.println("\nParámetro no encontrado");
 		    		break;

@@ -104,6 +104,14 @@ public class Client {
 					this.inC=0;
 				break;
 
+			case "UpdateResponse":
+				ArrayList<Customer> userList5=(ArrayList<Customer>)(mensajeVuelta.getSession().get("Customer"));
+				if(userList5.size()==1)
+					this.inC=1;
+				else
+					this.inC=0;
+				break;
+
 
 			default:
 				Logger.getRootLogger().info("Option not found");
