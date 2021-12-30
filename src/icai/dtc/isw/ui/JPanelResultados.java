@@ -42,6 +42,7 @@ public class JPanelResultados extends JPanel
         initJLabels();
         initActionBoton();
         initBotonVUnirse();
+        initUnirse();
 
         this.setBackground(new Color(207, 185, 151,255)); //color de fondo (lo pongo al final porque sino no se ve nada)
     }
@@ -130,13 +131,25 @@ public class JPanelResultados extends JPanel
                 ventanaResultados.setVisible(false);
             }
         });
-
-
-
-
-
-
     }
+
+
+    public void initUnirse() {
+            btnUnirse.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    ventanaBuscar.setVisible(true);
+                    ventanaResultados.setVisible(false);
+                }
+            });
+        }
+
+
+
+
+
+
+
 
 
 }
