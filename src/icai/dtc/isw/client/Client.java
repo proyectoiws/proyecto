@@ -96,17 +96,12 @@ public class Client {
 					System.out.println("He leído el id "+cos.getMatricula());
 				}
 				break;
-			case "/InCoche":
-				ArrayList<Customer> userList4=(ArrayList<Customer>)(mensajeVuelta.getSession().get("Customer"));
-				if(userList4.size()==1)
-					this.inC=1;
-				else
-					this.inC=0;
-				break;
 
-			case "UpdateResponse":
-				ArrayList<Customer> userList5=(ArrayList<Customer>)(mensajeVuelta.getSession().get("Customer"));
-				if(userList5.size()==1)
+
+			case "/UpdateResponse":
+				ArrayList<Customer> userList4=(ArrayList<Customer>)(mensajeVuelta.getSession().get("Customer"));
+				System.out.println("Llega aqui"+userList4.size());
+				if(userList4.size()==1)
 					this.inC=1;
 				else
 					this.inC=0;

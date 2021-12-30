@@ -25,7 +25,7 @@ public class JPanelResultados extends JPanel
     private Customer customer;
     private JButton btnVolver,btnUnirse;
     private JLabel labelMatricula, labelOrigen, labelDestino, labelPlazas;
-    private String name;
+    private String name,hora;
 
 
     public JPanelResultados(Customer customer,JVentanaBuscar ventanaBuscar,  JVentanaResultados ventanaResultados, String name)
@@ -34,6 +34,7 @@ public class JPanelResultados extends JPanel
         this.ventanaResultados = ventanaResultados;
         this.customer = customer;
         this.name=name;
+        //this.hora=horaF;
 
         this.setLayout(null);
         this.setSize(1000, 600);
@@ -143,6 +144,7 @@ public class JPanelResultados extends JPanel
                 @Override
                 public void actionPerformed(ActionEvent e) {
 
+                    //customer.setHora(hora);
                     System.out.println("Dentro del boton customer"+customer.getMatricula()+"el cliente"+nombre);
                     if (customer.getLibre()==1)
                     {

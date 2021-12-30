@@ -16,7 +16,7 @@ public class JVentanaResultados extends JFrame
     private JLabel labelMatricula, labelOrigen, labelDestino, labelPlazas;
 
 
-    private  String nombre;
+    private  String nombre,hora;
 
 
     public JVentanaResultados(ArrayList<Customer> salidas,JVentanaBuscar ventanaBuscar,String name)
@@ -30,6 +30,7 @@ public class JVentanaResultados extends JFrame
         this.setSize(1000, 600);
         this.setLocationRelativeTo(null);
         this.setVisible(true);
+        //this.hora=horaF;
 
         initPestañas(nombre);
 

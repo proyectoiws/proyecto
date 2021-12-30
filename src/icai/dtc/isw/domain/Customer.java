@@ -28,10 +28,11 @@ public class Customer implements Serializable{
 	private String name;
 
 
+	public void setHora(String hora) {
+		this.hora = hora;
+	}
 
-
-
-	public Customer(String matricula, String origen, String destino, String plazas, String fecha, String hora, String propietario,String ocupadas)
+	public Customer(String matricula, String origen, String destino, String plazas, String fecha, String hora, String propietario, String ocupadas)
 	{
 		this.matricula= matricula;
 		this.origen= origen;
