@@ -49,7 +49,7 @@ public class Customer implements Serializable{
 		this.origen= origen;
 		this.destino = destino;
 		this.plazas = plazas;
-		this.fecha = String.valueOf(fecha);
+		this.fecha = fecha;
 		this.hora = hora;
 		this.propietario=propietario;
 		this.usuarios= usuarios;

@@ -128,7 +128,7 @@ public class CustomerDAO {
 		System.out.println(entrada.getName());
 		Connection con=ConnectionDAO.getInstance().getConnection();
 
-		try (PreparedStatement pst = con.prepareStatement("SELECT * FROM coches WHERE (userp = '"+entrada.getName()+"' or user1 = '"+entrada.getName()+"' or user2 = '"+entrada.getName()+"' or user3 = '"+entrada.getName()+"' or user4 = '"+entrada.getName()+"' or user5 = '"+entrada.getName()+"' or user6= '"+entrada.getName()+"' ) and matricula = '"+entrada.getMatricula()+"' and fecha= '"+entrada.getFecha()+"' and hora= '"+entrada.getHora()+"';");
+		try (PreparedStatement pst = con.prepareStatement("SELECT * FROM coches WHERE (userp = '"+entrada.getName()+"' or user1 = '"+entrada.getName()+"' or user2 = '"+entrada.getName()+"' or user3 = '"+entrada.getName()+"' or user4 = '"+entrada.getName()+"' or user5 = '"+entrada.getName()+"' or user6= '"+entrada.getName()+"' ) and matricula = '"+entrada.getMatricula()+"' and fecha= '"+entrada.getFecha()+"' and hora= '"+entrada.getHora()+"' ;");
 			 ResultSet rs = pst.executeQuery()) {
 
 			while (rs.next()) {
@@ -146,10 +146,12 @@ public class CustomerDAO {
 
 	public static void update(ArrayList<Customer> lista, Customer entrada) {
 
+		//System.out.println("aqui bien antes qqqq");
+		System.out.println("hora"+entrada.getHora());
 		Connection con=ConnectionDAO.getInstance().getConnection();
 		switch (entrada.getOcupadas()){
 			case "0":
-				try (PreparedStatement pst = con.prepareStatement("UPDATE coches SET user1 = '"+entrada.getName()+", ocupadas = ocupadas + 1 WHERE matricula = '"+entrada.getMatricula()+"' and fecha= '"+entrada.getFecha()+"' and hora= '"+entrada.getHora()+";");
+				try (PreparedStatement pst = con.prepareStatement(" UPDATE COCHES SET user1= '"+entrada.getName()+"', ocupadas = ocupadas + 1 WHERE matricula = '"+entrada.getMatricula()+"'and fecha = '"+entrada.getHora()+"'and hora = '"+entrada.getHora() +"';");
 					 ResultSet rs = pst.executeQuery()) {
 					System.out.println("se ha actualizado bien"+rs);
 
@@ -161,7 +163,7 @@ public class CustomerDAO {
 				}
 
 			case "1":
-				try (PreparedStatement pst = con.prepareStatement("UPDATE coches SET user2 = '"+entrada.getName()+", ocupadas = ocupadas + 1 WHERE matricula = '"+entrada.getMatricula()+"' and fecha= '"+entrada.getFecha()+"' and hora= '"+entrada.getHora()+";");
+				try (PreparedStatement pst = con.prepareStatement(" UPDATE COCHES SET user2= '"+entrada.getName()+"', ocupadas = ocupadas + 1 WHERE matricula = '"+entrada.getMatricula()+"'and fecha = '"+entrada.getHora()+"'and hora = '"+entrada.getHora() +"';");
 					 ResultSet rs = pst.executeQuery()) {
 					System.out.println("se ha actualizado bien"+rs);
 
@@ -173,7 +175,8 @@ public class CustomerDAO {
 				}
 
 			case "2":
-				try (PreparedStatement pst = con.prepareStatement("UPDATE coches SET user3 = '"+entrada.getName()+", ocupadas = ocupadas + 1 WHERE matricula = '"+entrada.getMatricula()+"' and fecha= '"+entrada.getFecha()+"' and hora= '"+entrada.getHora()+";");
+				System.out.println("aqui bien antes qqqq");
+				try (PreparedStatement pst = con.prepareStatement(" UPDATE COCHES SET user3= '"+entrada.getName()+"', ocupadas = ocupadas + 1 WHERE matricula = '"+entrada.getMatricula()+"'and fecha = '"+entrada.getHora()+"'and hora = '"+entrada.getHora() +"';");
 					 ResultSet rs = pst.executeQuery()) {
 					System.out.println("se ha actualizado bien"+rs);
 
@@ -185,7 +188,7 @@ public class CustomerDAO {
 				}
 
 			case "3":
-				try (PreparedStatement pst = con.prepareStatement("UPDATE coches SET user4 = '"+entrada.getName()+", ocupadas = ocupadas + 1 WHERE matricula = '"+entrada.getMatricula()+"' and fecha= '"+entrada.getFecha()+"' and hora= '"+entrada.getHora()+";");
+				try (PreparedStatement pst = con.prepareStatement(" UPDATE COCHES SET user4= '"+entrada.getName()+"', ocupadas = ocupadas + 1 WHERE matricula = '"+entrada.getMatricula()+"'and fecha = '"+entrada.getHora()+"'and hora = '"+entrada.getHora() +"';");
 					 ResultSet rs = pst.executeQuery()) {
 					System.out.println("se ha actualizado bien"+rs);
 
@@ -197,7 +200,7 @@ public class CustomerDAO {
 				}
 
 			case "4":
-				try (PreparedStatement pst = con.prepareStatement("UPDATE coches SET user5 = '"+entrada.getName()+", ocupadas = ocupadas + 1 WHERE matricula = '"+entrada.getMatricula()+"' and fecha= '"+entrada.getFecha()+"' and hora= '"+entrada.getHora()+";");
+				try (PreparedStatement pst = con.prepareStatement(" UPDATE COCHES SET user5= '"+entrada.getName()+"', ocupadas = ocupadas + 1 WHERE matricula = '"+entrada.getMatricula()+"'and fecha = '"+entrada.getHora()+"'and hora = '"+entrada.getHora() +"';");
 					 ResultSet rs = pst.executeQuery()) {
 					System.out.println("se ha actualizado bien"+rs);
 
@@ -209,7 +212,7 @@ public class CustomerDAO {
 				}
 
 			case "5":
-				try (PreparedStatement pst = con.prepareStatement("UPDATE coches SET user6 = '"+entrada.getName()+", ocupadas = ocupadas + 1 WHERE matricula = '"+entrada.getMatricula()+"' and fecha= '"+entrada.getFecha()+"' and hora= '"+entrada.getHora()+";");
+				try (PreparedStatement pst = con.prepareStatement(" UPDATE COCHES SET user6= '"+entrada.getName()+"', ocupadas = ocupadas + 1 WHERE matricula = '"+entrada.getMatricula()+"'and fecha = '"+entrada.getHora()+"'and hora = '"+entrada.getHora() +"';");
 					 ResultSet rs = pst.executeQuery()) {
 					System.out.println("se ha actualizado bien"+rs);
 
@@ -221,7 +224,7 @@ public class CustomerDAO {
 				}
 		}
 
-
+		System.out.println("Aqui okk");
 		try (PreparedStatement pst = con.prepareStatement("SELECT * FROM coches WHERE (userp = '"+entrada.getName()+"' or user1 = '"+entrada.getName()+"' or user2 = '"+entrada.getName()+"' or user3 = '"+entrada.getName()+"' or user4 = '"+entrada.getName()+"' or user5 = '"+entrada.getName()+"' or user6= '"+entrada.getName()+"' ) and matricula = '"+entrada.getMatricula()+"' and fecha= '"+entrada.getFecha()+"' and hora= '"+entrada.getHora()+"';");
 			 ResultSet rs = pst.executeQuery()) {
 
