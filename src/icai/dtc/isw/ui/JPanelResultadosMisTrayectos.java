@@ -56,9 +56,9 @@ public class JPanelResultadosMisTrayectos extends JPanel
     }
 
     public void initTitulo() {
-        JLabel titulo = new JLabel( "Mis trayectos:" );
-        titulo.setBounds(125, 50, 500, 50);
-        titulo.setHorizontalAlignment(SwingConstants.CENTER);
+        JLabel titulo = new JLabel( "Par\u00E1metros:" );
+        titulo.setBounds(125, 0, 500, 50);
+        titulo.setHorizontalAlignment(SwingConstants.LEFT);
         titulo.setForeground(new Color(234, 223, 223,255));
         titulo.setForeground(new Color(0, 47, 152,255));
         titulo.setOpaque(false); //false para quitar el fondo
@@ -101,15 +101,15 @@ public class JPanelResultadosMisTrayectos extends JPanel
 
         lblFecha = new JLabel("Fecha: " + customer.getFecha());
         lblFecha.setBounds(250,310,400,50);
-        lblFecha.setHorizontalAlignment(SwingConstants.RIGHT);
+        lblFecha.setHorizontalAlignment(SwingConstants.LEFT);
         lblFecha.setForeground(Color.black);
         lblFecha.setOpaque(false); //false para quitar el fondo
         lblFecha.setFont(new Font( Font.DIALOG, Font.BOLD, 20));
         this.add(lblFecha);
 
-        lblHora = new JLabel("Hora:");
+        lblHora = new JLabel("Hora: "+ customer.getHora());
         lblHora.setBounds(250,370,400,50);
-        lblHora.setHorizontalAlignment(SwingConstants.RIGHT);
+        lblHora.setHorizontalAlignment(SwingConstants.LEFT);
         lblHora.setForeground(Color.black);
         lblHora.setOpaque(false); //false para quitar el fondo
         lblHora.setFont(new Font( Font.DIALOG, Font.BOLD, 20));

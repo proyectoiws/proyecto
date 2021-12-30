@@ -3,7 +3,6 @@ package icai.dtc.isw.ui;
 import icai.dtc.isw.domain.Customer;
 
 import javax.swing.*;
-import java.awt.*;
 import java.util.ArrayList;
 
 public class JVentanaMisTrayectos extends JFrame {

@@ -23,12 +23,13 @@ import java.util.HashMap;
 
 public class JVentanaChoose extends JFrame{
 
-    private JVentanaResultados ventanaResultados;
-    private JVentanaInsertarCoche opcion1;
+
+    private JVentanaInsertarCoche ventanaInsertarCoche;
     private JVInicio ventanaInicio;
-    private JVentanaBuscar opcion2;
+    private JVentanaMisTrayectos ventanaMisTrayectos;
+    private JVentanaBuscar ventanaBuscar;
     private JLabel titulo;
-    private JButton btnBuscar, btnInsertar, btnVolver, btnViajes;
+    private JButton btnBuscar, btnInsertar, btnVolver, btnMisViajes;
     private String name;
 
     /*public static void main(String args[]) {
@@ -89,21 +90,21 @@ public class JVentanaChoose extends JFrame{
         btnVolver.setBounds(375,340, 250,50);
         this.add(btnVolver);
 
-        btnViajes = new JButton("Mis Trayectos");
-        btnViajes.setForeground(Color.BLACK);
-        btnViajes.setBackground(new Color(215, 207, 204, 255));
-        btnViajes.setBorder(compound); // añadimos el borde de negro
-        btnViajes.setFont(new Font("Gill Sans Nova", Font.BOLD, 15));
-        btnViajes.setBounds(375,270, 250,50);
-        this.add(btnViajes);
+        btnMisViajes = new JButton("Mis Trayectos");
+        btnMisViajes.setForeground(Color.BLACK);
+        btnMisViajes.setBackground(new Color(215, 207, 204, 255));
+        btnMisViajes.setBorder(compound); // añadimos el borde de negro
+        btnMisViajes.setFont(new Font("Gill Sans Nova", Font.BOLD, 15));
+        btnMisViajes.setBounds(375,270, 250,50);
+        this.add(btnMisViajes);
     }
 
     public void initActionBotones() {
         btnBuscar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                opcion2 = new JVentanaBuscar(name);
-                opcion2.setVisible(true);
+                ventanaBuscar = new JVentanaBuscar(name);
+                ventanaBuscar.setVisible(true);
                 JVentanaChoose.this.setVisible(false);
             }
 
@@ -113,8 +114,8 @@ public class JVentanaChoose extends JFrame{
         btnInsertar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                opcion1 = new JVentanaInsertarCoche(name);
-                opcion1.setVisible(true);
+                ventanaInsertarCoche = new JVentanaInsertarCoche(name);
+                ventanaInsertarCoche.setVisible(true);
                 JVentanaChoose.this.setVisible(false);
             }
         });
@@ -133,7 +134,7 @@ public class JVentanaChoose extends JFrame{
                 else; //nada
             }
         });
-        btnViajes.addActionListener(new ActionListener()
+        btnMisViajes.addActionListener(new ActionListener()
         {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -148,13 +149,16 @@ public class JVentanaChoose extends JFrame{
                 if (salidas.size() == 0) {
                     JOptionPane.showMessageDialog(null, "No ha creado ningún viaje todavía");
                 } else {
-                    IteratorCustomer it = new IteratorCustomer(salidas,name);
-                    while(it.hasNext()){
-                        System.out.println(it.getText());
-                    }
+//                    IteratorCustomer it = new IteratorCustomer(salidas,name);
+//                    while(it.hasNext()){
+//                        System.out.println(it.getText());
+//                    }
+
                     //En salidas esta la info ¿como la ponemos?
                     //JVentanaChoose.this.setVisible(false);
-
+                    ventanaMisTrayectos = new JVentanaMisTrayectos(salidas,JVentanaChoose.this,name);
+                    ventanaMisTrayectos.setVisible(true);
+                    JVentanaChoose.this.setVisible(false);
                 }
             }
         });
