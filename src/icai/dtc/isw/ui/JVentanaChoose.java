@@ -3,6 +3,7 @@ package icai.dtc.isw.ui;
 import icai.dtc.isw.client.Client;
 import icai.dtc.isw.domain.Customer;
 import icai.dtc.isw.domain.Entrada;
+import icai.dtc.isw.domain.IteratorCustomer;
 import icai.dtc.isw.domain.Usuario;
 
 import javax.swing.*;
@@ -145,10 +146,11 @@ public class JVentanaChoose extends JFrame{
                 //System.out.println("ok final");
                 ArrayList<Customer> salidas = c.getSalidaC();
                 if (salidas.size() == 0) {
-                    JOptionPane.showMessageDialog(null, "No se encuentra resultado para sus requisitos, vuelva a intentarlo");
+                    JOptionPane.showMessageDialog(null, "No ha creado ningún viaje todavía");
                 } else {
-                    for (Customer cu : salidas) {
-                        System.out.println(cu.getMatricula());
+                    IteratorCustomer it = new IteratorCustomer(salidas);
+                    while(it.hasNext()){
+                        System.out.println(it.getText());
                     }
                     //En salidas esta la info ¿como la ponemos?
                     JVentanaChoose.this.setVisible(false);

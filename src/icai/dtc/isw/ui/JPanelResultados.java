@@ -49,7 +49,7 @@ public class JPanelResultados extends JPanel
 
     public void initBotonVolver() {
         btnVolver = new JButton("Volver a buscar");
-        btnVolver.setBounds(375,450,250,50);
+        btnVolver.setBounds(500,450,250,50);
         btnVolver.setForeground(Color.BLACK);
         btnVolver.setBackground(new Color(215,207,204,255));
         Border line = new LineBorder(Color.BLACK);
@@ -62,7 +62,7 @@ public class JPanelResultados extends JPanel
 
     public void initBotonVUnirse() {
         btnUnirse = new JButton("Unirse al trayecto");
-        btnUnirse.setBounds(375,450,250,50);
+        btnUnirse.setBounds(200,450,250,50);
         btnUnirse.setForeground(Color.BLACK);
         btnUnirse.setBackground(new Color(215,207,204,255));
         Border line = new LineBorder(Color.BLACK);
@@ -131,25 +131,7 @@ public class JPanelResultados extends JPanel
             }
         });
 
-        btnUnirse.addActionListener(new ActionListener()
-        {
-            @Override
-            public void actionPerformed(ActionEvent e)
-            {
-                Entrada entrada = new Entrada(name);
-                Client c = new Client();
-                HashMap<String, Object> peticion = new HashMap<>();
-                peticion.put("Peticion",entrada);
-                c.envioPeticion("/setPasajero",peticion);
-                System.out.println("ok final");
-                if (c.getCocheOk()==1) {
-                    JOptionPane.showMessageDialog(null, "Este trayecto ya existe");
-                }
-                else{
-                    JOptionPane.showMessageDialog(null, "El trayecto se ha registrado");
-                }
-            }
-        });
+
 
 
 
