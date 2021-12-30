@@ -146,7 +146,6 @@ public class CustomerDAO {
 
 	public static void update(ArrayList<Customer> lista, Customer entrada) {
 
-		//System.out.println("aqui bien antes qqqq");
 		System.out.println("hora"+entrada.getHora());
 		Connection con=ConnectionDAO.getInstance().getConnection();
 		if (entrada.getOcupadas().equals("0")) {
