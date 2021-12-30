@@ -11,10 +11,8 @@ import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.HashMap;
 
-public class JPanelResultadosMisTrayectos extends JPanel
-{
+public class JPanelResultadosMisTrayectos extends JPanel {
     private JVentanaChoose ventanaChoose;
     private JVentanaMisTrayectos ventanaMisTrayectos;
 

@@ -27,6 +27,7 @@ public class JVentanaChoose extends JFrame{
     private JVentanaInsertarCoche ventanaInsertarCoche;
     private JVInicio ventanaInicio;
     private JVentanaMisTrayectos ventanaMisTrayectos;
+    private JVentanaScrollTrayectos ventanaScrollTrayectos;
     private JVentanaBuscar ventanaBuscar;
     private JLabel titulo;
     private JButton btnBuscar, btnInsertar, btnVolver, btnMisViajes;
@@ -156,8 +157,10 @@ public class JVentanaChoose extends JFrame{
 
                     //En salidas esta la info ¿como la ponemos?
                     //JVentanaChoose.this.setVisible(false);
-                    ventanaMisTrayectos = new JVentanaMisTrayectos(salidas,JVentanaChoose.this,name);
-                    ventanaMisTrayectos.setVisible(true);
+//                    ventanaScrollTrayectos = new JVentanaScrollTrayectos(salidas, name);
+
+                    ventanaScrollTrayectos = new JVentanaScrollTrayectos(salidas,JVentanaChoose.this,name);
+                    ventanaScrollTrayectos.setVisible(true);
                     JVentanaChoose.this.setVisible(false);
                 }
             }

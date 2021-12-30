@@ -18,6 +18,7 @@ public class JVentanaMisTrayectos extends JFrame {
         this.ventanaChoose = ventanaChoose;
         this.salidas = salidas;
         this.name = name;
+
         this.setTitle("Mis trayectos");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setResizable(false);
