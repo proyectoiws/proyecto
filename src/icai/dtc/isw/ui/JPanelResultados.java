@@ -20,13 +20,15 @@ public class JPanelResultados extends JPanel
     private JVentanaBuscar ventanaBuscar;
     private JVentanaResultados ventanaResultados;
 
+
+
     private Customer customer;
     private JButton btnVolver,btnUnirse;
     private JLabel labelMatricula, labelOrigen, labelDestino, labelPlazas;
     private String name;
 
 
-    public JPanelResultados(Customer customer,JVentanaBuscar ventanaBuscar,  JVentanaResultados ventanaResultados,String name)
+    public JPanelResultados(Customer customer,JVentanaBuscar ventanaBuscar,  JVentanaResultados ventanaResultados, String name)
     {
         this.ventanaBuscar = ventanaBuscar;
         this.ventanaResultados = ventanaResultados;
@@ -42,7 +44,7 @@ public class JPanelResultados extends JPanel
         initJLabels();
         initActionBoton();
         initBotonVUnirse();
-        initUnirse();
+        initUnirse(name);
 
         this.setBackground(new Color(207, 185, 151,255)); //color de fondo (lo pongo al final porque sino no se ve nada)
     }
@@ -134,24 +136,35 @@ public class JPanelResultados extends JPanel
     }
 
 
-    public void initUnirse() {
+    public void initUnirse(String name) {
             btnUnirse.addActionListener(new ActionListener() {
+
+                String nombre= name;
                 @Override
                 public void actionPerformed(ActionEvent e) {
 
+                    System.out.println("Dentro del boton customer"+customer.getMatricula()+"el cliente"+nombre);
                     if (customer.getLibre()==1)
                     {
                         Client c = new Client();
                         HashMap<String, Object> peticion = new HashMap<>();
+                        customer.setName(nombre); //asociar el nombre del usuario a la buscar y update
 
                         peticion.put("Peticion",customer);
-                        c.envioPeticion("/preUpdateCoche",peticion);
+                        c.envioPeticion("/preUpdate",peticion);
                         System.out.println("ok final");
-                        if (c.getCocheOk()==1) {
-                            JOptionPane.showMessageDialog(null, "Este trayecto ya existe");
+
+                        if (c.getInC()==1) {
+                            JOptionPane.showMessageDialog(null, "Ya se ha unido a este trayecto");
                         }
                         else{
-                            JOptionPane.showMessageDialog(null, "El trayecto se ha registrado");
+
+                            /*Client c1 = new Client();
+                            HashMap<String, Object> peticion1 = new HashMap<>();
+                            peticion1.put("Peticion",customer);
+                            c1.envioPeticion("/preUpdateCoche",peticion1);*/
+
+                            JOptionPane.showMessageDialog(null, "se ha unido correctamente");
                         }
                     }
                     else {

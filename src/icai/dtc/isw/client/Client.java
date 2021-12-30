@@ -26,6 +26,12 @@ public class Client {
 	private int comprobar;
 	private int cocheOk;
 
+	public int getInC() {
+		return inC;
+	}
+
+	private int inC;
+
 
 	public void envioPeticion(String contexto, HashMap <String,Object> session) {
 		//Configure connections
@@ -89,6 +95,13 @@ public class Client {
 				for (Customer cos: userList3) {
 					System.out.println("He leído el id "+cos.getMatricula());
 				}
+				break;
+			case "/InCoche":
+				ArrayList<Customer> userList4=(ArrayList<Customer>)(mensajeVuelta.getSession().get("Customer"));
+				if(userList4.size()==1)
+					this.inC=1;
+				else
+					this.inC=0;
 				break;
 
 

@@ -14,14 +14,16 @@ public class JVentanaResultados extends JFrame
     private ArrayList<Customer> salidas;
     private JButton btnVolver,btnUnirse;
     private JLabel labelMatricula, labelOrigen, labelDestino, labelPlazas;
-    private String name;
+
+
+    private  String nombre;
 
 
     public JVentanaResultados(ArrayList<Customer> salidas,JVentanaBuscar ventanaBuscar,String name)
     {
         this.ventanaBuscar = ventanaBuscar;
         this.salidas = salidas;
-        this.name=name;
+        this.nombre=name;
         this.setTitle("Resultados de la b\u00FAsqueda");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setResizable(false);
@@ -29,12 +31,12 @@ public class JVentanaResultados extends JFrame
         this.setLocationRelativeTo(null);
         this.setVisible(true);
 
-        initPestañas();
+        initPestañas(nombre);
 
     }
 
 
-    public void initPestañas() {
+    public void initPestañas(String name) {
         for (int i = 0 ; i < salidas.size(); i++) { //salidas.size() es el número de resultados que se tienen en la búsqueda
             Customer customer = (Customer) salidas.get(i);
             listaPaneles.add(new JPanelResultados(customer, ventanaBuscar, this,name));

@@ -148,12 +148,12 @@ public class JVentanaChoose extends JFrame{
                 if (salidas.size() == 0) {
                     JOptionPane.showMessageDialog(null, "No ha creado ningún viaje todavía");
                 } else {
-                    IteratorCustomer it = new IteratorCustomer(salidas);
+                    IteratorCustomer it = new IteratorCustomer(salidas,name);
                     while(it.hasNext()){
                         System.out.println(it.getText());
                     }
                     //En salidas esta la info ¿como la ponemos?
-                    JVentanaChoose.this.setVisible(false);
+                    //JVentanaChoose.this.setVisible(false);
 
                 }
             }

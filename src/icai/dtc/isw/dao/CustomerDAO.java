@@ -95,7 +95,7 @@ public class CustomerDAO {
 			System.out.println(ex.getMessage());
 		}
 
-		try (PreparedStatement pst = con.prepareStatement("INSERT INTO COCHES (matricula,plazas,origen,destino,fecha,hora,userp) VALUES ('" + COCHE.getMatricula() + "', " +COCHE.getPlazas() + ", '" +COCHE.getOrigen() +"', '" +COCHE.getDestino() +"','"+COCHE.getFecha()+"','"+COCHE.getHora()+"','"+COCHE.getPropietario()+"');");
+		try (PreparedStatement pst = con.prepareStatement("INSERT INTO COCHES (matricula,plazas,origen,destino,fecha,hora,userp,ocupadas) VALUES ('" + COCHE.getMatricula() + "', " +COCHE.getPlazas() + ", '" +COCHE.getOrigen() +"', '" +COCHE.getDestino() +"','"+COCHE.getFecha()+"','"+COCHE.getHora()+"','"+COCHE.getPropietario()+"','"+COCHE.getOcupadas()+"' );");
 			 ResultSet rs = pst.executeQuery()) {
 			 System.out.println("se ha insertardo bien"+rs);
 
@@ -111,11 +111,29 @@ public class CustomerDAO {
 	public static void getClientesC(ArrayList<Customer> lista, Entrada entrada) {
 		System.out.println(entrada.getOrigen());
 		Connection con=ConnectionDAO.getInstance().getConnection();
-		try (PreparedStatement pst = con.prepareStatement("SELECT * FROM coches WHERE userp = '"+entrada.getName()+"';");
+		try (PreparedStatement pst = con.prepareStatement("SELECT * FROM coches WHERE userp = '"+entrada.getName()+"' or user1 = '"+entrada.getName()+"' or user2= '"+entrada.getName()+"' or user3= '"+entrada.getName()+"' or user4 = '"+entrada.getName()+"' or user5 = '"+entrada.getName()+"' or user6= '"+entrada.getName()+"';");
 			 ResultSet rs = pst.executeQuery()) {
 
 			while (rs.next()) {
 				lista.add(new Customer(rs.getString(1),rs.getString(3),rs.getString(4),(String) rs.getString(2), rs.getString(5), rs.getString(13),rs.getString(6),rs.getString(14)));
+			}
+
+		} catch (SQLException ex) {
+
+			System.out.println(ex.getMessage());
+		}
+	}
+
+	public static void preUpdate(ArrayList<Customer> lista, Customer entrada) {
+		System.out.println(entrada.getName());
+		Connection con=ConnectionDAO.getInstance().getConnection();
+
+		try (PreparedStatement pst = con.prepareStatement("SELECT * FROM coches WHERE (userp = '"+entrada.getName()+"' or user1 = '"+entrada.getName()+"' or user2 = '"+entrada.getName()+"' or user3 = '"+entrada.getName()+"' or user4 = '"+entrada.getName()+"' or user5 = '"+entrada.getName()+"' or user6= '"+entrada.getName()+"' ) and matricula = '"+entrada.getMatricula()+"';");
+			 ResultSet rs = pst.executeQuery()) {
+
+			while (rs.next()) {
+				lista.add(new Customer(rs.getString(1),rs.getString(3),rs.getString(4),(String) rs.getString(2), rs.getString(5), rs.getString(13),rs.getString(6),rs.getString(14)));
+				System.out.println(lista.size());
 			}
 
 		} catch (SQLException ex) {

@@ -19,7 +19,17 @@ public class Customer implements Serializable{
 	private String hora;
 	private String  propietario;
 	private ArrayList<String> usuarios;
+
+	public String getOcupadas() {
+		return ocupadas;
+	}
+
 	private String ocupadas;
+	private String name;
+
+
+
+
 
 	public Customer(String matricula, String origen, String destino, String plazas, String fecha, String hora, String propietario,String ocupadas)
 	{
@@ -72,6 +82,14 @@ public class Customer implements Serializable{
 	public String getFecha() { return fecha; }
 
 	public String getHora() { return hora; }
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
 
 	public String getPropietario() {
 		return propietario;
@@ -81,7 +99,7 @@ public class Customer implements Serializable{
 	{
 		int i = Integer.parseInt(plazas);
 		int j = Integer.parseInt(ocupadas) ;
-		if (i>=j){return 1;}
+		if (i>j){return 1;}
 		return 0;
 
 

@@ -35,7 +35,7 @@ public class JVentanaBuscar extends JFrame
 
     //public static void main(String args[]){ew JVentanaBuscar();}
 
-    public JVentanaBuscar(String name)
+    public JVentanaBuscar(String nombre)
     {
         this.setTitle("B\u00FAsqueda de coches");
         this.setLayout(null);
@@ -44,12 +44,12 @@ public class JVentanaBuscar extends JFrame
         this.setSize(1000,600);
         this.setLocationRelativeTo(null); //para que aparezca en medio de la pantalla
         this.setVisible(true);
-
+        this.name=nombre;
         initTitulo();
         initJLabels();
         initBotones();
         initBoxes();
-        initActionBotones();
+        initActionBotones(name);
         initCalendar();
 
         this.getContentPane().setBackground(new Color(207, 185, 151,255)); //color de fondo (lo pongo al final porque sino no se ven las boxes)
@@ -177,7 +177,8 @@ public class JVentanaBuscar extends JFrame
         this.add(lblHora);
     }
 
-    public void initActionBotones() {
+    public void initActionBotones(String name) {
+        String n= name;
         btnBuscar.addActionListener(new ActionListener()
         {
             @Override
@@ -208,7 +209,7 @@ public class JVentanaBuscar extends JFrame
                     JOptionPane.showMessageDialog(null, "No se encuentra resultado para sus requisitos, vuelva a intentarlo");
                 }
                 else {
-                    ventanaResultados = new JVentanaResultados(salidas,JVentanaBuscar.this,name);
+                    ventanaResultados = new JVentanaResultados(salidas,JVentanaBuscar.this,n);
                     ventanaResultados.setVisible(true);
                     JVentanaBuscar.this.setVisible(false);
                 }
@@ -220,7 +221,7 @@ public class JVentanaBuscar extends JFrame
             @Override
             public void actionPerformed(ActionEvent e)
             {
-                    volver= new JVentanaChoose(name);
+                    volver= new JVentanaChoose(n);
                     volver.setVisible(true);
                     JVentanaBuscar.this.setVisible(false);
             }
