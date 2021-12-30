@@ -94,7 +94,7 @@ public class JVentanaBuscar extends JFrame
         btnBuscar.setFont(new Font("Gill Sans Nova", Font.BOLD, 15));
         this.add(btnBuscar);
 
-        btnVolver = new JButton("Volver a trayectos");
+        btnVolver = new JButton("Volver al men\u00FA");
         btnVolver.setBounds(500,450,250,50);
         btnVolver.setForeground(Color.BLACK);
         btnVolver.setBackground(new Color(215,207,204,255));

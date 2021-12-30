@@ -97,7 +97,7 @@ public class JVentanaInsertarCoche extends JFrame{
         btnInsertar.setFont(new Font("Gill Sans Nova", Font.BOLD, 15));
         this.add(btnInsertar);
 
-        btnVolver = new JButton("Volver a trayectos");
+        btnVolver = new JButton("Volver al men\u00FA");
         btnVolver.setBounds(500,450,250,50);
         btnVolver.setForeground(Color.BLACK);
         btnVolver.setBackground(new Color(215,207,204,255));
@@ -144,7 +144,7 @@ public class JVentanaInsertarCoche extends JFrame{
     }
 
     public void initJLabels(){
-        matricula = new JLabel( "Matricula:" );
+        matricula = new JLabel( "Matr\u00EDcula:" );
         matricula.setBounds(345, 50, 120, 50);
         matricula.setHorizontalAlignment(SwingConstants.RIGHT);
         matricula.setForeground(Color.black);
@@ -210,7 +210,7 @@ public class JVentanaInsertarCoche extends JFrame{
 
             System.out.println(horaFinal);
 
-            Customer entrada = new Customer (matricula,origen, destino,plazas,fechaStr, horaFinal,name,"0");
+            Customer entrada = new Customer (matricula,origen, destino,plazas,fechaStr, horaFinal, name,"0");
             Client c = new Client();
             HashMap<String, Object> peticion = new HashMap<>();
             peticion.put("Peticion",entrada);

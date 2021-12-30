@@ -72,6 +72,15 @@ public class Client {
 					} 
 				break;
 
+			case "/getCustomerCResponse":
+				// Aquí tenemos q conseguir devolver un array
+				ArrayList<Customer> customerList2=(ArrayList<Customer>)(mensajeVuelta.getSession().get("Customer"));
+				this.salidas= customerList2;
+				for (Customer customer : customerList2) {
+					System.out.println("He leído la matricula: "+customer.getMatricula()+" origen:"+customer.getOrigen()+" destino:"+customer.getDestino()+"numero de plazas"+customer.getPlazas());
+				}
+				break;
+
 			case "/getUsuarioResponse":
 				ArrayList<Usuario> userList=(ArrayList<Usuario>)(mensajeVuelta.getSession().get("Usuario"));
 				if (userList.size()==1)

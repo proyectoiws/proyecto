@@ -117,7 +117,7 @@ public class SocketServer extends Thread {
 					//System.out.println(en.getOrigen());
 					//System.out.println("pregetcustomer");
 					customerControler5.getCustomerC(lista5,mapa5);
-					mensajeOut.setContext("/getCustomerResponse");
+					mensajeOut.setContext("/getCustomerCResponse");
 					HashMap<String,Object> session5= new HashMap<>();
 					session5.put("Customer",lista5);
 					mensajeOut.setSession(session5);
