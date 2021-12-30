@@ -208,7 +208,7 @@ public class JVentanaBuscar extends JFrame
                     JOptionPane.showMessageDialog(null, "No se encuentra resultado para sus requisitos, vuelva a intentarlo");
                 }
                 else {
-                    ventanaResultados = new JVentanaResultados(salidas,JVentanaBuscar.this);
+                    ventanaResultados = new JVentanaResultados(salidas,JVentanaBuscar.this,name);
                     ventanaResultados.setVisible(true);
                     JVentanaBuscar.this.setVisible(false);
                 }

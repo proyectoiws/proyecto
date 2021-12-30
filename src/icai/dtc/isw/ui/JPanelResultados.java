@@ -1,6 +1,8 @@
 package icai.dtc.isw.ui;
 
+import icai.dtc.isw.client.Client;
 import icai.dtc.isw.domain.Customer;
+import icai.dtc.isw.domain.Entrada;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -11,6 +13,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class JPanelResultados extends JPanel
 {
@@ -18,15 +21,17 @@ public class JPanelResultados extends JPanel
     private JVentanaResultados ventanaResultados;
 
     private Customer customer;
-    private JButton btnVolver;
+    private JButton btnVolver,btnUnirse;
     private JLabel labelMatricula, labelOrigen, labelDestino, labelPlazas;
+    private String name;
 
 
-    public JPanelResultados(Customer customer,JVentanaBuscar ventanaBuscar,  JVentanaResultados ventanaResultados)
+    public JPanelResultados(Customer customer,JVentanaBuscar ventanaBuscar,  JVentanaResultados ventanaResultados,String name)
     {
         this.ventanaBuscar = ventanaBuscar;
         this.ventanaResultados = ventanaResultados;
         this.customer = customer;
+        this.name=name;
 
         this.setLayout(null);
         this.setSize(1000, 600);
@@ -36,6 +41,7 @@ public class JPanelResultados extends JPanel
         initTitulo();
         initJLabels();
         initActionBoton();
+        initBotonVUnirse();
 
         this.setBackground(new Color(207, 185, 151,255)); //color de fondo (lo pongo al final porque sino no se ve nada)
     }
@@ -52,6 +58,19 @@ public class JPanelResultados extends JPanel
         btnVolver.setBorder(compound); // añadimos el borde de negro
         btnVolver.setFont(new Font("Gill Sans Nova", Font.BOLD, 15));
         this.add(btnVolver);
+    }
+
+    public void initBotonVUnirse() {
+        btnUnirse = new JButton("Unirse al trayecto");
+        btnUnirse.setBounds(375,450,250,50);
+        btnUnirse.setForeground(Color.BLACK);
+        btnUnirse.setBackground(new Color(215,207,204,255));
+        Border line = new LineBorder(Color.BLACK);
+        Border margin = new EmptyBorder(5, 15, 5, 15); //distancia de separacion de dentro
+        Border compound = new CompoundBorder(line, margin); //para que tenga el borde de negro
+        btnUnirse.setBorder(compound); // añadimos el borde de negro
+        btnUnirse.setFont(new Font("Gill Sans Nova", Font.BOLD, 15));
+        this.add(btnUnirse);
     }
 
 
@@ -109,6 +128,26 @@ public class JPanelResultados extends JPanel
             {
                 ventanaBuscar.setVisible(true);
                 ventanaResultados.setVisible(false);
+            }
+        });
+
+        btnUnirse.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                Entrada entrada = new Entrada(name);
+                Client c = new Client();
+                HashMap<String, Object> peticion = new HashMap<>();
+                peticion.put("Peticion",entrada);
+                c.envioPeticion("/setPasajero",peticion);
+                System.out.println("ok final");
+                if (c.getCocheOk()==1) {
+                    JOptionPane.showMessageDialog(null, "Este trayecto ya existe");
+                }
+                else{
+                    JOptionPane.showMessageDialog(null, "El trayecto se ha registrado");
+                }
             }
         });
 
