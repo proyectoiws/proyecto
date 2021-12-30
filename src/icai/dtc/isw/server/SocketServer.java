@@ -60,6 +60,8 @@ public class SocketServer extends Thread {
 		    		mensajeOut.setSession(session);
 		    		objectOutputStream.writeObject(mensajeOut);
 
+
+
 				case "/getUsuario":
 					//System.out.println("ok contexto");
 					CustomerControler customerControler2=new CustomerControler();
@@ -103,6 +105,23 @@ public class SocketServer extends Thread {
 					mensajeOut.setSession(session4);
 					objectOutputStream.writeObject(mensajeOut);
 					break;
+
+				case "/getCustomerC":
+					//System.out.println("ok contexto");
+					CustomerControler customerControler5=new CustomerControler();
+					//System.out.println("ok controller");
+					ArrayList<Customer> lista5= new ArrayList<>();
+					HashMap<String,Object> mapa5 = mensajeIn.getSession();
+					System.out.println(mapa5);
+					//Entrada en = (Entrada) objeto.values();
+					//System.out.println(en.getOrigen());
+					//System.out.println("pregetcustomer");
+					customerControler5.getCustomerC(lista5,mapa5);
+					mensajeOut.setContext("/getCustomerResponse");
+					HashMap<String,Object> session5= new HashMap<>();
+					session5.put("Customer",lista5);
+					mensajeOut.setSession(session5);
+					objectOutputStream.writeObject(mensajeOut);
 		    	
 		    	default:
 		    		System.out.println("\nParámetro no encontrado");

@@ -21,7 +21,7 @@ public class CustomerDAO {
                 ResultSet rs = pst.executeQuery()) {
 
             while (rs.next()) {
-            	lista.add(new Customer(rs.getString(1),rs.getString(3),rs.getString(4),(String) rs.getString(2), null, null));
+            	lista.add(new Customer(rs.getString(1),rs.getString(3),rs.getString(4),(String) rs.getString(2), rs.getString(5), rs.getString(13),rs.getString(6)));
             }
 
         } catch (SQLException ex) {
@@ -94,7 +94,7 @@ public class CustomerDAO {
 			System.out.println(ex.getMessage());
 		}
 
-		try (PreparedStatement pst = con.prepareStatement("INSERT INTO COCHES (matricula,plazas,origen,destino) VALUES ('" + COCHE.getMatricula() + "', " +COCHE.getPlazas() + ", '" +COCHE.getOrigen() +"', '" +COCHE.getDestino() +"');");
+		try (PreparedStatement pst = con.prepareStatement("INSERT INTO COCHES (matricula,plazas,origen,destino,fecha,hora,userp) VALUES ('" + COCHE.getMatricula() + "', " +COCHE.getPlazas() + ", '" +COCHE.getOrigen() +"', '" +COCHE.getDestino() +"','"+COCHE.getFecha()+"','"+COCHE.getHora()+"','"+COCHE.getPropietario()+"');");
 			 ResultSet rs = pst.executeQuery()) {
 			 System.out.println("se ha insertardo bien"+rs);
 
@@ -106,6 +106,23 @@ public class CustomerDAO {
 		}
 
 	}
+
+	public static void getClientesC(ArrayList<Customer> lista, Entrada entrada) {
+		System.out.println(entrada.getOrigen());
+		Connection con=ConnectionDAO.getInstance().getConnection();
+		try (PreparedStatement pst = con.prepareStatement("SELECT * FROM coches WHERE userp = '"+entrada.getName()+"';");
+			 ResultSet rs = pst.executeQuery()) {
+
+			while (rs.next()) {
+				lista.add(new Customer(rs.getString(1),rs.getString(3),rs.getString(4),(String) rs.getString(2), rs.getString(5), rs.getString(13),rs.getString(6)));
+			}
+
+		} catch (SQLException ex) {
+
+			System.out.println(ex.getMessage());
+		}
+	}
+
 	//public static void main(String[] args) {
 
 

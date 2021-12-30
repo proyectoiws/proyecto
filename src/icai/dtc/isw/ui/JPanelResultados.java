@@ -16,6 +16,7 @@ public class JPanelResultados extends JPanel
 {
     private JVentanaBuscar ventanaBuscar;
     private JVentanaResultados ventanaResultados;
+
     private Customer customer;
     private JButton btnVolver;
     private JLabel labelMatricula, labelOrigen, labelDestino, labelPlazas;
@@ -39,6 +40,7 @@ public class JPanelResultados extends JPanel
         this.setBackground(new Color(207, 185, 151,255)); //color de fondo (lo pongo al final porque sino no se ve nada)
     }
 
+
     public void initBotonVolver() {
         btnVolver = new JButton("Volver a buscar");
         btnVolver.setBounds(375,450,250,50);
@@ -51,6 +53,8 @@ public class JPanelResultados extends JPanel
         btnVolver.setFont(new Font("Gill Sans Nova", Font.BOLD, 15));
         this.add(btnVolver);
     }
+
+
 
     public void initTitulo() {
         JLabel titulo = new JLabel( "Resultados de la b\u00FAsqueda:" );
@@ -107,6 +111,12 @@ public class JPanelResultados extends JPanel
                 ventanaResultados.setVisible(false);
             }
         });
+
+
+
+
     }
+
+
 }
 

@@ -35,4 +35,9 @@ public class CustomerControler {
 		CustomerDAO.setCustomer(lista, entrada);
 
 	}
+
+	public void getCustomerC(ArrayList<Customer> lista, HashMap<String, Object> mapa) {
+		Entrada entrada = (Entrada) mapa.get("Peticion");
+		CustomerDAO.getClientesC(lista, entrada);
+	}
 }

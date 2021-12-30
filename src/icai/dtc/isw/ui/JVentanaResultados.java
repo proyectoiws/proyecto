@@ -15,6 +15,7 @@ public class JVentanaResultados extends JFrame
     private JButton btnVolver;
     private JLabel labelMatricula, labelOrigen, labelDestino, labelPlazas;
 
+
     public JVentanaResultados(ArrayList<Customer> salidas,JVentanaBuscar ventanaBuscar)
     {
         this.ventanaBuscar = ventanaBuscar;
@@ -31,6 +32,7 @@ public class JVentanaResultados extends JFrame
 
     }
 
+
     public void initPestañas() {
         for (int i = 0 ; i < salidas.size(); i++) { //salidas.size() es el número de resultados que se tienen en la búsqueda
             Customer customer = (Customer) salidas.get(i);
@@ -39,5 +41,7 @@ public class JVentanaResultados extends JFrame
             this.getContentPane().add(pestanas);
         }
     }
+
+
 }
 

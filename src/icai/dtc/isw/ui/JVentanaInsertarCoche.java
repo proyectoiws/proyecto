@@ -32,14 +32,13 @@ public class JVentanaInsertarCoche extends JFrame{
     private JVentanaChoose ventanaChoose;
     private Calendar c;
     private JDatePickerImpl datePickerFecha;
+    private String name;
 
-    public static void main(String args[])
-    {
-        new JVentanaInsertarCoche();
-    }
+    //public static void main(String args[])*{new JVentanaInsertarCoche();}
 
-    public JVentanaInsertarCoche()
+    public JVentanaInsertarCoche(String name)
     {
+        this.name=name;
         this.setTitle("Añade tu coche");
         this.setLayout(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -199,7 +198,7 @@ public class JVentanaInsertarCoche extends JFrame{
             Calendar f = (Calendar) datePickerFecha.getModel().getValue();
             SimpleDateFormat sdfFecha= new SimpleDateFormat("yyyy-MM-dd");
             String fechaStr = sdfFecha.format(new Date(f.getTimeInMillis()));
-            System.out.println(fechaStr);
+            //System.out.println(fechaStr);
             String origen = cbOrigen.getItemAt(cbOrigen.getSelectedIndex());
             String plazas=  cbPlazas.getItemAt(cbPlazas.getSelectedIndex());
             String destino = cbDestino.getItemAt(cbDestino.getSelectedIndex());
@@ -210,7 +209,8 @@ public class JVentanaInsertarCoche extends JFrame{
             String horaFinal = horaPuntos.concat(minutos);
 
             System.out.println(horaFinal);
-            Customer entrada = new Customer (matricula,origen, destino,plazas,datePickerFecha, horaFinal);
+
+            Customer entrada = new Customer (matricula,origen, destino,plazas,fechaStr, horaFinal,name);
             Client c = new Client();
             HashMap<String, Object> peticion = new HashMap<>();
             peticion.put("Peticion",entrada);
@@ -229,7 +229,7 @@ public class JVentanaInsertarCoche extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e)
             {
-                ventanaChoose = new JVentanaChoose();
+                ventanaChoose = new JVentanaChoose(name);
                 ventanaChoose.setVisible(true);
                 JVentanaInsertarCoche.this.setVisible(false);
             }

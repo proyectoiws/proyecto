@@ -165,7 +165,7 @@ public class JVInicio extends JFrame
                     JOptionPane.showMessageDialog(null, "No se encuentra su usuario, regístrese para crear una cuenta");
                 }
                 else {
-                    ventanaBuscar = new JVentanaChoose();
+                    ventanaBuscar = new JVentanaChoose(name);
                     ventanaBuscar.setVisible(true);
                     JVInicio.this.setVisible(false);
                 }

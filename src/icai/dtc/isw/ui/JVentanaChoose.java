@@ -1,6 +1,8 @@
 package icai.dtc.isw.ui;
 
 import icai.dtc.isw.client.Client;
+import icai.dtc.isw.domain.Customer;
+import icai.dtc.isw.domain.Entrada;
 import icai.dtc.isw.domain.Usuario;
 
 import javax.swing.*;
@@ -11,23 +13,29 @@ import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 
 
 public class JVentanaChoose extends JFrame{
 
+    private JVentanaResultados ventanaResultados;
     private JVentanaInsertarCoche opcion1;
     private JVInicio ventanaInicio;
     private JVentanaBuscar opcion2;
     private JLabel titulo;
-    private JButton btnBuscar, btnInsertar, btnVolver;
+    private JButton btnBuscar, btnInsertar, btnVolver, btnViajes;
+    private String name;
 
-    public static void main(String args[]) {
+    /*public static void main(String args[]) {
         new JVentanaChoose();
-    }
+    }*/
 
-    public JVentanaChoose() {
-
+    public JVentanaChoose(String name) {
+        this.name=name;
         this.setTitle("Menu");
         this.setLayout(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -61,7 +69,7 @@ public class JVentanaChoose extends JFrame{
         Border compound = new CompoundBorder(line, margin); //para que tenga el borde de negro
         btnBuscar.setBorder(compound); // añadimos el borde de negro
         btnBuscar.setFont(new Font("Gill Sans Nova", Font.BOLD, 15));
-        btnBuscar.setBounds(525,150, 250,50);
+        btnBuscar.setBounds(375,130, 250,50);
         this.add(btnBuscar);
 
         btnInsertar = new JButton("Añade tu trayecto");
@@ -69,7 +77,7 @@ public class JVentanaChoose extends JFrame{
         btnInsertar.setBackground(new Color(215, 207, 204, 255));
         btnInsertar.setBorder(compound); // añadimos el borde de negro
         btnInsertar.setFont(new Font("Gill Sans Nova", Font.BOLD, 15));
-        btnInsertar.setBounds(225,150, 250,50);
+        btnInsertar.setBounds(375,200, 250,50);
         this.add(btnInsertar);
 
         btnVolver = new JButton("Cerrar sesi\u00F3n");
@@ -77,15 +85,23 @@ public class JVentanaChoose extends JFrame{
         btnVolver.setBackground(new Color(215, 207, 204, 255));
         btnVolver.setBorder(compound); // añadimos el borde de negro
         btnVolver.setFont(new Font("Gill Sans Nova", Font.BOLD, 15));
-        btnVolver.setBounds(375,250, 250,50);
+        btnVolver.setBounds(375,340, 250,50);
         this.add(btnVolver);
+
+        btnViajes = new JButton("Mis Trayectos");
+        btnViajes.setForeground(Color.BLACK);
+        btnViajes.setBackground(new Color(215, 207, 204, 255));
+        btnViajes.setBorder(compound); // añadimos el borde de negro
+        btnViajes.setFont(new Font("Gill Sans Nova", Font.BOLD, 15));
+        btnViajes.setBounds(375,270, 250,50);
+        this.add(btnViajes);
     }
 
     public void initActionBotones() {
         btnBuscar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                opcion2 = new JVentanaBuscar();
+                opcion2 = new JVentanaBuscar(name);
                 opcion2.setVisible(true);
                 JVentanaChoose.this.setVisible(false);
             }
@@ -96,7 +112,7 @@ public class JVentanaChoose extends JFrame{
         btnInsertar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                opcion1 = new JVentanaInsertarCoche();
+                opcion1 = new JVentanaInsertarCoche(name);
                 opcion1.setVisible(true);
                 JVentanaChoose.this.setVisible(false);
             }
@@ -114,6 +130,30 @@ public class JVentanaChoose extends JFrame{
                     JVentanaChoose.this.setVisible(false);
                 }
                 else; //nada
+            }
+        });
+        btnViajes.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                Entrada entrada = new Entrada(name);
+                Client c = new Client();
+                HashMap<String, Object> peticion = new HashMap<String, Object>();
+                peticion.put("Peticion", entrada);
+                c.envioPeticion("/getCustomerC", peticion);
+                //System.out.println("ok final");
+                ArrayList<Customer> salidas = c.getSalidaC();
+                if (salidas.size() == 0) {
+                    JOptionPane.showMessageDialog(null, "No se encuentra resultado para sus requisitos, vuelva a intentarlo");
+                } else {
+                    for (Customer cu : salidas) {
+                        System.out.println(cu.getMatricula());
+                    }
+                    //En salidas esta la info ¿como la ponemos?
+                    JVentanaChoose.this.setVisible(false);
+
+                }
             }
         });
 

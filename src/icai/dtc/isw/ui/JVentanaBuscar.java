@@ -15,8 +15,10 @@ import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 
 
@@ -29,13 +31,11 @@ public class JVentanaBuscar extends JFrame
     private Calendar c;
     private JVentanaChoose volver;
     private JDatePickerImpl datePickerFecha;
+    private String name;
 
-    public static void main(String args[])
-    {
-        new JVentanaBuscar();
-    }
+    //public static void main(String args[]){ew JVentanaBuscar();}
 
-    public JVentanaBuscar()
+    public JVentanaBuscar(String name)
     {
         this.setTitle("B\u00FAsqueda de coches");
         this.setLayout(null);
@@ -186,6 +186,10 @@ public class JVentanaBuscar extends JFrame
                 String origen = (String) cbOrigen.getItemAt(cbOrigen.getSelectedIndex());
 //                String plazas=  (String) cbPlazas.getItemAt(cbPlazas.getSelectedIndex());
 
+                Calendar f = (Calendar) datePickerFecha.getModel().getValue();
+                SimpleDateFormat sdfFecha= new SimpleDateFormat("yyyy-MM-dd");
+                String fechaStr = sdfFecha.format(new Date(f.getTimeInMillis()));
+
                 String destino = (String) cbDestino.getItemAt(cbDestino.getSelectedIndex());
 
                 String hora = cbHora.getItemAt(cbHora.getSelectedIndex());
@@ -193,7 +197,7 @@ public class JVentanaBuscar extends JFrame
                 String minutos = cbMinuto.getItemAt(cbMinuto.getSelectedIndex());
                 String horaFinal = horaPuntos.concat(minutos);
 
-                Entrada entrada = new Entrada (origen, destino, datePickerFecha, horaFinal);
+                Entrada entrada = new Entrada (origen, destino, fechaStr, horaFinal);
                 Client c = new Client();
                 HashMap<String, Object> peticion = new HashMap<String,Object>();
                 peticion.put("Peticion",entrada);
@@ -216,7 +220,7 @@ public class JVentanaBuscar extends JFrame
             @Override
             public void actionPerformed(ActionEvent e)
             {
-                    volver= new JVentanaChoose();
+                    volver= new JVentanaChoose(name);
                     volver.setVisible(true);
                     JVentanaBuscar.this.setVisible(false);
             }
