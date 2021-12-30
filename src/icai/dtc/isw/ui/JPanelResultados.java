@@ -165,7 +165,7 @@ public class JPanelResultados extends JPanel
                             HashMap<String, Object> peticion1 = new HashMap<>();
                             peticion1.put("Peticion",customer);
                             c1.envioPeticion("/Update",peticion1);
-                            if (c.getInC()==1)
+                            if (c1.getInC2()==1)
                                 JOptionPane.showMessageDialog(null, "se ha unido correctamente");
                         }
                     }

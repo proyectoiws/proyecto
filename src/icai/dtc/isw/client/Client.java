@@ -32,6 +32,12 @@ public class Client {
 
 	private int inC;
 
+	public int getInC2() {
+		return inC2;
+	}
+
+	private  int inC2;
+
 
 	public void envioPeticion(String contexto, HashMap <String,Object> session) {
 		//Configure connections
@@ -106,6 +112,15 @@ public class Client {
 				else
 					this.inC=0;
 				break;
+			case "/UpdateResponse2":
+				ArrayList<Customer> userList5=(ArrayList<Customer>)(mensajeVuelta.getSession().get("Customer"));
+				System.out.println("Llega aqui up "+userList5.size());
+				if(userList5.size()==1)
+					this.inC2=1;
+				else
+					this.inC2=0;
+				break;
+
 
 
 			default:
