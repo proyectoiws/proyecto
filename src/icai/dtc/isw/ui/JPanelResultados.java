@@ -138,8 +138,27 @@ public class JPanelResultados extends JPanel
             btnUnirse.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    ventanaBuscar.setVisible(true);
-                    ventanaResultados.setVisible(false);
+
+                    if (customer.getLibre()==1)
+                    {
+                        Client c = new Client();
+                        HashMap<String, Object> peticion = new HashMap<>();
+
+                        peticion.put("Peticion",customer);
+                        c.envioPeticion("/preUpdateCoche",peticion);
+                        System.out.println("ok final");
+                        if (c.getCocheOk()==1) {
+                            JOptionPane.showMessageDialog(null, "Este trayecto ya existe");
+                        }
+                        else{
+                            JOptionPane.showMessageDialog(null, "El trayecto se ha registrado");
+                        }
+                    }
+                    else {
+                        JOptionPane.showMessageDialog(null, "El trayecto esta lleno");
+                    }
+
+
                 }
             });
         }

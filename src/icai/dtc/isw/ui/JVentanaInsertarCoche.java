@@ -210,7 +210,7 @@ public class JVentanaInsertarCoche extends JFrame{
 
             System.out.println(horaFinal);
 
-            Customer entrada = new Customer (matricula,origen, destino,plazas,fechaStr, horaFinal,name);
+            Customer entrada = new Customer (matricula,origen, destino,plazas,fechaStr, horaFinal,name,"0");
             Client c = new Client();
             HashMap<String, Object> peticion = new HashMap<>();
             peticion.put("Peticion",entrada);

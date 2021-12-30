@@ -21,8 +21,9 @@ public class CustomerDAO {
                 ResultSet rs = pst.executeQuery()) {
 
             while (rs.next()) {
-            	lista.add(new Customer(rs.getString(1),rs.getString(3),rs.getString(4),(String) rs.getString(2), rs.getString(5), rs.getString(13),rs.getString(6)));
-            }
+            	lista.add(new Customer(rs.getString(1),rs.getString(3),rs.getString(4),(String) rs.getString(2), rs.getString(5), rs.getString(13),rs.getString(6),rs.getString(14)));
+
+			}
 
         } catch (SQLException ex) {
 
@@ -114,7 +115,7 @@ public class CustomerDAO {
 			 ResultSet rs = pst.executeQuery()) {
 
 			while (rs.next()) {
-				lista.add(new Customer(rs.getString(1),rs.getString(3),rs.getString(4),(String) rs.getString(2), rs.getString(5), rs.getString(13),rs.getString(6)));
+				lista.add(new Customer(rs.getString(1),rs.getString(3),rs.getString(4),(String) rs.getString(2), rs.getString(5), rs.getString(13),rs.getString(6),rs.getString(14)));
 			}
 
 		} catch (SQLException ex) {
