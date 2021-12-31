@@ -42,10 +42,10 @@ public class IteratorCustomer implements Iterator<Customer>{
         posicionarray++;
         String texto;
         if (name.equals(coche.getPropietario())){
-            texto = "Propietario del trayecto con origen en "+coche.getOrigen()+" y destino en "+coche.getDestino()+" para la fecha "+coche.getFecha()+" a las "+coche.getHora()+". Tiene x plazas ocupadas de las "+coche.getPlazas()+" disponibles";
+            texto = "Propietario del trayecto con origen en "+coche.getOrigen()+" y destino en "+coche.getDestino()+" para la fecha "+coche.getFecha()+" a las "+coche.getHora()+". Tiene "+coche.getOcupadas()+" plazas ocupadas de las "+coche.getPlazas()+" disponibles";
         }
         else
-            texto = "Se ha unido al trayecto con origen en "+coche.getOrigen()+" y destino en "+coche.getDestino()+" para la fecha "+coche.getFecha()+" a las "+coche.getHora()+". Tiene x plazas ocupadas de las "+coche.getPlazas()+" disponibles";
+            texto = "Se ha unido al trayecto con origen en "+coche.getOrigen()+" y destino en "+coche.getDestino()+" para la fecha "+coche.getFecha()+" a las "+coche.getHora()+". Tiene "+coche.getOcupadas()+"  plazas ocupadas de las "+coche.getPlazas()+" disponibles";
     return texto;
     }
 }

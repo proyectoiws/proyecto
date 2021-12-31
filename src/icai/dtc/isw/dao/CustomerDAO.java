@@ -149,7 +149,7 @@ public class CustomerDAO {
 		System.out.println("hora"+entrada.getHora());
 		Connection con=ConnectionDAO.getInstance().getConnection();
 		if (entrada.getOcupadas().equals("0")) {
-			try (PreparedStatement pst = con.prepareStatement(" UPDATE COCHES SET user1= '" + entrada.getName() + "', ocupadas = ocupadas + 2 WHERE matricula = '" + entrada.getMatricula() + "' and fecha = '" + entrada.getFecha() + "' and hora = '" + entrada.getHora() + "' ;");
+			try (PreparedStatement pst = con.prepareStatement(" UPDATE COCHES SET user1= '" + entrada.getName() + "', ocupadas = ocupadas + 1 WHERE matricula = '" + entrada.getMatricula() + "' and fecha = '" + entrada.getFecha() + "' and hora = '" + entrada.getHora() + "' ;");
 				 ResultSet rs = pst.executeQuery()) {
 				System.out.println("se ha actualizado bien" + rs);
 
@@ -209,7 +209,7 @@ public class CustomerDAO {
 
 
 		//System.out.println("Aqui okk");
-		try (PreparedStatement pst = con.prepareStatement("SELECT * FROM coches WHERE (userp = '"+entrada.getName()+"' or user1 = '"+entrada.getName()+"' or user2 = '"+entrada.getName()+"' or user3 = '"+entrada.getName()+"' or user4 = '"+entrada.getName()+"' or user5 = '"+entrada.getName()+"' or user6= '"+entrada.getName()+"' ) and matricula = '"+entrada.getMatricula()+"' and fecha= '"+entrada.getFecha()+"' and hora= '"+entrada.getHora()+"';");
+		try (PreparedStatement pst = con.prepareStatement("SELECT * FROM coches WHERE ( user1 = '"+entrada.getName()+"' or user2 = '"+entrada.getName()+"' or user3 = '"+entrada.getName()+"' or user4 = '"+entrada.getName()+"' or user5 = '"+entrada.getName()+"' or user6= '"+entrada.getName()+"' ) and matricula = '"+entrada.getMatricula()+"' and fecha= '"+entrada.getFecha()+"' and hora= '"+entrada.getHora()+"';");
 			 ResultSet rs = pst.executeQuery()) {
 
 			while (rs.next()) {
