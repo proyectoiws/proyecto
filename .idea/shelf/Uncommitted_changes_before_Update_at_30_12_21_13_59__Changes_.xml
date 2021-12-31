@@ -1,0 +1,24 @@
+<changelist name="Uncommitted_changes_before_Update_at_30_12_21_13_59_[Changes]" date="1640869179459" recycled="false" toDelete="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_12_21_13_59_[Changes]/shelved.patch" />
+  <option name="DESCRIPTION" value="Uncommitted changes before Update at 30/12/21 13:59 [Changes]" />
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/icai/dtc/isw/ui/JVentanaResultados.class" />
+    <option name="AFTER_PATH" value="target/classes/icai/dtc/isw/ui/JVentanaResultados.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_12_21_13_59_[Changes]/JVentanaResultados.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/icai/dtc/isw/ui/JPanelResultados$1.class" />
+    <option name="AFTER_PATH" value="target/classes/icai/dtc/isw/ui/JPanelResultados$1.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_12_21_13_59_[Changes]/JPanelResultados$1.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/icai/dtc/isw/ui/JPanelResultados.class" />
+    <option name="AFTER_PATH" value="target/classes/icai/dtc/isw/ui/JPanelResultados.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_12_21_13_59_[Changes]/JPanelResultados.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/icai/dtc/isw/ui/JVentanaBuscar$1.class" />
+    <option name="AFTER_PATH" value="target/classes/icai/dtc/isw/ui/JVentanaBuscar$1.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_12_21_13_59_[Changes]/JVentanaBuscar$1.class" />
+  </binary>
+</changelist>

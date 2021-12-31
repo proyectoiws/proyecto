@@ -1,0 +1,14 @@
+<changelist name="Uncommitted_changes_before_Update_at_9_11_21_18_24_[Changes]" date="1636478683779" recycled="false" toDelete="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_9_11_21_18_24_[Changes]/shelved.patch" />
+  <option name="DESCRIPTION" value="Uncommitted changes before Update at 9/11/21 18:24 [Changes]" />
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/icai/dtc/isw/dao/CustomerDAO.class" />
+    <option name="AFTER_PATH" value="target/classes/icai/dtc/isw/dao/CustomerDAO.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_9_11_21_18_24_[Changes]/CustomerDAO.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/icai/dtc/isw/server/SocketServer.class" />
+    <option name="AFTER_PATH" value="target/classes/icai/dtc/isw/server/SocketServer.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_9_11_21_18_24_[Changes]/SocketServer.class" />
+  </binary>
+</changelist>

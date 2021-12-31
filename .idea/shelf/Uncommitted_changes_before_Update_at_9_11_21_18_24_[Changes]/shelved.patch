@@ -1,0 +1,407 @@
+Index: src/icai/dtc/isw/ui/JVentanaResultadosBuscar.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package icai.dtc.isw.ui;\n\nimport icai.dtc.isw.domain.Customer;\n\nimport javax.swing.*;\nimport javax.swing.border.Border;\nimport javax.swing.border.CompoundBorder;\nimport javax.swing.border.EmptyBorder;\nimport javax.swing.border.LineBorder;\nimport java.awt.*;\nimport java.awt.event.ActionEvent;\nimport java.awt.event.ActionListener;\nimport java.util.ArrayList;\n\npublic class JVentanaResultadosBuscar extends JFrame\n{\n    private JVentanaBuscar ventana;\n    private ArrayList<Customer> salidas;\n    private JButton btnVolver;\n    private JLabel labelMatricula, labelOrigen, labelDestino, labelPlazas;\n\n\n    public JVentanaResultadosBuscar(ArrayList<Customer> salidas,JVentanaBuscar ventana)\n    {\n        this.ventana = ventana;\n        this.salidas = salidas;\n\n        this.setTitle(\"Resultados de la b\\u00FAsqueda\");\n        this.setLayout(null);\n        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);\n        this.setResizable(false);\n        this.setSize(1000, 600);\n        this.setLocationRelativeTo(null);\n        this.setVisible(true);\n\n        initBotonVolver();\n        initTitulo();\n        initJLabels();\n        initActionBoton();\n\n        this.getContentPane().setBackground(new Color(207, 185, 151,255)); //color de fondo (lo pongo al final porque sino no se ven las boxes)\n\n    }\n\n    public void initBotonVolver() {\n        btnVolver = new JButton(\"Volver a buscar\");\n        btnVolver.setBounds(375,450,250,50);\n        btnVolver.setForeground(Color.BLACK);\n        btnVolver.setBackground(new Color(215,207,204,255));\n        Border line = new LineBorder(Color.BLACK);\n        Border margin = new EmptyBorder(5, 15, 5, 15); //distancia de separacion de dentro\n        Border compound = new CompoundBorder(line, margin); //para que tenga el borde de negro\n        btnVolver.setBorder(compound); // añadimos el borde de negro\n        btnVolver.setFont(new Font(\"Gill Sans Nova\", Font.BOLD, 15));\n        this.add(btnVolver);\n    }\n\n    public void initTitulo() {\n        JLabel titulo = new JLabel( \"Resultados de la b\\u00FAsqueda:\" );\n        titulo.setBounds(125, 50, 500, 50);\n        titulo.setHorizontalAlignment(SwingConstants.CENTER);\n        titulo.setForeground(new Color(234, 223, 223,255));\n        titulo.setForeground(new Color(0, 47, 152,255));\n        titulo.setOpaque(false); //false para quitar el fondo\n        titulo.setFont(new Font(\"Harlow Solid Italic\"   , Font.BOLD, 25));\n        this.add(titulo);\n    }\n\n    public void initJLabels() {\n        for (Customer customer : salidas) {\n\n            labelMatricula = new JLabel(\"Matr\\u00EDcula: \" + customer.getMatricula());\n            labelMatricula.setBounds(250, 125, 400, 50);\n            labelMatricula.setHorizontalAlignment(SwingConstants.LEFT);\n            labelMatricula.setForeground(Color.black);\n            labelMatricula.setOpaque(false); //false para quitar el fondo\n            labelMatricula.setFont(new Font(Font.DIALOG, Font.BOLD, 20));\n            this.add(labelMatricula);\n\n            labelOrigen = new JLabel(\"Origen: \" + customer.getOrigen());\n            labelOrigen.setBounds(250, 205, 400, 50);\n            labelOrigen.setHorizontalAlignment(SwingConstants.LEFT);\n            labelOrigen.setForeground(Color.black);\n            labelOrigen.setOpaque(false); //false para quitar el fondo\n            labelOrigen.setFont(new Font(Font.DIALOG, Font.BOLD, 20));\n            this.add(labelOrigen);\n\n            labelDestino = new JLabel(\"Destino: \" + customer.getDestino());\n            labelDestino.setBounds(250, 285, 400, 50);\n            labelDestino.setHorizontalAlignment(SwingConstants.LEFT);\n            labelDestino.setForeground(Color.black);\n            labelDestino.setOpaque(false); //false para quitar el fondo\n            labelDestino.setFont(new Font(Font.DIALOG, Font.BOLD, 20));\n            this.add(labelDestino);\n\n            labelPlazas = new JLabel(\"Numero de plazas: \" + customer.getPlazas());\n            labelPlazas.setBounds(250, 365, 400, 50);\n            labelPlazas.setHorizontalAlignment(SwingConstants.LEFT);\n            labelPlazas.setForeground(Color.black);\n            labelPlazas.setOpaque(false); //false para quitar el fondo\n            labelPlazas.setFont(new Font(Font.DIALOG, Font.BOLD, 20));\n            this.add(labelPlazas);\n        }\n    }\n\n    public void initActionBoton() {\n        btnVolver.addActionListener(new ActionListener()\n        {\n            @Override\n            public void actionPerformed(ActionEvent e)\n            {\n                ventana.setVisible(true);\n                JVentanaResultadosBuscar.this.setVisible(false);\n            }\n        });\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/icai/dtc/isw/ui/JVentanaResultadosBuscar.java b/src/icai/dtc/isw/ui/JVentanaResultadosBuscar.java
+--- a/src/icai/dtc/isw/ui/JVentanaResultadosBuscar.java	(revision 3080075da1f4c88a422a61f8f768df770692c87b)
++++ b/src/icai/dtc/isw/ui/JVentanaResultadosBuscar.java	(date 1636478599751)
+@@ -3,115 +3,40 @@
+ import icai.dtc.isw.domain.Customer;
+ 
+ import javax.swing.*;
+-import javax.swing.border.Border;
+-import javax.swing.border.CompoundBorder;
+-import javax.swing.border.EmptyBorder;
+-import javax.swing.border.LineBorder;
+-import java.awt.*;
+-import java.awt.event.ActionEvent;
+-import java.awt.event.ActionListener;
+ import java.util.ArrayList;
+ 
+ public class JVentanaResultadosBuscar extends JFrame
+ {
++    private ArrayList<JPanelResultadosBuscar> listaPaneles = new ArrayList<JPanelResultadosBuscar>(1);
++    private JTabbedPane pestanas = new JTabbedPane();
++
+     private JVentanaBuscar ventana;
+     private ArrayList<Customer> salidas;
+     private JButton btnVolver;
+     private JLabel labelMatricula, labelOrigen, labelDestino, labelPlazas;
+ 
+-
+     public JVentanaResultadosBuscar(ArrayList<Customer> salidas,JVentanaBuscar ventana)
+     {
+         this.ventana = ventana;
+         this.salidas = salidas;
+ 
+         this.setTitle("Resultados de la b\u00FAsqueda");
+-        this.setLayout(null);
+         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+         this.setResizable(false);
+         this.setSize(1000, 600);
+         this.setLocationRelativeTo(null);
+         this.setVisible(true);
+ 
+-        initBotonVolver();
+-        initTitulo();
+-        initJLabels();
+-        initActionBoton();
+-
+-        this.getContentPane().setBackground(new Color(207, 185, 151,255)); //color de fondo (lo pongo al final porque sino no se ven las boxes)
+-
+-    }
+-
+-    public void initBotonVolver() {
+-        btnVolver = new JButton("Volver a buscar");
+-        btnVolver.setBounds(375,450,250,50);
+-        btnVolver.setForeground(Color.BLACK);
+-        btnVolver.setBackground(new Color(215,207,204,255));
+-        Border line = new LineBorder(Color.BLACK);
+-        Border margin = new EmptyBorder(5, 15, 5, 15); //distancia de separacion de dentro
+-        Border compound = new CompoundBorder(line, margin); //para que tenga el borde de negro
+-        btnVolver.setBorder(compound); // añadimos el borde de negro
+-        btnVolver.setFont(new Font("Gill Sans Nova", Font.BOLD, 15));
+-        this.add(btnVolver);
+-    }
+-
+-    public void initTitulo() {
+-        JLabel titulo = new JLabel( "Resultados de la b\u00FAsqueda:" );
+-        titulo.setBounds(125, 50, 500, 50);
+-        titulo.setHorizontalAlignment(SwingConstants.CENTER);
+-        titulo.setForeground(new Color(234, 223, 223,255));
+-        titulo.setForeground(new Color(0, 47, 152,255));
+-        titulo.setOpaque(false); //false para quitar el fondo
+-        titulo.setFont(new Font("Harlow Solid Italic"   , Font.BOLD, 25));
+-        this.add(titulo);
+-    }
+-
+-    public void initJLabels() {
+-        for (Customer customer : salidas) {
+-
+-            labelMatricula = new JLabel("Matr\u00EDcula: " + customer.getMatricula());
+-            labelMatricula.setBounds(250, 125, 400, 50);
+-            labelMatricula.setHorizontalAlignment(SwingConstants.LEFT);
+-            labelMatricula.setForeground(Color.black);
+-            labelMatricula.setOpaque(false); //false para quitar el fondo
+-            labelMatricula.setFont(new Font(Font.DIALOG, Font.BOLD, 20));
+-            this.add(labelMatricula);
+-
+-            labelOrigen = new JLabel("Origen: " + customer.getOrigen());
+-            labelOrigen.setBounds(250, 205, 400, 50);
+-            labelOrigen.setHorizontalAlignment(SwingConstants.LEFT);
+-            labelOrigen.setForeground(Color.black);
+-            labelOrigen.setOpaque(false); //false para quitar el fondo
+-            labelOrigen.setFont(new Font(Font.DIALOG, Font.BOLD, 20));
+-            this.add(labelOrigen);
++        initPestañas();
+ 
+-            labelDestino = new JLabel("Destino: " + customer.getDestino());
+-            labelDestino.setBounds(250, 285, 400, 50);
+-            labelDestino.setHorizontalAlignment(SwingConstants.LEFT);
+-            labelDestino.setForeground(Color.black);
+-            labelDestino.setOpaque(false); //false para quitar el fondo
+-            labelDestino.setFont(new Font(Font.DIALOG, Font.BOLD, 20));
+-            this.add(labelDestino);
+-
+-            labelPlazas = new JLabel("Numero de plazas: " + customer.getPlazas());
+-            labelPlazas.setBounds(250, 365, 400, 50);
+-            labelPlazas.setHorizontalAlignment(SwingConstants.LEFT);
+-            labelPlazas.setForeground(Color.black);
+-            labelPlazas.setOpaque(false); //false para quitar el fondo
+-            labelPlazas.setFont(new Font(Font.DIALOG, Font.BOLD, 20));
+-            this.add(labelPlazas);
+-        }
+     }
+ 
+-    public void initActionBoton() {
+-        btnVolver.addActionListener(new ActionListener()
+-        {
+-            @Override
+-            public void actionPerformed(ActionEvent e)
+-            {
+-                ventana.setVisible(true);
+-                JVentanaResultadosBuscar.this.setVisible(false);
+-            }
+-        });
++    public void initPestañas() {
++        for (int i = 0 ; i < salidas.size(); i++) { //salidas.size() es el número de resultados que se tienen en la búsqueda
++            Customer customer = (Customer) salidas.get(i);
++            listaPaneles.add(new JPanelResultadosBuscar(customer, ventana, this));
++            pestanas.addTab("Respuesta "+(i+1), listaPaneles.get(i));
++            this.getContentPane().add(pestanas);
++        }
+     }
+ }
+Index: src/icai/dtc/isw/ui/JVentanaBuscar.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package icai.dtc.isw.ui;\n\nimport icai.dtc.isw.client.Client;\nimport icai.dtc.isw.domain.Customer;\nimport icai.dtc.isw.domain.Entrada;\n\nimport javax.swing.*;\nimport javax.swing.border.Border;\nimport javax.swing.border.CompoundBorder;\nimport javax.swing.border.EmptyBorder;\nimport javax.swing.border.LineBorder;\nimport java.awt.*;\nimport java.awt.event.ActionEvent;\nimport java.awt.event.ActionListener;\nimport java.util.ArrayList;\nimport java.util.HashMap;\n\n\npublic class JVentanaBuscar extends JFrame\n{\n\n    private JVentanaResultadosBuscar ventana2;\n    private JButton btnBuscar;\n    private JComboBox<String> cbOrigen, cbDestino, cbPlazas;\n    private JLabel labelOrigen, labelDestino, labelPlazas;\n\n\n    public static void main(String args[])\n    {\n        new JVentanaBuscar();\n    }\n\n\n    public JVentanaBuscar()\n    {\n        this.setTitle(\"B\\u00FAsqueda de coches\");\n        this.setLayout(null);\n        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);\n        this.setResizable(false); //para que no se pueda mover la jventana\n        this.setSize(1000,600);\n        this.setLocationRelativeTo(null); //para que aparezca en medio de la pantalla\n        this.setVisible(true);\n\n        initTitulo();\n        initJLabels();\n        initBotonBuscar();\n        initBoxes();\n        initActionBotones();\n\n        this.getContentPane().setBackground(new Color(207, 185, 151,255)); //color de fondo (lo pongo al final porque sino no se ven las boxes)\n    }\n\n    public void initTitulo() {\n        JLabel titulo = new JLabel( \"Elige los par\\u00E1metros de b\\u00FAsqueda:\" );\n        titulo.setBounds(125, 50, 500, 50);\n        titulo.setHorizontalAlignment(SwingConstants.CENTER);\n        titulo.setForeground(new Color(234, 223, 223,255));\n        titulo.setForeground(new Color(0, 47, 152,255));\n        titulo.setOpaque(false); //false para quitar el fondo\n        titulo.setFont(new Font(\"Harlow Solid Italic\"   , Font.BOLD, 25));\n        this.add(titulo);\n    }\n\n    public void initBotonBuscar() {\n        btnBuscar = new JButton(\"Buscar\");\n        btnBuscar.setBounds(375,450,250,50);\n        btnBuscar.setForeground(Color.BLACK);\n        btnBuscar.setBackground(new Color(215,207,204,255));\n        Border line = new LineBorder(Color.BLACK);\n        Border margin = new EmptyBorder(5, 15, 5, 15); //distancia de separacion de dentro\n        Border compound = new CompoundBorder(line, margin); //para que tenga el borde de negro\n        btnBuscar.setBorder(compound); // añadimos el borde de negro\n        btnBuscar.setFont(new Font(\"Gill Sans Nova\", Font.BOLD, 15));\n        this.add(btnBuscar);\n    }\n\n    public void initBoxes() {\n        String origen[]={\"Pozuelo\",\"Majadahonda\",\"Boadilla\",\"Somosaguas\",\"ICAI\",\"ICADE\",\"CIHS\",\"Madrid\"};\n        cbOrigen = new JComboBox<String>(origen);\n        cbOrigen.setBounds(600,160,200,30);\n//        cbOrigen.setFont(new Font(\"Bauhaus 93\", 0, 20));\n        this.add(cbOrigen);\n\n        String destinos[]={\"Pozuelo\",\"Majadahonda\",\"Boadilla\",\"Somosaguas\",\"ICAI\",\"ICADE\",\"CIHS\",\"Madrid\"};\n        cbDestino = new JComboBox<String>(destinos);\n        cbDestino.setBounds(600,240,200,30);\n//        cbDestino.setFont(new Font(\"Bauhaus 93\", 0, 20));\n        this.add(cbDestino);\n\n        String plazas[]={\"1\",\"2\",\"3\",\"4\",\"5\",\"6\",\"7\"};\n        cbPlazas = new JComboBox<String>(plazas);\n        cbPlazas.setBounds(600,320,200,30);\n//        cbPlazas.setFont(new Font(\"Bauhaus 93\", 0, 20));\n        this.add(cbPlazas);\n    }\n\n    public void initJLabels(){\n        labelOrigen = new JLabel(\"Origen:\");\n        labelOrigen.setBounds(250,150,125,50);\n        labelOrigen.setHorizontalAlignment(SwingConstants.LEFT);\n        labelOrigen.setForeground(Color.black);\n        labelOrigen.setOpaque(false); //false para quitar el fondo\n        labelOrigen.setFont(new Font( Font.DIALOG, Font.BOLD, 20));\n        this.add(labelOrigen);\n\n        labelDestino = new JLabel(\"Destino:\");\n        labelDestino.setBounds(250,230,125,50);\n        labelDestino.setHorizontalAlignment(SwingConstants.LEFT);\n        labelDestino.setForeground(Color.black);\n        labelDestino.setOpaque(false); //false para quitar el fondo\n        labelDestino.setFont(new Font( Font.DIALOG, Font.BOLD, 20));\n        this.add(labelDestino);\n\n        labelPlazas = new JLabel(\"Numero de plazas:\");\n        labelPlazas.setBounds(250,310,250,50);\n        labelPlazas.setHorizontalAlignment(SwingConstants.LEFT);\n        labelPlazas.setForeground(Color.black);\n        labelPlazas.setOpaque(false); //false para quitar el fondo\n        labelPlazas.setFont(new Font( Font.DIALOG, Font.BOLD, 20));\n        this.add(labelPlazas);\n    }\n\n    public void initActionBotones() {\n        btnBuscar.addActionListener(new ActionListener()\n        {\n            @Override\n            public void actionPerformed(ActionEvent e)\n            {\n                String origen = (String) cbOrigen.getItemAt(cbOrigen.getSelectedIndex());\n                String plazas=  (String) cbPlazas.getItemAt(cbPlazas.getSelectedIndex());\n                String destino = (String) cbDestino.getItemAt(cbDestino.getSelectedIndex());\n                Entrada entrada = new Entrada (origen, destino,plazas);\n                Client c = new Client();\n                HashMap<String, Object> peticion = new HashMap<String,Object>();\n                peticion.put(\"Peticion\",entrada);\n                c.envioPeticion(\"/getCustomer\",peticion);\n                //System.out.println(\"ok final\");\n                ArrayList<Customer> salidas = c.getSalida();\n                if(salidas.size()==0){\n                    JOptionPane.showMessageDialog(null, \"No se encuentra resultado par sus requisitos, vuelva a intentarlo\");\n                }\n                else {\n                    ventana2 = new JVentanaResultadosBuscar(salidas,JVentanaBuscar.this);\n                    ventana2.setVisible(true);\n                    JVentanaBuscar.this.setVisible(false);\n\n                }\n\n\n            }\n        });\n    }\n\n\n}\n\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/icai/dtc/isw/ui/JVentanaBuscar.java b/src/icai/dtc/isw/ui/JVentanaBuscar.java
+--- a/src/icai/dtc/isw/ui/JVentanaBuscar.java	(revision 3080075da1f4c88a422a61f8f768df770692c87b)
++++ b/src/icai/dtc/isw/ui/JVentanaBuscar.java	(date 1636474232601)
+@@ -137,7 +137,7 @@
+                 //System.out.println("ok final");
+                 ArrayList<Customer> salidas = c.getSalida();
+                 if(salidas.size()==0){
+-                    JOptionPane.showMessageDialog(null, "No se encuentra resultado par sus requisitos, vuelva a intentarlo");
++                    JOptionPane.showMessageDialog(null, "No se encuentra resultado para sus requisitos, vuelva a intentarlo");
+                 }
+                 else {
+                     ventana2 = new JVentanaResultadosBuscar(salidas,JVentanaBuscar.this);
+Index: .idea/artifacts/CustomerDAO_jar.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/artifacts/CustomerDAO_jar.xml b/.idea/artifacts/CustomerDAO_jar.xml
+new file mode 100644
+--- /dev/null	(date 1636130210563)
++++ b/.idea/artifacts/CustomerDAO_jar.xml	(date 1636130210563)
+@@ -0,0 +1,13 @@
++<component name="ArtifactManager">
++  <artifact type="jar" name="CustomerDAO:jar">
++    <output-path>$PROJECT_DIR$/out/artifacts/CustomerDAO_jar</output-path>
++    <root id="archive" name="CustomerDAO.jar">
++      <element id="directory" name="META-INF">
++        <element id="file-copy" path="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" />
++      </element>
++      <element id="module-output" name="proyecto" />
++      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/postgresql/postgresql/42.2.5/postgresql-42.2.5.jar" path-in-jar="/" />
++      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/log4j/log4j/1.2.17/log4j-1.2.17.jar" path-in-jar="/" />
++    </root>
++  </artifact>
++</component>
+\ No newline at end of file
+Index: src/icai/dtc/isw/server/SocketServer.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package icai.dtc.isw.server;\n\nimport icai.dtc.isw.controler.CustomerControler;\nimport icai.dtc.isw.domain.Customer;\nimport icai.dtc.isw.message.Message;\nimport icai.dtc.isw.ui.JVentanaBuscar;\n\nimport java.io.*;\nimport java.net.ServerSocket;\nimport java.net.Socket;\nimport java.util.ArrayList;\nimport java.util.HashMap;\n\npublic class SocketServer extends Thread {\n\tpublic static final int PORT_NUMBER = 8081;\n\t//private entrada Entrada;\n\t//introducir entrada\n\n\tprotected Socket socket;\n\n\tprivate SocketServer(Socket socket) {\n\t\tthis.socket = socket;\n\t\tSystem.out.println(\"New client connected from \" + socket.getInetAddress().getHostAddress());\n\t\tstart();\n\n\t}\n\n\tpublic void run() {\n\t\tInputStream in = null;\n\t\tOutputStream out = null;\n\t\ttry {\n\t\t\tin = socket.getInputStream();\n\t\t\tout = socket.getOutputStream();\n\t\t\t\n\t\t\t//first read the object that has been sent\n\t\t\tObjectInputStream objectInputStream = new ObjectInputStream(in);\n\t\t    Message mensajeIn= (Message)objectInputStream.readObject();\n\t\t    //Object to return informations \n\t\t    ObjectOutputStream objectOutputStream = new ObjectOutputStream(out);\n\t\t    Message mensajeOut=new Message();\n\t\t\t//System.out.println(\"sockect\");\n\t\t    switch (mensajeIn.getContext()) {\n\n\t\t    \tcase \"/getCustomer\":\n\t\t\t\t\t//System.out.println(\"ok contexto\");\n\t\t    \t\tCustomerControler customerControler=new CustomerControler();\n\t\t\t\t\t//System.out.println(\"ok controller\");\n\t\t\t\t\tArrayList<Customer> lista=new ArrayList<Customer>();\n\t\t\t\t\tHashMap<String,Object> mapa = mensajeIn.getSession();\n\t\t\t\t\tSystem.out.println(mapa);\n\t\t\t\t\t//Entrada en = (Entrada) objeto.values();\n\t\t\t\t\t//System.out.println(en.getOrigen());\n\t\t\t\t\tSystem.out.println(\"pregetcustomer\");\n\t\t    \t\tcustomerControler.getCustomer(lista,mapa);\n\t\t    \t\tmensajeOut.setContext(\"/getCustomerResponse\");\n\t\t    \t\tHashMap<String,Object> session=new HashMap<String, Object>();\n\t\t    \t\tsession.put(\"Customer\",lista);\n\t\t    \t\tmensajeOut.setSession(session);\n\t\t    \t\tobjectOutputStream.writeObject(mensajeOut);\t\t    \t\t\n\t\t    \tbreak;\n\t\t    \t\n\t\t    \t\n\t\t    \tdefault:\n\t\t    \t\tSystem.out.println(\"\\nParámetro no encontrado\");\n\t\t    \t\tbreak;\n\t\t    }\n\t\t    \n\t\t    //Lógica del controlador \n\t\t    //System.out.println(\"\\n1.- He leído: \"+mensaje.getContext());\n\t\t    //System.out.println(\"\\n2.- He leído: \"+(String)mensaje.getSession().get(\"Nombre\"));\n\t\t    \n\t\t    \n\t\t    \n\t\t    //Prueba para esperar\n\t\t    /*try {\n\t\t    \tSystem.out.println(\"Me duermo\");\n\t\t\t\tThread.sleep(15000);\n\t\t\t\tSystem.out.println(\"Me levanto\");\n\t\t\t} catch (InterruptedException e) {\n\t\t\t\t// TODO Auto-generated catch block\n\t\t\t\te.printStackTrace();\n\t\t\t}*/\n\t\t\t// create an object output stream from the output stream so we can send an object through it\n\t\t\t/*ObjectOutputStream objectOutputStream = new ObjectOutputStream(out);\n\t\t\t\n\t\t\t//Create the object to send\n\t\t\tString cadena=((String)mensaje.getSession().get(\"Nombre\"));\n\t\t\tcadena+=\" añado información\";\n\t\t\tmensaje.getSession().put(\"Nombre\", cadena);\n\t\t\t//System.out.println(\"\\n3.- He leído: \"+(String)mensaje.getSession().get(\"Nombre\"));\n\t\t\tobjectOutputStream.writeObject(mensaje);*\n\t\t\t*/\n\n\t\t} catch (IOException ex) {\n\t\t\tSystem.out.println(\"Unable to get streams from client\");\n\t\t\tex.printStackTrace();\n\t\t} catch (ClassNotFoundException e) {\n\t\t\t// TODO Auto-generated catch block\n\t\t\te.printStackTrace();\n\t\t} finally {\n\t\t\ttry {\n\t\t\t\tin.close();\n\t\t\t\tout.close();\n\t\t\t\tsocket.close();\n\t\t\t} catch (IOException ex) {\n\t\t\t\tex.printStackTrace();\n\t\t\t}\n\t\t}\n\t}\n\n\tpublic static void main(String[] args) {\n\t\tSystem.out.println(\"SocketServer Example\");\n\t\tnew JVentanaBuscar();\n\t\tServerSocket server = null;\n\t\ttry {\n\t\t\tserver = new ServerSocket(PORT_NUMBER);\n\t\t\twhile (true) {\n\t\t\t\t/**\n\t\t\t\t * create a new {@link SocketServer} object for each connection\n\t\t\t\t * this will allow multiple client connections\n\t\t\t\t */\n\t\t\t\tnew SocketServer(server.accept());\n\t\t\t}\n\t\t} catch (IOException ex) {\n\t\t\tSystem.out.println(\"Unable to start server.\");\n\t\t} finally {\n\t\t\ttry {\n\t\t\t\tif (server != null)\n\t\t\t\t\tserver.close();\n\t\t\t} catch (IOException ex) {\n\t\t\t\tex.printStackTrace();\n\t\t\t}\n\t\t}\n\t}\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/icai/dtc/isw/server/SocketServer.java b/src/icai/dtc/isw/server/SocketServer.java
+--- a/src/icai/dtc/isw/server/SocketServer.java	(revision 3080075da1f4c88a422a61f8f768df770692c87b)
++++ b/src/icai/dtc/isw/server/SocketServer.java	(date 1636361373181)
+@@ -38,13 +38,10 @@
+ 		    //Object to return informations 
+ 		    ObjectOutputStream objectOutputStream = new ObjectOutputStream(out);
+ 		    Message mensajeOut=new Message();
+-			//System.out.println("sockect");
+ 		    switch (mensajeIn.getContext()) {
+ 
+ 		    	case "/getCustomer":
+-					//System.out.println("ok contexto");
+ 		    		CustomerControler customerControler=new CustomerControler();
+-					//System.out.println("ok controller");
+ 					ArrayList<Customer> lista=new ArrayList<Customer>();
+ 					HashMap<String,Object> mapa = mensajeIn.getSession();
+ 					System.out.println(mapa);
+Index: .idea/artifacts/JVentanaBuscar_jar.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/artifacts/JVentanaBuscar_jar.xml b/.idea/artifacts/JVentanaBuscar_jar.xml
+new file mode 100644
+--- /dev/null	(date 1636130210555)
++++ b/.idea/artifacts/JVentanaBuscar_jar.xml	(date 1636130210555)
+@@ -0,0 +1,13 @@
++<component name="ArtifactManager">
++  <artifact type="jar" name="JVentanaBuscar:jar">
++    <output-path>$PROJECT_DIR$/out/artifacts/JVentanaBuscar_jar</output-path>
++    <root id="archive" name="JVentanaBuscar.jar">
++      <element id="directory" name="META-INF">
++        <element id="file-copy" path="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" />
++      </element>
++      <element id="module-output" name="proyecto" />
++      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/postgresql/postgresql/42.2.5/postgresql-42.2.5.jar" path-in-jar="/" />
++      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/log4j/log4j/1.2.17/log4j-1.2.17.jar" path-in-jar="/" />
++    </root>
++  </artifact>
++</component>
+\ No newline at end of file
+Index: .idea/artifacts/SocketServer_jar.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/artifacts/SocketServer_jar.xml b/.idea/artifacts/SocketServer_jar.xml
+new file mode 100644
+--- /dev/null	(date 1636130210551)
++++ b/.idea/artifacts/SocketServer_jar.xml	(date 1636130210551)
+@@ -0,0 +1,13 @@
++<component name="ArtifactManager">
++  <artifact type="jar" name="SocketServer:jar">
++    <output-path>$PROJECT_DIR$/out/artifacts/SocketServer_jar</output-path>
++    <root id="archive" name="SocketServer.jar">
++      <element id="directory" name="META-INF">
++        <element id="file-copy" path="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" />
++      </element>
++      <element id="module-output" name="proyecto" />
++      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/postgresql/postgresql/42.2.5/postgresql-42.2.5.jar" path-in-jar="/" />
++      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/log4j/log4j/1.2.17/log4j-1.2.17.jar" path-in-jar="/" />
++    </root>
++  </artifact>
++</component>
+\ No newline at end of file
+Index: src/icai/dtc/isw/ui/JPanelResultadosBuscar.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/icai/dtc/isw/ui/JPanelResultadosBuscar.java b/src/icai/dtc/isw/ui/JPanelResultadosBuscar.java
+new file mode 100644
+--- /dev/null	(date 1636471357221)
++++ b/src/icai/dtc/isw/ui/JPanelResultadosBuscar.java	(date 1636471357221)
+@@ -0,0 +1,111 @@
++package icai.dtc.isw.ui;
++
++import icai.dtc.isw.domain.Customer;
++
++import javax.swing.*;
++import javax.swing.border.Border;
++import javax.swing.border.CompoundBorder;
++import javax.swing.border.EmptyBorder;
++import javax.swing.border.LineBorder;
++import java.awt.*;
++import java.awt.event.ActionEvent;
++import java.awt.event.ActionListener;
++import java.util.ArrayList;
++
++public class JPanelResultadosBuscar extends JPanel
++{
++    private JVentanaBuscar ventanaBuscar;
++    private JVentanaResultadosBuscar ventanaResultados;
++    private Customer customer;
++    private JButton btnVolver;
++    private JLabel labelMatricula, labelOrigen, labelDestino, labelPlazas;
++
++
++    public JPanelResultadosBuscar(Customer customer,JVentanaBuscar ventanaBuscar,  JVentanaResultadosBuscar ventanaResultados)
++    {
++        this.ventanaBuscar = ventanaBuscar;
++        this.ventanaResultados = ventanaResultados;
++        this.customer = customer;
++
++        this.setLayout(null);
++        this.setSize(1000, 600);
++        this.setVisible(true);
++
++        initBotonVolver();
++        initTitulo();
++        initJLabels();
++        initActionBoton();
++
++        this.setBackground(new Color(207, 185, 151,255)); //color de fondo (lo pongo al final porque sino no se ve nada)
++    }
++
++    public void initBotonVolver() {
++        btnVolver = new JButton("Volver a buscar");
++        btnVolver.setBounds(375,450,250,50);
++        btnVolver.setForeground(Color.BLACK);
++        btnVolver.setBackground(new Color(215,207,204,255));
++        Border line = new LineBorder(Color.BLACK);
++        Border margin = new EmptyBorder(5, 15, 5, 15); //distancia de separacion de dentro
++        Border compound = new CompoundBorder(line, margin); //para que tenga el borde de negro
++        btnVolver.setBorder(compound); // añadimos el borde de negro
++        btnVolver.setFont(new Font("Gill Sans Nova", Font.BOLD, 15));
++        this.add(btnVolver);
++    }
++
++    public void initTitulo() {
++        JLabel titulo = new JLabel( "Resultados de la b\u00FAsqueda:" );
++        titulo.setBounds(125, 50, 500, 50);
++        titulo.setHorizontalAlignment(SwingConstants.CENTER);
++        titulo.setForeground(new Color(234, 223, 223,255));
++        titulo.setForeground(new Color(0, 47, 152,255));
++        titulo.setOpaque(false); //false para quitar el fondo
++        titulo.setFont(new Font("Harlow Solid Italic"   , Font.BOLD, 25));
++        this.add(titulo);
++    }
++
++    public void initJLabels() {
++        labelMatricula = new JLabel("Matr\u00EDcula: " + customer.getMatricula());
++        labelMatricula.setBounds(250, 125, 400, 50);
++        labelMatricula.setHorizontalAlignment(SwingConstants.LEFT);
++        labelMatricula.setForeground(Color.black);
++        labelMatricula.setOpaque(false); //false para quitar el fondo
++        labelMatricula.setFont(new Font(Font.DIALOG, Font.BOLD, 20));
++        this.add(labelMatricula);
++
++        labelOrigen = new JLabel("Origen: " + customer.getOrigen());
++        labelOrigen.setBounds(250, 205, 400, 50);
++        labelOrigen.setHorizontalAlignment(SwingConstants.LEFT);
++        labelOrigen.setForeground(Color.black);
++        labelOrigen.setOpaque(false); //false para quitar el fondo
++        labelOrigen.setFont(new Font(Font.DIALOG, Font.BOLD, 20));
++        this.add(labelOrigen);
++
++        labelDestino = new JLabel("Destino: " + customer.getDestino());
++        labelDestino.setBounds(250, 285, 400, 50);
++        labelDestino.setHorizontalAlignment(SwingConstants.LEFT);
++        labelDestino.setForeground(Color.black);
++        labelDestino.setOpaque(false); //false para quitar el fondo
++        labelDestino.setFont(new Font(Font.DIALOG, Font.BOLD, 20));
++        this.add(labelDestino);
++
++        labelPlazas = new JLabel("Numero de plazas: " + customer.getPlazas());
++        labelPlazas.setBounds(250, 365, 400, 50);
++        labelPlazas.setHorizontalAlignment(SwingConstants.LEFT);
++        labelPlazas.setForeground(Color.black);
++        labelPlazas.setOpaque(false); //false para quitar el fondo
++        labelPlazas.setFont(new Font(Font.DIALOG, Font.BOLD, 20));
++        this.add(labelPlazas);
++    }
++
++    public void initActionBoton() {
++        btnVolver.addActionListener(new ActionListener()
++        {
++            @Override
++            public void actionPerformed(ActionEvent e)
++            {
++                ventanaBuscar.setVisible(true);
++                ventanaResultados.setVisible(false);
++            }
++        });
++    }
++}
+Index: src/icai/dtc/isw/dao/CustomerDAO.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package icai.dtc.isw.dao;\n\nimport java.sql.Connection;\nimport java.sql.PreparedStatement;\nimport java.sql.ResultSet;\nimport java.sql.SQLException;\nimport java.util.ArrayList;\n\nimport icai.dtc.isw.domain.Customer;\nimport icai.dtc.isw.domain.Entrada;\n\npublic class CustomerDAO {\n\n\tprivate static Entrada ENTRADA;\n\n\n\tpublic static void getClientes(ArrayList<Customer> lista, Entrada entrada) {\n\t\tENTRADA = entrada;\n\t\tSystem.out.println(ENTRADA.getOrigen());\n\t\tConnection con=ConnectionDAO.getInstance().getConnection();\n\t\ttry (PreparedStatement pst = con.prepareStatement(\"SELECT * FROM coches WHERE origen = '\"+ENTRADA.getOrigen()+\"' AND destino ='\"+ENTRADA.getDestino()+\"' AND plazas ='\"+ENTRADA.getPlazas()+\"';\");\n                ResultSet rs = pst.executeQuery()) {\n\n            while (rs.next()) {\n            \tlista.add(new Customer(rs.getString(6),rs.getString(2),rs.getString(3),(String) rs.getString(1)));\n            }\n\n        } catch (SQLException ex) {\n\n            System.out.println(ex.getMessage());\n        }\n\t}\n\t\n\tpublic static void main(String[] args) {\n\t\t\n\t\t\n\t\tArrayList<Customer> lista=new ArrayList<Customer>();\n\n\t\tCustomerDAO.getClientes(lista,ENTRADA);\n\t\t\n\t\t\n\t\t for (Customer customer : lista) {\t\t\t\n\t\t\tSystem.out.println(\"He leído la matricula: \"+customer.getMatricula());\n\t\t}\n\t\t\n\t\n\t}\n\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/icai/dtc/isw/dao/CustomerDAO.java b/src/icai/dtc/isw/dao/CustomerDAO.java
+--- a/src/icai/dtc/isw/dao/CustomerDAO.java	(revision 3080075da1f4c88a422a61f8f768df770692c87b)
++++ b/src/icai/dtc/isw/dao/CustomerDAO.java	(date 1636130210547)
+@@ -22,7 +22,7 @@
+                 ResultSet rs = pst.executeQuery()) {
+ 
+             while (rs.next()) {
+-            	lista.add(new Customer(rs.getString(6),rs.getString(2),rs.getString(3),(String) rs.getString(1)));
++            	lista.add(new Customer(rs.getString(1),rs.getString(3),rs.getString(4),(String) rs.getString(2)));
+             }
+ 
+         } catch (SQLException ex) {
+Index: src/META-INF/MANIFEST.MF
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>Manifest-Version: 1.0\r\nMain-Class: icai.dtc.isw.server.SocketServer\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/META-INF/MANIFEST.MF b/src/META-INF/MANIFEST.MF
+--- a/src/META-INF/MANIFEST.MF	(revision 3080075da1f4c88a422a61f8f768df770692c87b)
++++ b/src/META-INF/MANIFEST.MF	(date 1636130210567)
+@@ -1,3 +1,3 @@
+ Manifest-Version: 1.0
+-Main-Class: icai.dtc.isw.server.SocketServer
++Main-Class: icai.dtc.isw.dao.CustomerDAO
+ 

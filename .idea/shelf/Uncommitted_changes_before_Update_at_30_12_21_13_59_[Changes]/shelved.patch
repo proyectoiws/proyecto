@@ -1,0 +1,46 @@
+Index: src/icai/dtc/isw/client/Client.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package icai.dtc.isw.client;\n\nimport java.io.IOException;\nimport java.io.InputStream;\nimport java.io.ObjectInputStream;\nimport java.io.ObjectOutputStream;\nimport java.io.OutputStream;\nimport java.net.Socket;\nimport java.net.UnknownHostException;\nimport java.util.ArrayList;\nimport java.util.HashMap;\n\nimport icai.dtc.isw.domain.Usuario;\nimport org.apache.log4j.Logger;\n\nimport icai.dtc.isw.configuration.PropertiesISW;\nimport icai.dtc.isw.domain.Customer;\nimport icai.dtc.isw.message.Message;\n\npublic class Client {\n\tprivate String host;\n\tprivate int port;\n\tprivate ArrayList<Customer> salidas;\n\tfinal static Logger logger = Logger.getLogger(Client.class);\n\tprivate int entrar;\n\tprivate int comprobar;\n\tprivate int cocheOk;\n\n\n\tpublic void envioPeticion(String contexto, HashMap <String,Object> session) {\n\t\t//Configure connections\n\n\t\tString host = PropertiesISW.getInstance().getProperty(\"host\");\n\t\tint port = Integer.parseInt(PropertiesISW.getInstance().getProperty(\"port\"));\n\t\tLogger.getRootLogger().info(\"Host: \"+host+\" port\"+port);\n\t\t//Create a cliente class\n\t\tthis.setC( host,  port);\n\n\n\n\t\t//HashMap<String,Object> session=new HashMap<String, Object>();\n\t\t//session.put(\"/getCustomer\",\"\");\n\t\t\n\t\tMessage mensajeEnvio=new Message();\n\t\tMessage mensajeVuelta=new Message();\n\t\tmensajeEnvio.setContext(contexto);\n\t\tmensajeEnvio.setSession(session);\n\t\t//System.out.println(\"pre \");\n\t\tthis.sent(mensajeEnvio,mensajeVuelta);\n\t\t//System.out.println(\"post \");\n\t\t\n\t\t\n\t\tswitch (mensajeVuelta.getContext()) {\n\t\t\tcase \"/getCustomerResponse\":\n\t\t\t\t// Aquí tenemos q conseguir devolver un array\n\t\t\t\tArrayList<Customer> customerList=(ArrayList<Customer>)(mensajeVuelta.getSession().get(\"Customer\"));\n\t\t\t\tthis.salidas= customerList;\n\t\t\t\t for (Customer customer : customerList) {\t\t\t\n\t\t\t\t\t\tSystem.out.println(\"He leído la matricula: \"+customer.getMatricula()+\" origen:\"+customer.getOrigen()+\" destino:\"+customer.getDestino()+\"numero de plazas\"+customer.getPlazas());\n\t\t\t\t\t} \n\t\t\t\tbreak;\n\n\t\t\tcase \"/getUsuarioResponse\":\n\t\t\t\tArrayList<Usuario> userList=(ArrayList<Usuario>)(mensajeVuelta.getSession().get(\"Usuario\"));\n\t\t\t\tif (userList.size()==1)\n\t\t\t\t\tthis.entrar= 1;\n\t\t\t\telse\n\t\t\t\t\tthis.entrar = 0;\n\t\t\t\tfor (Usuario user : userList) {\n\t\t\t\t\tSystem.out.println(\"He leído el id \"+user.getId());\n\t\t\t\t}\n\n\t\t\t\tbreak;\n\n\t\t\tcase \"/setUsuarioResponse\":\n\t\t\t\tArrayList<Usuario> userList2=(ArrayList<Usuario>)(mensajeVuelta.getSession().get(\"Usuario\"));\n\t\t\t\tthis.comprobar= userList2.size();\n\t\t\t\tfor (Usuario user : userList2) {\n\t\t\t\t\tSystem.out.println(\"Se ha añadido el usuario con id \"+user.getId() +\" y contraseña \"+user.getPassword());\n\t\t\t\t}\n\t\t\t\tbreak;\n\n\t\t\tcase \"/setCocheResponse\":\n\t\t\t\tArrayList<Customer> userList3=(ArrayList<Customer>)(mensajeVuelta.getSession().get(\"Customer\"));\n\t\t\t\tif (userList3.size()==1)\n\t\t\t\t\tthis.cocheOk= 1;\n\t\t\t\telse\n\t\t\t\t\tthis.cocheOk = 0;\n\t\t\t\tfor (Customer cos: userList3) {\n\t\t\t\t\tSystem.out.println(\"He leído el id \"+cos.getMatricula());\n\t\t\t\t}\n\t\t\t\tbreak;\n\n\n\t\t\tdefault:\n\t\t\t\tLogger.getRootLogger().info(\"Option not found\");\n\t\t\t\tSystem.out.println(\"\\nError a la vuelta\");\n\t\t\t\tbreak;\n\n\n\t\t\n\t\t}\n\t\t//System.out.println(\"3.- En Main.- El valor devuelto es: \"+((String)mensajeVuelta.getSession().get(\"Nombre\")));\n\t}\n\t\n\tpublic void setC(String host, int port) {\n\t\tthis.host=host;\n\t\tthis.port=port;\n\t}\n\n\tpublic ArrayList<Customer> getSalidaC(){\n\t\treturn salidas;\n\t}\n\n\tpublic int getSalidaU(){\n\t\treturn entrar;\n\t}\n\tpublic int getComprobarU(){\n\t\treturn comprobar;\n\t}\n\tpublic int getCocheOk(){\n\t\treturn cocheOk;\n\t}\n\n\tpublic void setSalidas(ArrayList<Customer> salidas) {this.salidas=salidas;\n\t}\n\n\n\tpublic void sent(Message messageOut, Message messageIn) {\n\t\ttry {\n\n\t\t\tSystem.out.println(\"Connecting to host \" + host + \" on port \" + port + \".\");\n\n\t\t\tSocket echoSocket = null;\n\t\t\tOutputStream out = null;\n\t\t\tInputStream in = null;\n\n\t\t\ttry {\n\t\t\t\techoSocket = new Socket(host, port);\n\t\t\t\tin = echoSocket.getInputStream();\n\t\t\t\tout = echoSocket.getOutputStream();\n\t\t\t\tObjectOutputStream objectOutputStream = new ObjectOutputStream(out);\n\t\t\t\t\n\t\t\t\t//Create the objetct to send\n\t\t\t\tobjectOutputStream.writeObject(messageOut);\n\t\t\t\t\n\t\t\t\t// create a DataInputStream so we can read data from it.\n\t\t        ObjectInputStream objectInputStream = new ObjectInputStream(in);\n\t\t        Message msg=(Message)objectInputStream.readObject();\n\t\t        messageIn.setContext(msg.getContext());\n\t\t        messageIn.setSession(msg.getSession());\n\t\t        /*System.out.println(\"\\n1.- El valor devuelto es: \"+messageIn.getContext());\n\t\t        String cadena=(String) messageIn.getSession().get(\"Nombre\");\n\t\t        System.out.println(\"\\n2.- La cadena devuelta es: \"+cadena);*/\n\t\t\t\t\n\t\t\t} catch (UnknownHostException e) {\n\t\t\t\tSystem.err.println(\"Unknown host: \" + host);\n\t\t\t\tSystem.exit(1);\n\t\t\t} catch (IOException e) {\n\t\t\t\tSystem.err.println(\"Unable to get streams from server\");\n\t\t\t\tSystem.exit(1);\n\t\t\t}\t\t\n\n\t\t\t/** Closing all the resources */\n\t\t\tout.close();\n\t\t\tin.close();\t\t\t\n\t\t\techoSocket.close();\n\t\t} catch (Exception e) {\n\t\t\te.printStackTrace();\n\t\t}\n\t}\n\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/icai/dtc/isw/client/Client.java b/src/icai/dtc/isw/client/Client.java
+--- a/src/icai/dtc/isw/client/Client.java	(revision 0cfa3868a09bbec2a990fb95187486eee9d09261)
++++ b/src/icai/dtc/isw/client/Client.java	(date 1640869178223)
+@@ -48,8 +48,7 @@
+ 		//System.out.println("pre ");
+ 		this.sent(mensajeEnvio,mensajeVuelta);
+ 		//System.out.println("post ");
+-		
+-		
++
+ 		switch (mensajeVuelta.getContext()) {
+ 			case "/getCustomerResponse":
+ 				// Aquí tenemos q conseguir devolver un array
+@@ -69,7 +68,6 @@
+ 				for (Usuario user : userList) {
+ 					System.out.println("He leído el id "+user.getId());
+ 				}
+-
+ 				break;
+ 
+ 			case "/setUsuarioResponse":
+Index: src/icai/dtc/isw/domain/Customer.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package icai.dtc.isw.domain;\n\nimport net.sourceforge.jdatepicker.impl.JDatePickerImpl;\nimport net.sourceforge.jdatepicker.impl.UtilCalendarModel;\n\nimport java.io.Serializable;\nimport java.util.ArrayList;\n\npublic class Customer implements Serializable{\n\n\t/**\n\t * \n\t */\n\tprivate String origen;\n\tprivate String destino;\n\tprivate String plazas;\n\tprivate String matricula;\n\tprivate String fecha;\n\tprivate String hora;\n\tprivate String  propietario;\n\tprivate ArrayList<String> usuarios;\n\n\tpublic Customer(String matricula, String origen, String destino, String plazas, String fecha, String hora, String propietario)\n\t{\n\t\tthis.matricula= matricula;\n\t\tthis.origen= origen;\n\t\tthis.destino = destino;\n\t\tthis.plazas = plazas;\n\t\tthis.fecha = String.valueOf(fecha);\n\t\tthis.hora = hora;\n\t\tthis.propietario=propietario;\n\t}\n\n\tpublic Customer(String matricula, String origen, String destino, String plazas, String fecha, String hora, String propietario,ArrayList<String> usuarios)\n\t{\n\t\tthis.matricula= matricula;\n\t\tthis.origen= origen;\n\t\tthis.destino = destino;\n\t\tthis.plazas = plazas;\n\t\tthis.fecha = String.valueOf(fecha);\n\t\tthis.hora = hora;\n\t\tthis.propietario=propietario;\n\t\tthis.usuarios= usuarios;\n\t}\n\n\n\tpublic Customer(String matricula){this.matricula=matricula;}\n\n\tpublic String getOrigen()\n\t{\n\t\treturn origen;\n\t}\n\n\tpublic String getDestino()\n\t{\n\t\treturn destino;\n\t}\n\n\tpublic String getPlazas()\n\t{\n\t\treturn plazas;\n\t}\n\n\tpublic String getMatricula()\n\t{\n\t\treturn matricula;\n\t}\n\n\tpublic String getFecha() { return fecha; }\n\n\tpublic String getHora() { return hora; }\n\n\tpublic String getPropietario() {\n\t\treturn propietario;\n\t}\n\n\tpublic void setPropietario(String propietario) {\n\t\tthis.propietario = propietario;\n\t}\n\n\tpublic ArrayList<String> getUsuarios() {\n\t\treturn usuarios;\n\t}\n\n\tpublic void setUsuarios(ArrayList<String> usuarios) {\n\t\tthis.usuarios = usuarios;\n\t}\n\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/icai/dtc/isw/domain/Customer.java b/src/icai/dtc/isw/domain/Customer.java
+--- a/src/icai/dtc/isw/domain/Customer.java	(revision 0cfa3868a09bbec2a990fb95187486eee9d09261)
++++ b/src/icai/dtc/isw/domain/Customer.java	(date 1640869178211)
+@@ -43,7 +43,6 @@
+ 		this.usuarios= usuarios;
+ 	}
+ 
+-
+ 	public Customer(String matricula){this.matricula=matricula;}
+ 
+ 	public String getOrigen()

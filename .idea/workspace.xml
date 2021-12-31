@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="JVInicio" />
+    </artifacts-to-build>
+  </component>
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="b16ff5d8-cab6-4bdd-806a-b88c400a8562" name="Changes" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JUnit5 Test Class" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="useMavenConfig" value="true" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="1zJK5hurhD6AT044neaPWI9HEHp" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
+    <property name="create.test.in.the.same.root" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/META-INF" />
+    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="preferences.editor" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/META-INF" />
+    </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="icai.dtc.isw.domain" />
+      <recent name="icai.dtc.isw.client" />
+    </key>
+  </component>
+  <component name="RunManager" selected="JAR Application.JVInicio.jar">
+    <configuration name="JVInicio" type="Application" factoryName="Application" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="icai.dtc.isw.ui.JVInicio" />
+      <module name="projectISW19" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="icai.dtc.isw.ui.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SocketServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="icai.dtc.isw.server.SocketServer" />
+      <module name="projectISW19" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="icai.dtc.isw.server.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="JVInicio.jar" type="JarApplication" singleton="false" temporary="true">
+      <option name="JAR_PATH" value="$PROJECT_DIR$/out/artifacts/JVInicio/JVInicio.jar" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <method v="2" />
+    </configuration>
+    <configuration name="SocketServer.jar" type="JarApplication" singleton="false" temporary="true">
+      <option name="JAR_PATH" value="$PROJECT_DIR$/out/artifacts/SocketServer/SocketServer.jar" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <method v="2" />
+    </configuration>
+    <configuration name="projectISW19.jar" type="JarApplication" temporary="true">
+      <option name="JAR_PATH" value="$PROJECT_DIR$/out/artifacts/SocketServer/projectISW19.jar" />
+      <method v="2" />
+    </configuration>
+    <configuration name="proyecto.jar" type="JarApplication" temporary="true">
+      <option name="JAR_PATH" value="$PROJECT_DIR$/out/artifacts/proyecto_jar2/proyecto.jar" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JAR Application.JVInicio.jar" />
+        <item itemvalue="JAR Application.SocketServer.jar" />
+        <item itemvalue="JAR Application.projectISW19.jar" />
+        <item itemvalue="Application.SocketServer" />
+        <item itemvalue="JAR Application.proyecto.jar" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="b16ff5d8-cab6-4bdd-806a-b88c400a8562" name="Changes" comment="" />
+      <created>1633860569070</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1633860569070</updated>
+    </task>
+    <task id="LOCAL-00001" summary="Visualización de la JVentana (sin terminar)">
+      <created>1633974891121</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1633974891121</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Visualización de la JVentana (mal ordenados los resultados)">
+      <created>1634038445612</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1634038445612</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Pestañas">
+      <created>1636478807836</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1636478807836</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Registro">
+      <created>1636575280536</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1636575280536</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Registro">
+      <created>1636899330187</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1636899330187</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Visualización">
+      <created>1636900569086</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1636900569086</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Visualización">
+      <created>1636903202359</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1636903202359</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Visualización">
+      <created>1636903637838</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1636903637838</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Insertar trayectos">
+      <created>1640688155786</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1640688155787</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Insertar trayectos">
+      <created>1640719317851</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1640719317851</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Visualización">
+      <created>1640785162179</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1640785162179</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Visualización">
+      <created>1640800740953</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1640800740953</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Visualización">
+      <created>1640801094861</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1640801094861</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Visualización 2">
+      <created>1640808681199</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1640808681199</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Visualización 2">
+      <created>1640808795303</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1640808795303</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Visualización 2">
+      <created>1640864587815</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1640864587815</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Visualización 2">
+      <created>1640869186545</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1640869186545</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Mis Trayectos">
+      <created>1640882663189</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1640882663189</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Mis Trayectos">
+      <created>1640887158744</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1640887158744</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Mis Trayectos">
+      <created>1640894431459</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1640894431459</updated>
+    </task>
+    <task id="LOCAL-00021" summary="Final">
+      <created>1640894979399</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1640894979399</updated>
+    </task>
+    <task id="LOCAL-00022" summary="Final">
+      <created>1640897152459</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1640897152459</updated>
+    </task>
+    <task id="LOCAL-00023" summary="Final">
+      <created>1640897364605</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1640897364605</updated>
+    </task>
+    <task id="LOCAL-00024" summary="Jar">
+      <created>1640967616379</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1640967616379</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
+    <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="Visualización de la JVentana (sin terminar)" />
+    <MESSAGE value="Visualización de la JVentana (mal ordenados los resultados)" />
+    <MESSAGE value="Pestañas" />
+    <MESSAGE value="Registro" />
+    <MESSAGE value="Insertar trayectos" />
+    <MESSAGE value="Visualización" />
+    <MESSAGE value="Visualización 2" />
+    <MESSAGE value="Mis Trayectos" />
+    <MESSAGE value="Final" />
+    <MESSAGE value="Jar" />
+    <option name="LAST_COMMIT_MESSAGE" value="Jar" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.NullPointerException" package="java.lang" />
+          <option name="timeStamp" value="2" />
+        </breakpoint>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.IndexOutOfBoundsException" package="java.lang" />
+          <option name="timeStamp" value="3" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>

@@ -1,0 +1,44 @@
+<changelist name="Uncommitted_changes_before_Update_at_14_11_21_15_11_[Changes]" date="1636899112983" recycled="false" toDelete="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_14_11_21_15_11_[Changes]/shelved.patch" />
+  <option name="DESCRIPTION" value="Uncommitted changes before Update at 14/11/21 15:11 [Changes]" />
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/icai/dtc/isw/dao/CustomerDAO.class" />
+    <option name="AFTER_PATH" value="target/classes/icai/dtc/isw/dao/CustomerDAO.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_14_11_21_15_11_[Changes]/CustomerDAO.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/icai/dtc/isw/ui/JVentanaBuscar$1.class" />
+    <option name="AFTER_PATH" value="target/classes/icai/dtc/isw/ui/JVentanaBuscar$1.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_14_11_21_15_11_[Changes]/JVentanaBuscar$1.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/icai/dtc/isw/client/Client.class" />
+    <option name="AFTER_PATH" value="target/classes/icai/dtc/isw/client/Client.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_14_11_21_15_11_[Changes]/Client.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/icai/dtc/isw/ui/JVentanaBuscar.class" />
+    <option name="AFTER_PATH" value="target/classes/icai/dtc/isw/ui/JVentanaBuscar.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_14_11_21_15_11_[Changes]/JVentanaBuscar.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/icai/dtc/isw/server/SocketServer.class" />
+    <option name="AFTER_PATH" value="target/classes/icai/dtc/isw/server/SocketServer.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_14_11_21_15_11_[Changes]/SocketServer.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/icai/dtc/isw/ui/JVInicio$1.class" />
+    <option name="AFTER_PATH" value="target/classes/icai/dtc/isw/ui/JVInicio$1.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_14_11_21_15_11_[Changes]/JVInicio$1.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/icai/dtc/isw/controler/CustomerControler.class" />
+    <option name="AFTER_PATH" value="target/classes/icai/dtc/isw/controler/CustomerControler.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_14_11_21_15_11_[Changes]/CustomerControler.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/icai/dtc/isw/ui/JVInicio.class" />
+    <option name="AFTER_PATH" value="target/classes/icai/dtc/isw/ui/JVInicio.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_14_11_21_15_11_[Changes]/JVInicio.class" />
+  </binary>
+</changelist>

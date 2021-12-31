@@ -1,0 +1,307 @@
+Index: src/icai/dtc/isw/ui/JVInicio.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package icai.dtc.isw.ui;\n\nimport icai.dtc.isw.client.Client;\nimport icai.dtc.isw.domain.Customer;\nimport icai.dtc.isw.domain.Entrada;\nimport icai.dtc.isw.domain.Usuario;\n\nimport javax.swing.*;\nimport java.awt.*;\nimport java.awt.event.ActionEvent;\nimport java.awt.event.ActionListener;\nimport java.util.ArrayList;\nimport java.util.HashMap;\n\n\npublic class JVInicio extends JFrame\n\n{\n    private JVentanaBuscar ventanaBuscar;\n    private JVentanaRegistro ventanaResistro;\n\n    public static void main(String args[]){\n        new JVInicio();\n    }\n\n    public JVInicio()\n    {\n        this.setTitle(\"Bienvenido al programa\");\n        this.setLayout(new BorderLayout());\n\n        JPanel pnlCentral = new JPanel(new FlowLayout());\n        JPanel pnlNorte = new JPanel( new FlowLayout());\n        JPanel pnlSur = new JPanel(new FlowLayout());\n\n        JLabel titulo = new JLabel(\"Conectate Comillas\");\n        titulo.setFont(new Font(Font.SERIF , Font. BOLD , 50));\n        titulo.setHorizontalAlignment(JLabel.CENTER);\n        pnlNorte.add(titulo);\n\n        JLabel lblname = new JLabel(\"Usuario:\");\n        //lblname.setBounds(10,100,80,25);\n\n\n        JLabel lblcontra = new JLabel(\"Contraseña:\");\n        //lblcontra.setBounds(10,300,80,25);\n\n\n        JTextField txtuser = new JTextField(20);\n        txtuser.setToolTipText(\"Ingrese usuario\");\n        //txtuser.setBounds(100,100,160,25);\n\n\n        JPasswordField txtcontra = new JPasswordField(20);\n        txtcontra.setEchoChar('*');\n        txtcontra.setToolTipText(\"Ingrese contraseña\");\n        //txtcontra.setBounds(100,300,160,25);\n\n        JCheckBox checkContrasena = new JCheckBox(\"Ver contraseña\");\n\n        pnlCentral.add(lblname);\n        pnlCentral.add(txtuser);\n        pnlCentral.add(lblcontra);\n        pnlCentral.add(txtcontra);\n        pnlCentral.add(checkContrasena);\n\n        JButton btnRegis = new JButton(\"Registrarse\");\n        JButton btnIn= new JButton(\"Iniciar sesion\");\n        pnlSur.add(btnIn);\n        pnlSur.add(btnRegis);\n\n        btnIn.addActionListener(new ActionListener()\n        {\n            @Override\n            public void actionPerformed(ActionEvent e)\n            {\n                char [] arrayC = txtcontra.getPassword();\n                String contra= new String(arrayC);\n                String name = txtuser.getText();\n                Usuario u = new Usuario (name, contra);\n                System.out.println(u.getId()+\" \"+u.getPassword());\n                Client c = new Client();\n                HashMap<String, Object> peticion = new HashMap<String,Object>();\n                peticion.put(\"Peticion\",u);\n                c.envioPeticion(\"/getUsuario\",peticion);\n                //System.out.println(\"ok final\");\n                int entrar = c.getSalidaU();\n                if(entrar==0){\n                    JOptionPane.showMessageDialog(null, \"No se encuentra su usuario, regístrese para crear una cuenta\");\n                }\n                else {\n                    ventanaBuscar = new JVentanaBuscar();\n                    ventanaBuscar.setVisible(true);\n                    JVInicio.this.setVisible(false);\n                }\n            }\n        });\n\n        btnRegis.addActionListener(new ActionListener()\n        {\n            @Override\n            public void actionPerformed(ActionEvent e) {\n                ventanaResistro = new JVentanaRegistro();\n                ventanaResistro.setVisible(true);\n                JVInicio.this.setVisible(false);\n            }\n        });\n\n        checkContrasena.addActionListener(new ActionListener()\n        {\n            @Override\n            public void actionPerformed(ActionEvent e) {\n                if (checkContrasena.isSelected()) txtcontra.setEchoChar((char)0);\n                else txtcontra.setEchoChar('*');\n            }\n        });\n\n//        btnRegis.addActionListener(new ActionListener()\n//        {\n//            @Override\n//            public void actionPerformed(ActionEvent e) {\n//                char [] arrayC = txtcontra.getPassword();\n//                String contra= new String(arrayC);\n//                String name = txtuser.getText();\n//                Usuario u = new Usuario (name, contra);\n//                System.out.println(u.getId()+\" \"+u.getPassword());\n//                Client c = new Client();\n//                HashMap<String, Object> peticion = new HashMap<String,Object>();\n//                peticion.put(\"Peticion\",u);\n//                c.envioPeticion(\"/getRegistrar\",peticion);\n//                //System.out.println(\"ok final\");\n//                int entrar = c.getSalidaU();\n//                if(entrar==0){\n//                    JOptionPane.showMessageDialog(null, \"Su usuario se ha añadido, por favor inicie sesion con la \");\n//                }\n//                else {\n//                    JOptionPane.showMessageDialog(null, \"Este usuario ya ha sido registrado, por favor, inicie sesión con este\");\n//                }\n//            }\n//        });\n\n        this.add(pnlCentral, BorderLayout.CENTER);\n        this.add(pnlNorte, BorderLayout.NORTH);\n        this.add(pnlSur, BorderLayout.SOUTH);\n\n\n        this.setResizable(false); //para que no se pueda mover la jventana\n        this.setSize(1000,600);\n        this.setLocationRelativeTo(null); //para que aparezca en medio de la pantalla\n        this.setVisible(true);\n        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/icai/dtc/isw/ui/JVInicio.java b/src/icai/dtc/isw/ui/JVInicio.java
+--- a/src/icai/dtc/isw/ui/JVInicio.java	(revision f101513dff374c47118154e5e53aa37e23341a60)
++++ b/src/icai/dtc/isw/ui/JVInicio.java	(date 1636718681276)
+@@ -26,13 +26,13 @@
+     public JVInicio()
+     {
+         this.setTitle("Bienvenido al programa");
+-        this.setLayout(new BorderLayout());
++        this.setLayout(new BoxLayout(this.getContentPane(),BoxLayout.Y_AXIS));
+ 
+         JPanel pnlCentral = new JPanel(new FlowLayout());
+         JPanel pnlNorte = new JPanel( new FlowLayout());
+         JPanel pnlSur = new JPanel(new FlowLayout());
+ 
+-        JLabel titulo = new JLabel("Conectate Comillas");
++        JLabel titulo = new JLabel("Con\u00E9ctate Comillas");
+         titulo.setFont(new Font(Font.SERIF , Font. BOLD , 50));
+         titulo.setHorizontalAlignment(JLabel.CENTER);
+         pnlNorte.add(titulo);
+@@ -64,7 +64,7 @@
+         pnlCentral.add(checkContrasena);
+ 
+         JButton btnRegis = new JButton("Registrarse");
+-        JButton btnIn= new JButton("Iniciar sesion");
++        JButton btnIn= new JButton("Iniciar sesi\u00F3n");
+         pnlSur.add(btnIn);
+         pnlSur.add(btnRegis);
+ 
+@@ -83,9 +83,9 @@
+                 peticion.put("Peticion",u);
+                 c.envioPeticion("/getUsuario",peticion);
+                 //System.out.println("ok final");
+-                int entrar = c.getSalidaU();
+-                if(entrar==0){
+-                    JOptionPane.showMessageDialog(null, "No se encuentra su usuario, regístrese para crear una cuenta");
++                boolean existe = c.getSalidaU();
++                if(!existe){
++                    JOptionPane.showMessageDialog(null, "No se encuentra su usuario, reg\u00EDstrese para crear una cuenta");
+                 }
+                 else {
+                     ventanaBuscar = new JVentanaBuscar();
+Index: src/icai/dtc/isw/ui/JVentanaRegistro.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package icai.dtc.isw.ui;\n\nimport icai.dtc.isw.client.Client;\nimport icai.dtc.isw.domain.Usuario;\n\nimport javax.swing.*;\nimport java.awt.*;\nimport java.awt.event.ActionEvent;\nimport java.awt.event.ActionListener;\nimport java.util.HashMap;\n\npublic class JVentanaRegistro extends JFrame {\n\n    private JVInicio ventanaInicio;\n\n    public static void main(String args[]) {\n        new JVentanaRegistro();\n    }\n\n    public JVentanaRegistro() {\n        this.setTitle(\"Registro de usuario\");\n        this.setLayout(new BorderLayout());\n\n        JPanel pnlCentral = new JPanel(new FlowLayout());\n        JPanel pnlNorte = new JPanel(new FlowLayout());\n        JPanel pnlSur = new JPanel(new FlowLayout());\n\n        JLabel titulo = new JLabel(\"Registro de usuario\");\n        titulo.setFont(new Font(Font.SERIF, Font.BOLD, 50));\n        titulo.setHorizontalAlignment(JLabel.CENTER);\n        pnlNorte.add(titulo);\n\n        JLabel lblname = new JLabel(\"Usuario:\");\n        //lblname.setBounds(10,100,80,25);\n\n        JLabel lblcontra = new JLabel(\"Contraseña:\");\n        //lblcontra.setBounds(10,300,80,25);\n\n        JLabel lblcontra2 = new JLabel(\"Repita su contraseña:\");\n\n        JTextField txtuser = new JTextField(10  );\n        txtuser.setToolTipText(\"Ingrese usuario\");\n        //txtuser.setBounds(100,100,160,25);\n\n        JPasswordField txtcontra = new JPasswordField(10);\n        txtcontra.setToolTipText(\"Ingrese contraseña\");\n        txtcontra.setEchoChar('*');\n        //txtcontra.setBounds(100,300,160,25);\n\n        JCheckBox checkContrasena = new JCheckBox(\"Ver contraseña\");\n\n\n        JPasswordField txtcontra2 = new JPasswordField(10);\n        txtcontra2.setToolTipText(\"Ingrese contraseña\");\n        txtcontra2.setEchoChar('*');\n\n        JCheckBox checkContrasena2 = new JCheckBox(\"Ver contraseña\");\n\n\n        pnlCentral.add(lblname);\n        pnlCentral.add(txtuser);\n        pnlCentral.add(lblcontra);\n        pnlCentral.add(txtcontra);\n        pnlCentral.add(checkContrasena);\n        pnlCentral.add(lblcontra2);\n        pnlCentral.add(txtcontra2);\n        pnlCentral.add(checkContrasena2);\n\n        JButton btnRegis = new JButton(\"Registrarse\");\n        pnlSur.add(btnRegis);\n\n        btnRegis.addActionListener(new ActionListener()\n        {\n            @Override\n            public void actionPerformed(ActionEvent e)\n            {\n                char [] arrayC = txtcontra.getPassword();\n                String contra = new String(arrayC);\n\n                char [] arrayC2 = txtcontra2.getPassword();\n                String contra2 = new String(arrayC2);\n\n                if (contra.equals(contra2)) {\n                    String name = txtuser.getText();\n                    Usuario u = new Usuario (name, contra);\n                    System.out.println(u.getId()+\" \"+u.getPassword());\n                    Client c = new Client();\n                    HashMap<String, Object> peticion = new HashMap<String,Object>();\n                    peticion.put(\"Peticion\",u);\n                    c.envioPeticion(\"/setUsuario\",peticion);\n                    JOptionPane.showMessageDialog(null, \"El usuario se ha registrado, inicie sesión\");\n                    ventanaInicio = new JVInicio();\n                    ventanaInicio.setVisible(true);\n                    JVentanaRegistro.this.setVisible(false);\n                }\n\n                else {\n                    JOptionPane.showMessageDialog(null, \"Las contraseñas no coinciden\");\n                }\n            }\n\n\n        });\n\n        checkContrasena.addActionListener(new ActionListener()\n        {\n            @Override\n            public void actionPerformed(ActionEvent e) {\n                if (checkContrasena.isSelected()) txtcontra.setEchoChar((char)0);\n                else txtcontra.setEchoChar('*');\n            }\n        });\n\n        checkContrasena2.addActionListener(new ActionListener()\n        {\n            @Override\n            public void actionPerformed(ActionEvent e) {\n                if (checkContrasena2.isSelected()) txtcontra2.setEchoChar((char)0);\n                else txtcontra2.setEchoChar('*');\n            }\n        });\n\n        this.add(pnlCentral, BorderLayout.CENTER);\n        this.add(pnlNorte, BorderLayout.NORTH);\n        this.add(pnlSur, BorderLayout.SOUTH);\n\n\n        this.setResizable(false); //para que no se pueda mover la jventana\n        this.setSize(1000, 600);\n        this.setLocationRelativeTo(null); //para que aparezca en medio de la pantalla\n        this.setVisible(true);\n        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/icai/dtc/isw/ui/JVentanaRegistro.java b/src/icai/dtc/isw/ui/JVentanaRegistro.java
+--- a/src/icai/dtc/isw/ui/JVentanaRegistro.java	(revision f101513dff374c47118154e5e53aa37e23341a60)
++++ b/src/icai/dtc/isw/ui/JVentanaRegistro.java	(date 1636717614302)
+@@ -69,6 +69,9 @@
+         JButton btnRegis = new JButton("Registrarse");
+         pnlSur.add(btnRegis);
+ 
++        JButton btnVolverInicioSesion = new JButton("Volver a iniciar sesión");
++        pnlSur.add(btnVolverInicioSesion);
++
+         btnRegis.addActionListener(new ActionListener()
+         {
+             @Override
+@@ -82,16 +85,28 @@
+ 
+                 if (contra.equals(contra2)) {
+                     String name = txtuser.getText();
++
++                    //para poder comprobar si el usuario que han metido y existe en nuetra base de datos
+                     Usuario u = new Usuario (name, contra);
+-                    System.out.println(u.getId()+" "+u.getPassword());
+                     Client c = new Client();
+                     HashMap<String, Object> peticion = new HashMap<String,Object>();
+                     peticion.put("Peticion",u);
+-                    c.envioPeticion("/setUsuario",peticion);
+-                    JOptionPane.showMessageDialog(null, "El usuario se ha registrado, inicie sesión");
+-                    ventanaInicio = new JVInicio();
+-                    ventanaInicio.setVisible(true);
+-                    JVentanaRegistro.this.setVisible(false);
++                    c.envioPeticion("/getUsuarioId",peticion);
++                    //System.out.println("ok final");
++                    boolean existe = c.getSalidaU();
++
++                    if(existe){
++                        JOptionPane.showMessageDialog(null, "Este usuario ya existe, por favor,cambie el id del usuario o inicie sesi\u00F3n");
++                    }
++
++                    else {
++                        //esto es para añadir al usuaio nuevo
++                        c.envioPeticion("/setUsuario", peticion);
++                        JOptionPane.showMessageDialog(null, "El usuario se ha registrado, inicie sesi\u00F3n");
++                        ventanaInicio = new JVInicio();
++                        ventanaInicio.setVisible(true);
++                        JVentanaRegistro.this.setVisible(false);
++                    }
+                 }
+ 
+                 else {
+@@ -102,6 +117,23 @@
+ 
+         });
+ 
++        btnVolverInicioSesion.addActionListener(new ActionListener()
++        {
++            @Override
++            public void actionPerformed(ActionEvent e)
++            {
++                int confirmado = JOptionPane.showConfirmDialog(null, "\u00BFDesea volver al menú de inicio de sesón?", "Confirmación para volver a iniciar sesión",JOptionPane.INFORMATION_MESSAGE);
++                if (JOptionPane.OK_OPTION == confirmado) {
++                    ventanaInicio = new JVInicio();
++                    ventanaInicio.setVisible(true);
++                    JVentanaRegistro.this.setVisible(false);
++                }
++                else; //nada
++            }
++
++
++        });
++
+         checkContrasena.addActionListener(new ActionListener()
+         {
+             @Override
+Index: src/icai/dtc/isw/server/SocketServer.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package icai.dtc.isw.server;\n\nimport icai.dtc.isw.controler.CustomerControler;\nimport icai.dtc.isw.domain.Customer;\nimport icai.dtc.isw.domain.Usuario;\nimport icai.dtc.isw.message.Message;\nimport icai.dtc.isw.ui.JVentanaBuscar;\nimport icai.dtc.isw.ui.JVentanaRegistro;\n\nimport java.io.*;\nimport java.net.ServerSocket;\nimport java.net.Socket;\nimport java.util.ArrayList;\nimport java.util.HashMap;\n\npublic class SocketServer extends Thread {\n\tpublic static final int PORT_NUMBER = 8081;\n\t//private entrada Entrada;\n\t//introducir entrada\n\n\tprotected Socket socket;\n\n\tprivate SocketServer(Socket socket) {\n\t\tthis.socket = socket;\n\t\tSystem.out.println(\"New client connected from \" + socket.getInetAddress().getHostAddress());\n\t\tstart();\n\n\t}\n\n\tpublic void run() {\n\t\tInputStream in = null;\n\t\tOutputStream out = null;\n\t\ttry {\n\t\t\tin = socket.getInputStream();\n\t\t\tout = socket.getOutputStream();\n\t\t\t\n\t\t\t//first read the object that has been sent\n\t\t\tObjectInputStream objectInputStream = new ObjectInputStream(in);\n\t\t    Message mensajeIn= (Message)objectInputStream.readObject();\n\t\t    //Object to return informations \n\t\t    ObjectOutputStream objectOutputStream = new ObjectOutputStream(out);\n\t\t    Message mensajeOut=new Message();\n\t\t\t//System.out.println(\"sockect\");\n\t\t    switch (mensajeIn.getContext()) {\n\n\t\t    \tcase \"/getCustomer\":\n\t\t\t\t\t//System.out.println(\"ok contexto\");\n\t\t    \t\tCustomerControler customerControler=new CustomerControler();\n\t\t\t\t\t//System.out.println(\"ok controller\");\n\t\t\t\t\tArrayList<Customer> lista=new ArrayList<Customer>();\n\t\t\t\t\tHashMap<String,Object> mapa = mensajeIn.getSession();\n\t\t\t\t\tSystem.out.println(mapa);\n\t\t\t\t\t//Entrada en = (Entrada) objeto.values();\n\t\t\t\t\t//System.out.println(en.getOrigen());\n\t\t\t\t\tSystem.out.println(\"pregetcustomer\");\n\t\t    \t\tcustomerControler.getCustomer(lista,mapa);\n\t\t    \t\tmensajeOut.setContext(\"/getCustomerResponse\");\n\t\t    \t\tHashMap<String,Object> session=new HashMap<String, Object>();\n\t\t    \t\tsession.put(\"Customer\",lista);\n\t\t    \t\tmensajeOut.setSession(session);\n\t\t    \t\tobjectOutputStream.writeObject(mensajeOut);\n\n\t\t\t\tcase \"/getUsuario\":\n\t\t\t\t\t//System.out.println(\"ok contexto\");\n\t\t\t\t\tCustomerControler customerControler2=new CustomerControler();\n\t\t\t\t\t//System.out.println(\"ok controller\");\n\t\t\t\t\tArrayList<Usuario> lista2=new ArrayList<Usuario>();\n\t\t\t\t\tHashMap<String,Object> mapa2 = mensajeIn.getSession();\n\t\t\t\t\tSystem.out.println(mapa2);\n\t\t\t\t\t//Entrada en = (Entrada) objeto.values();\n\t\t\t\t\t//System.out.println(en.getOrigen());\n\t\t\t\t\tSystem.out.println(\"pregetusuario\");\n\t\t\t\t\tcustomerControler2.getUsuario(lista2,mapa2);\n\t\t\t\t\tmensajeOut.setContext(\"/getUsuarioResponse\");\n\t\t\t\t\tHashMap<String,Object> session2=new HashMap<String, Object>();\n\t\t\t\t\tsession2.put(\"Usuario\",lista2);\n\t\t\t\t\tmensajeOut.setSession(session2);\n\t\t\t\t\tobjectOutputStream.writeObject(mensajeOut);\n\t\t\t\t\tbreak;\n\n\t\t\t\tcase \"/setUsuario\":\n\t\t\t\t\tCustomerControler customerControler3=new CustomerControler();\n\t\t\t\t\tArrayList<Usuario> lista3=new ArrayList<Usuario>();\n\t\t\t\t\tHashMap<String,Object> mapa3 = mensajeIn.getSession();\n\t\t\t\t\tcustomerControler3.setUsuario(lista3,mapa3);\n\t\t\t\t\tmensajeOut.setContext(\"/setUsuarioResponse\");\n\t\t\t\t\tHashMap<String,Object> session3=new HashMap<String, Object>();\n\t\t\t\t\tsession3.put(\"Usuario\",lista3);\n\t\t\t\t\tmensajeOut.setSession(session3);\n\t\t\t\t\tobjectOutputStream.writeObject(mensajeOut);\n\t\t\t\t\tbreak;\n\t\t    \t\n\t\t    \tdefault:\n\t\t    \t\tSystem.out.println(\"\\nParámetro no encontrado\");\n\t\t    \t\tbreak;\n\t\t    }\n\t\t    \n\t\t    //Lógica del controlador \n\t\t    //System.out.println(\"\\n1.- He leído: \"+mensaje.getContext());\n\t\t    //System.out.println(\"\\n2.- He leído: \"+(String)mensaje.getSession().get(\"Nombre\"));\n\t\t    \n\t\t    \n\t\t    \n\t\t    //Prueba para esperar\n\t\t    /*try {\n\t\t    \tSystem.out.println(\"Me duermo\");\n\t\t\t\tThread.sleep(15000);\n\t\t\t\tSystem.out.println(\"Me levanto\");\n\t\t\t} catch (InterruptedException e) {\n\t\t\t\t// TODO Auto-generated catch block\n\t\t\t\te.printStackTrace();\n\t\t\t}*/\n\t\t\t// create an object output stream from the output stream so we can send an object through it\n\t\t\t/*ObjectOutputStream objectOutputStream = new ObjectOutputStream(out);\n\t\t\t\n\t\t\t//Create the object to send\n\t\t\tString cadena=((String)mensaje.getSession().get(\"Nombre\"));\n\t\t\tcadena+=\" añado información\";\n\t\t\tmensaje.getSession().put(\"Nombre\", cadena);\n\t\t\t//System.out.println(\"\\n3.- He leído: \"+(String)mensaje.getSession().get(\"Nombre\"));\n\t\t\tobjectOutputStream.writeObject(mensaje);*\n\t\t\t*/\n\n\t\t} catch (IOException ex) {\n\t\t\tSystem.out.println(\"Unable to get streams from client\");\n\t\t\tex.printStackTrace();\n\t\t} catch (ClassNotFoundException e) {\n\t\t\t// TODO Auto-generated catch block\n\t\t\te.printStackTrace();\n\t\t} finally {\n\t\t\ttry {\n\t\t\t\tin.close();\n\t\t\t\tout.close();\n\t\t\t\tsocket.close();\n\t\t\t} catch (IOException ex) {\n\t\t\t\tex.printStackTrace();\n\t\t\t}\n\t\t}\n\t}\n\n\tpublic static void main(String[] args) {\n\t\tSystem.out.println(\"SocketServer Example\");\n\t\t//new JVentanaBuscar();\n//\t\tnew JVentanaRegistro();\n\t\tServerSocket server = null;\n\t\ttry {\n\t\t\tserver = new ServerSocket(PORT_NUMBER);\n\t\t\twhile (true) {\n\t\t\t\t/**\n\t\t\t\t * create a new {@link SocketServer} object for each connection\n\t\t\t\t * this will allow multiple client connections\n\t\t\t\t */\n\t\t\t\tnew SocketServer(server.accept());\n\t\t\t}\n\t\t} catch (IOException ex) {\n\t\t\tSystem.out.println(\"Unable to start server.\");\n\t\t} finally {\n\t\t\ttry {\n\t\t\t\tif (server != null)\n\t\t\t\t\tserver.close();\n\t\t\t} catch (IOException ex) {\n\t\t\t\tex.printStackTrace();\n\t\t\t}\n\t\t}\n\t}\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/icai/dtc/isw/server/SocketServer.java b/src/icai/dtc/isw/server/SocketServer.java
+--- a/src/icai/dtc/isw/server/SocketServer.java	(revision f101513dff374c47118154e5e53aa37e23341a60)
++++ b/src/icai/dtc/isw/server/SocketServer.java	(date 1636716226985)
+@@ -78,6 +78,24 @@
+ 					objectOutputStream.writeObject(mensajeOut);
+ 					break;
+ 
++				case "/getUsuarioId":
++					//System.out.println("ok contexto");
++					CustomerControler customerControler4=new CustomerControler();
++					//System.out.println("ok controller");
++					ArrayList<Usuario> lista4=new ArrayList<Usuario>();
++					HashMap<String,Object> mapa4 = mensajeIn.getSession();
++					System.out.println(mapa4);
++					//Entrada en = (Entrada) objeto.values();
++					//System.out.println(en.getOrigen());
++					System.out.println("pregetusuario");
++					customerControler4.getUsuarioId(lista4,mapa4);
++					mensajeOut.setContext("/getUsuarioIdResponse");
++					HashMap<String,Object> session4=new HashMap<String, Object>();
++					session4.put("Usuario",lista4);
++					mensajeOut.setSession(session4);
++					objectOutputStream.writeObject(mensajeOut);
++					break;
++
+ 				case "/setUsuario":
+ 					CustomerControler customerControler3=new CustomerControler();
+ 					ArrayList<Usuario> lista3=new ArrayList<Usuario>();
+Index: src/icai/dtc/isw/controler/CustomerControler.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package icai.dtc.isw.controler;\n\nimport java.util.*;\n\nimport icai.dtc.isw.dao.CustomerDAO;\nimport icai.dtc.isw.domain.Customer;\nimport icai.dtc.isw.domain.Entrada;\nimport icai.dtc.isw.domain.Usuario;\n\npublic class CustomerControler {\n\n\tpublic void getUsuario(ArrayList<Usuario> lista, HashMap<String, Object> mapa) {\n\t\tUsuario entrada = (Usuario) mapa.get(\"Peticion\");\n\t\tSystem.out.println(entrada.getId()+\"  bien hasta DAO   \"+entrada.getPassword());\n\t\t//System.out.println(entrada+\" ok\");\n\t\tCustomerDAO.getUsuarios(lista, entrada);\n\t}\n\n\tpublic void getCustomer(ArrayList<Customer> lista,HashMap<String, Object> mapa) {\n\t\t//Aquí los distintos metodos según el String por ahora cogemos el value y hacemos downcasting\n\t\t//System.out.println(\" ok controler\");\n\t\tEntrada entrada = (Entrada) mapa.get(\"Peticion\");\n\t\t//System.out.println(entrada+\" ok\");\n\t\tCustomerDAO.getClientes(lista, entrada);\n\t}\n\n\tpublic void setUsuario(ArrayList<Usuario> lista, HashMap<String, Object> mapa) {\n\t\tUsuario entrada = (Usuario) mapa.get(\"Peticion\");\n\t\tCustomerDAO.setUsuarios(lista, entrada);\n\t}\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/icai/dtc/isw/controler/CustomerControler.java b/src/icai/dtc/isw/controler/CustomerControler.java
+--- a/src/icai/dtc/isw/controler/CustomerControler.java	(revision f101513dff374c47118154e5e53aa37e23341a60)
++++ b/src/icai/dtc/isw/controler/CustomerControler.java	(date 1636716226981)
+@@ -24,6 +24,11 @@
+ 		CustomerDAO.getClientes(lista, entrada);
+ 	}
+ 
++	public void getUsuarioId(ArrayList<Usuario> lista, HashMap<String, Object> mapa) {
++		Usuario entrada = (Usuario) mapa.get("Peticion");
++		CustomerDAO.getUsuarioId(lista, entrada);
++	}
++
+ 	public void setUsuario(ArrayList<Usuario> lista, HashMap<String, Object> mapa) {
+ 		Usuario entrada = (Usuario) mapa.get("Peticion");
+ 		CustomerDAO.setUsuarios(lista, entrada);
+Index: src/icai/dtc/isw/dao/CustomerDAO.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package icai.dtc.isw.dao;\n\nimport java.sql.Connection;\nimport java.sql.PreparedStatement;\nimport java.sql.ResultSet;\nimport java.sql.SQLException;\nimport java.util.ArrayList;\n\nimport icai.dtc.isw.domain.Customer;\nimport icai.dtc.isw.domain.Entrada;\nimport icai.dtc.isw.domain.Usuario;\n\npublic class CustomerDAO {\n\n\tprivate static Entrada ENTRADA;\n\tprivate static Usuario USUARIO;\n\n\n\n\n\tpublic static void getClientes(ArrayList<Customer> lista, Entrada entrada) {\n\t\tENTRADA = entrada;\n\t\tSystem.out.println(ENTRADA.getOrigen());\n\t\tConnection con=ConnectionDAO.getInstance().getConnection();\n\t\ttry (PreparedStatement pst = con.prepareStatement(\"SELECT * FROM coches WHERE origen = '\"+ENTRADA.getOrigen()+\"' AND destino ='\"+ENTRADA.getDestino()+\"' AND plazas ='\"+ENTRADA.getPlazas()+\"';\");\n                ResultSet rs = pst.executeQuery()) {\n\n            while (rs.next()) {\n            \tlista.add(new Customer(rs.getString(1),rs.getString(3),rs.getString(4),(String) rs.getString(2)));\n            }\n\n        } catch (SQLException ex) {\n\n            System.out.println(ex.getMessage());\n        }\n\t}\n\n\tpublic static void getUsuarios(ArrayList<Usuario> lista, Usuario entrada) {\n\n\t\tUSUARIO = entrada;\n\t\tSystem.out.println(USUARIO.getId());\n\t\tConnection con = ConnectionDAO.getInstance().getConnection();\n\t\ttry (PreparedStatement pst = con.prepareStatement(\"SELECT * FROM users WHERE name = '\" + USUARIO.getId() + \"' AND password='\" + USUARIO.getPassword() + \"';\");\n\t\t\t ResultSet rs = pst.executeQuery()) {\n\n\t\t\twhile (rs.next()) {\n\t\t\t\tlista.add(new Usuario(rs.getString(1), rs.getString(2)));\n\t\t\t}\n\n\t\t} catch (SQLException ex) {\n\n\t\t\tSystem.out.println(ex.getMessage());\n\t\t}\n\t}\n\n\tpublic static void setUsuarios(ArrayList<Usuario> lista, Usuario entrada) {\n\t\tUSUARIO = entrada;\n\t\tSystem.out.println(\"El usuario que se va a meter antes de la query es \"+USUARIO.getId()+\" con contraseña \"+USUARIO.getPassword());\n\t\tConnection con = ConnectionDAO.getInstance().getConnection();\n\t\ttry (PreparedStatement pst = con.prepareStatement(\"INSERT INTO users (name, password) VALUES ('\" + USUARIO.getId() + \"', '\" + USUARIO.getPassword() + \"');\");\n\t\t\t ResultSet rs = pst.executeQuery()) {\n\t\t\twhile (rs.next()) {\n\t\t\t\tlista.add(new Usuario(rs.getString(1), rs.getString(2)));\n\t\t\t}\n\t\t\tfor (Usuario user : lista) System.out.println(\"Los usuarios despues de la query son \"+user);\n\n\t\t} catch (SQLException ex) {\n\t\t\tSystem.out.println(ex.getMessage());\n\t\t}\n\t}\n\t/*public static void main(String[] args) {\n\t\t\n\t\t\n\t\tArrayList<Customer> lista=new ArrayList<Customer>();\n\n\t\tCustomerDAO.getClientes(lista,ENTRADA);\n\t\t\n\t\t\n\t\t for (Customer customer : lista) {\t\t\t\n\t\t\tSystem.out.println(\"He leído la matricula: \"+customer.getMatricula());\n\t\t}\n\t\t\n\t\n\t}*/\n\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/icai/dtc/isw/dao/CustomerDAO.java b/src/icai/dtc/isw/dao/CustomerDAO.java
+--- a/src/icai/dtc/isw/dao/CustomerDAO.java	(revision f101513dff374c47118154e5e53aa37e23341a60)
++++ b/src/icai/dtc/isw/dao/CustomerDAO.java	(date 1636715840871)
+@@ -53,6 +53,24 @@
+ 		}
+ 	}
+ 
++	public static void getUsuarioId(ArrayList<Usuario> lista, Usuario entrada) {
++
++		USUARIO = entrada;
++		System.out.println(USUARIO.getId());
++		Connection con = ConnectionDAO.getInstance().getConnection();
++		try (PreparedStatement pst = con.prepareStatement("SELECT * FROM users WHERE name = '" + USUARIO.getId() + "';");
++			 ResultSet rs = pst.executeQuery()) {
++
++			while (rs.next()) {
++				lista.add(new Usuario(rs.getString(1), "Constraseña"));
++			}
++
++		} catch (SQLException ex) {
++
++			System.out.println(ex.getMessage());
++		}
++	}
++
+ 	public static void setUsuarios(ArrayList<Usuario> lista, Usuario entrada) {
+ 		USUARIO = entrada;
+ 		System.out.println("El usuario que se va a meter antes de la query es "+USUARIO.getId()+" con contraseña "+USUARIO.getPassword());
+Index: src/icai/dtc/isw/ui/JVentanaBuscar.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package icai.dtc.isw.ui;\n\nimport icai.dtc.isw.client.Client;\nimport icai.dtc.isw.domain.Customer;\nimport icai.dtc.isw.domain.Entrada;\n\nimport javax.swing.*;\nimport javax.swing.border.Border;\nimport javax.swing.border.CompoundBorder;\nimport javax.swing.border.EmptyBorder;\nimport javax.swing.border.LineBorder;\nimport java.awt.*;\nimport java.awt.event.ActionEvent;\nimport java.awt.event.ActionListener;\nimport java.util.ArrayList;\nimport java.util.HashMap;\n\n\npublic class JVentanaBuscar extends JFrame\n{\n\n    private JVentanaResultados ventanaResultados;\n    private JButton btnBuscar;\n    private JComboBox<String> cbOrigen, cbDestino, cbPlazas;\n    private JLabel labelOrigen, labelDestino, labelPlazas;\n\n\n    public static void main(String args[])\n    {\n        new JVentanaBuscar();\n    }\n\n\n    public JVentanaBuscar()\n    {\n        this.setTitle(\"B\\u00FAsqueda de coches\");\n        this.setLayout(null);\n        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);\n        this.setResizable(false); //para que no se pueda mover la jventana\n        this.setSize(1000,600);\n        this.setLocationRelativeTo(null); //para que aparezca en medio de la pantalla\n        this.setVisible(true);\n\n        initTitulo();\n        initJLabels();\n        initBotonBuscar();\n        initBoxes();\n        initActionBotones();\n\n        this.getContentPane().setBackground(new Color(207, 185, 151,255)); //color de fondo (lo pongo al final porque sino no se ven las boxes)\n    }\n\n    public void initTitulo() {\n        JLabel titulo = new JLabel( \"Elige los par\\u00E1metros de b\\u00FAsqueda:\" );\n        titulo.setBounds(125, 50, 500, 50);\n        titulo.setHorizontalAlignment(SwingConstants.CENTER);\n        titulo.setForeground(new Color(234, 223, 223,255));\n        titulo.setForeground(new Color(0, 47, 152,255));\n        titulo.setOpaque(false); //false para quitar el fondo\n        titulo.setFont(new Font(\"Harlow Solid Italic\"   , Font.BOLD, 25));\n        this.add(titulo);\n    }\n\n    public void initBotonBuscar() {\n        btnBuscar = new JButton(\"Buscar\");\n        btnBuscar.setBounds(375,450,250,50);\n        btnBuscar.setForeground(Color.BLACK);\n        btnBuscar.setBackground(new Color(215,207,204,255));\n        Border line = new LineBorder(Color.BLACK);\n        Border margin = new EmptyBorder(5, 15, 5, 15); //distancia de separacion de dentro\n        Border compound = new CompoundBorder(line, margin); //para que tenga el borde de negro\n        btnBuscar.setBorder(compound); // añadimos el borde de negro\n        btnBuscar.setFont(new Font(\"Gill Sans Nova\", Font.BOLD, 15));\n        this.add(btnBuscar);\n    }\n\n    public void initBoxes() {\n        String origen[]={\"Pozuelo\",\"Majadahonda\",\"Boadilla\",\"Somosaguas\",\"ICAI\",\"ICADE\",\"CIHS\",\"Madrid\"};\n        cbOrigen = new JComboBox<String>(origen);\n        cbOrigen.setBounds(600,160,200,30);\n//        cbOrigen.setFont(new Font(\"Bauhaus 93\", 0, 20));\n        this.add(cbOrigen);\n\n        String destinos[]={\"Pozuelo\",\"Majadahonda\",\"Boadilla\",\"Somosaguas\",\"ICAI\",\"ICADE\",\"CIHS\",\"Madrid\"};\n        cbDestino = new JComboBox<String>(destinos);\n        cbDestino.setBounds(600,240,200,30);\n//        cbDestino.setFont(new Font(\"Bauhaus 93\", 0, 20));\n        this.add(cbDestino);\n\n        String plazas[]={\"1\",\"2\",\"3\",\"4\",\"5\",\"6\",\"7\"};\n        cbPlazas = new JComboBox<String>(plazas);\n        cbPlazas.setBounds(600,320,200,30);\n//        cbPlazas.setFont(new Font(\"Bauhaus 93\", 0, 20));\n        this.add(cbPlazas);\n    }\n\n    public void initJLabels(){\n        labelOrigen = new JLabel(\"Origen:\");\n        labelOrigen.setBounds(250,150,125,50);\n        labelOrigen.setHorizontalAlignment(SwingConstants.LEFT);\n        labelOrigen.setForeground(Color.black);\n        labelOrigen.setOpaque(false); //false para quitar el fondo\n        labelOrigen.setFont(new Font( Font.DIALOG, Font.BOLD, 20));\n        this.add(labelOrigen);\n\n        labelDestino = new JLabel(\"Destino:\");\n        labelDestino.setBounds(250,230,125,50);\n        labelDestino.setHorizontalAlignment(SwingConstants.LEFT);\n        labelDestino.setForeground(Color.black);\n        labelDestino.setOpaque(false); //false para quitar el fondo\n        labelDestino.setFont(new Font( Font.DIALOG, Font.BOLD, 20));\n        this.add(labelDestino);\n\n        labelPlazas = new JLabel(\"Numero de plazas:\");\n        labelPlazas.setBounds(250,310,250,50);\n        labelPlazas.setHorizontalAlignment(SwingConstants.LEFT);\n        labelPlazas.setForeground(Color.black);\n        labelPlazas.setOpaque(false); //false para quitar el fondo\n        labelPlazas.setFont(new Font( Font.DIALOG, Font.BOLD, 20));\n        this.add(labelPlazas);\n    }\n\n    public void initActionBotones() {\n        btnBuscar.addActionListener(new ActionListener()\n        {\n            @Override\n            public void actionPerformed(ActionEvent e)\n            {\n                String origen = (String) cbOrigen.getItemAt(cbOrigen.getSelectedIndex());\n                String plazas=  (String) cbPlazas.getItemAt(cbPlazas.getSelectedIndex());\n                String destino = (String) cbDestino.getItemAt(cbDestino.getSelectedIndex());\n                Entrada entrada = new Entrada (origen, destino,plazas);\n                Client c = new Client();\n                HashMap<String, Object> peticion = new HashMap<String,Object>();\n                peticion.put(\"Peticion\",entrada);\n                c.envioPeticion(\"/getCustomer\",peticion);\n                //System.out.println(\"ok final\");\n                ArrayList<Customer> salidas = c.getSalidaC();\n                if(salidas.size()==0){\n                    JOptionPane.showMessageDialog(null, \"No se encuentra resultado par sus requisitos, vuelva a intentarlo\");\n                }\n                else {\n                    ventanaResultados = new JVentanaResultados(salidas,JVentanaBuscar.this);\n                    ventanaResultados.setVisible(true);\n                    JVentanaBuscar.this.setVisible(false);\n\n                }\n\n\n            }\n        });\n    }\n\n\n}\n\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/icai/dtc/isw/ui/JVentanaBuscar.java b/src/icai/dtc/isw/ui/JVentanaBuscar.java
+--- a/src/icai/dtc/isw/ui/JVentanaBuscar.java	(revision f101513dff374c47118154e5e53aa37e23341a60)
++++ b/src/icai/dtc/isw/ui/JVentanaBuscar.java	(date 1636717475545)
+@@ -111,7 +111,7 @@
+         labelDestino.setFont(new Font( Font.DIALOG, Font.BOLD, 20));
+         this.add(labelDestino);
+ 
+-        labelPlazas = new JLabel("Numero de plazas:");
++        labelPlazas = new JLabel("N\u00FAmero de plazas:");
+         labelPlazas.setBounds(250,310,250,50);
+         labelPlazas.setHorizontalAlignment(SwingConstants.LEFT);
+         labelPlazas.setForeground(Color.black);
+@@ -137,7 +137,7 @@
+                 //System.out.println("ok final");
+                 ArrayList<Customer> salidas = c.getSalidaC();
+                 if(salidas.size()==0){
+-                    JOptionPane.showMessageDialog(null, "No se encuentra resultado par sus requisitos, vuelva a intentarlo");
++                    JOptionPane.showMessageDialog(null, "No se encuentra resultado para sus requisitos, vuelva a intentarlo");
+                 }
+                 else {
+                     ventanaResultados = new JVentanaResultados(salidas,JVentanaBuscar.this);
+Index: src/icai/dtc/isw/client/Client.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package icai.dtc.isw.client;\n\nimport java.io.IOException;\nimport java.io.InputStream;\nimport java.io.ObjectInputStream;\nimport java.io.ObjectOutputStream;\nimport java.io.OutputStream;\nimport java.net.Socket;\nimport java.net.UnknownHostException;\nimport java.util.ArrayList;\nimport java.util.HashMap;\n\nimport icai.dtc.isw.domain.Usuario;\nimport org.apache.log4j.Logger;\n\nimport icai.dtc.isw.configuration.PropertiesISW;\nimport icai.dtc.isw.domain.Customer;\nimport icai.dtc.isw.message.Message;\n\npublic class Client {\n\tprivate String host;\n\tprivate int port;\n\tprivate ArrayList<Customer> salidas;\n\tfinal static Logger logger = Logger.getLogger(Client.class);\n\tprivate int entrar;\n\n\n\tpublic void envioPeticion(String contexto, HashMap <String,Object> session) {\n\t\t//Configure connections\n\n\t\tString host = PropertiesISW.getInstance().getProperty(\"host\");\n\t\tint port = Integer.parseInt(PropertiesISW.getInstance().getProperty(\"port\"));\n\t\tLogger.getRootLogger().info(\"Host: \"+host+\" port\"+port);\n\t\t//Create a cliente class\n\t\tthis.setC( host,  port);\n\n\n\n\t\t//HashMap<String,Object> session=new HashMap<String, Object>();\n\t\t//session.put(\"/getCustomer\",\"\");\n\t\t\n\t\tMessage mensajeEnvio=new Message();\n\t\tMessage mensajeVuelta=new Message();\n\t\tmensajeEnvio.setContext(contexto);\n\t\tmensajeEnvio.setSession(session);\n\t\t//System.out.println(\"pre \");\n\t\tthis.sent(mensajeEnvio,mensajeVuelta);\n\t\t//System.out.println(\"post \");\n\t\t\n\t\t\n\t\tswitch (mensajeVuelta.getContext()) {\n\t\t\tcase \"/getCustomerResponse\":\n\t\t\t\t// Aquí tenemos q conseguir devolver un array\n\t\t\t\tArrayList<Customer> customerList=(ArrayList<Customer>)(mensajeVuelta.getSession().get(\"Customer\"));\n\t\t\t\tthis.salidas= customerList;\n\t\t\t\t for (Customer customer : customerList) {\t\t\t\n\t\t\t\t\t\tSystem.out.println(\"He leído la matricula: \"+customer.getMatricula()+\" origen:\"+customer.getOrigen()+\" destino:\"+customer.getDestino()+\"numero de plazas\"+customer.getPlazas());\n\t\t\t\t\t} \n\t\t\t\tbreak;\n\n\t\t\tcase \"/getUsuarioResponse\":\n\t\t\t\tArrayList<Usuario> userList=(ArrayList<Usuario>)(mensajeVuelta.getSession().get(\"Usuario\"));\n\t\t\t\tif (userList.size()==1)\n\t\t\t\t\tthis.entrar= 1;\n\t\t\t\telse\n\t\t\t\t\tthis.entrar = 0;\n\t\t\t\tfor (Usuario user : userList) {\n\t\t\t\t\tSystem.out.println(\"He leído el id \"+user.getId());\n\t\t\t\t}\n\n\t\t\t\tbreak;\n\n\t\t\tcase \"/setUsuarioResponse\":\n\t\t\t\tArrayList<Usuario> userList2=(ArrayList<Usuario>)(mensajeVuelta.getSession().get(\"Usuario\"));\n//\t\t\t\tUsuario user2 = (Usuario) userList2.get(0);\n//\t\t\t\tSystem.out.println(\"Se ha añadido el usuario con id \"+user2.getId() +\" y contraseña \"+user2.getPassword());\n\t\t\t\tfor (Usuario user : userList2) {\n\t\t\t\t\tSystem.out.println(\"Se ha añadido el usuario con id \"+user.getId() +\" y contraseña \"+user.getPassword());\n\t\t\t\t}\n\t\t\t\tbreak;\n\n\t\t\tdefault:\n\t\t\t\tLogger.getRootLogger().info(\"Option not found\");\n\t\t\t\tSystem.out.println(\"\\nError a la vuelta\");\n\t\t\t\tbreak;\n\n\n\t\t\n\t\t}\n\t\t//System.out.println(\"3.- En Main.- El valor devuelto es: \"+((String)mensajeVuelta.getSession().get(\"Nombre\")));\n\t}\n\t\n\tpublic void setC(String host, int port) {\n\t\tthis.host=host;\n\t\tthis.port=port;\n\t}\n\n\tpublic ArrayList<Customer> getSalidaC(){\n\t\treturn salidas;\n\t}\n\n\tpublic int getSalidaU(){\n\t\treturn entrar;\n\t}\n\n\n\tpublic void sent(Message messageOut, Message messageIn) {\n\t\ttry {\n\n\t\t\tSystem.out.println(\"Connecting to host \" + host + \" on port \" + port + \".\");\n\n\t\t\tSocket echoSocket = null;\n\t\t\tOutputStream out = null;\n\t\t\tInputStream in = null;\n\n\t\t\ttry {\n\t\t\t\techoSocket = new Socket(host, port);\n\t\t\t\tin = echoSocket.getInputStream();\n\t\t\t\tout = echoSocket.getOutputStream();\n\t\t\t\tObjectOutputStream objectOutputStream = new ObjectOutputStream(out);\n\t\t\t\t\n\t\t\t\t//Create the objetct to send\n\t\t\t\tobjectOutputStream.writeObject(messageOut);\n\t\t\t\t\n\t\t\t\t// create a DataInputStream so we can read data from it.\n\t\t        ObjectInputStream objectInputStream = new ObjectInputStream(in);\n\t\t        Message msg=(Message)objectInputStream.readObject();\n\t\t        messageIn.setContext(msg.getContext());\n\t\t        messageIn.setSession(msg.getSession());\n\t\t        /*System.out.println(\"\\n1.- El valor devuelto es: \"+messageIn.getContext());\n\t\t        String cadena=(String) messageIn.getSession().get(\"Nombre\");\n\t\t        System.out.println(\"\\n2.- La cadena devuelta es: \"+cadena);*/\n\t\t\t\t\n\t\t\t} catch (UnknownHostException e) {\n\t\t\t\tSystem.err.println(\"Unknown host: \" + host);\n\t\t\t\tSystem.exit(1);\n\t\t\t} catch (IOException e) {\n\t\t\t\tSystem.err.println(\"Unable to get streams from server\");\n\t\t\t\tSystem.exit(1);\n\t\t\t}\t\t\n\n\t\t\t/** Closing all the resources */\n\t\t\tout.close();\n\t\t\tin.close();\t\t\t\n\t\t\techoSocket.close();\n\t\t} catch (Exception e) {\n\t\t\te.printStackTrace();\n\t\t}\n\t}\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/icai/dtc/isw/client/Client.java b/src/icai/dtc/isw/client/Client.java
+--- a/src/icai/dtc/isw/client/Client.java	(revision f101513dff374c47118154e5e53aa37e23341a60)
++++ b/src/icai/dtc/isw/client/Client.java	(date 1636715840883)
+@@ -22,7 +22,7 @@
+ 	private int port;
+ 	private ArrayList<Customer> salidas;
+ 	final static Logger logger = Logger.getLogger(Client.class);
+-	private int entrar;
++	private boolean existe;
+ 
+ 
+ 	public void envioPeticion(String contexto, HashMap <String,Object> session) {
+@@ -61,15 +61,27 @@
+ 			case "/getUsuarioResponse":
+ 				ArrayList<Usuario> userList=(ArrayList<Usuario>)(mensajeVuelta.getSession().get("Usuario"));
+ 				if (userList.size()==1)
+-					this.entrar= 1;
++					this.existe = true;
+ 				else
+-					this.entrar = 0;
++					this.existe = false;
+ 				for (Usuario user : userList) {
+ 					System.out.println("He leído el id "+user.getId());
+ 				}
+ 
+ 				break;
+ 
++			case "/getUsuarioIdResponse":
++				ArrayList<Usuario> userList3=(ArrayList<Usuario>)(mensajeVuelta.getSession().get("Usuario"));
++				if (userList3.size()==1)
++					this.existe = true;
++				else
++					this.existe = false;
++				for (Usuario user : userList3) {
++					System.out.println("He leído el id "+user.getId());
++				}
++
++				break;
++
+ 			case "/setUsuarioResponse":
+ 				ArrayList<Usuario> userList2=(ArrayList<Usuario>)(mensajeVuelta.getSession().get("Usuario"));
+ //				Usuario user2 = (Usuario) userList2.get(0);
+@@ -99,8 +111,8 @@
+ 		return salidas;
+ 	}
+ 
+-	public int getSalidaU(){
+-		return entrar;
++	public boolean getSalidaU(){
++		return existe;
+ 	}
+ 
+ 
