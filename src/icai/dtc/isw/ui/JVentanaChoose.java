@@ -148,7 +148,7 @@ public class JVentanaChoose extends JFrame{
                 //System.out.println("ok final");
                 ArrayList<Customer> salidas = c.getSalidaC();
                 if (salidas.size() == 0) {
-                    JOptionPane.showMessageDialog(null, "No ha creado ningún viaje todavía");
+                    JOptionPane.showMessageDialog(null, "No se ha unido a ning\u00FAn viaje todav\u00EDa");
                 } else {
 //                    IteratorCustomer it = new IteratorCustomer(salidas,name);
 //                    while(it.hasNext()){

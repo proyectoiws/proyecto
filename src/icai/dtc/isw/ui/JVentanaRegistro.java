@@ -22,10 +22,6 @@ public class JVentanaRegistro extends JFrame {
     private JCheckBox checkContrasena, checkContrasena2;
     private JButton btnVolverInicioSesion, btnRegis;
 
-    public static void main(String args[]) {
-        new JVentanaRegistro();
-    }
-
     public JVentanaRegistro() {
         this.setTitle("Registro de usuario");
         this.setLayout(null);
